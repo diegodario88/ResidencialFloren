@@ -17,6 +17,7 @@ nav {
 	background-color: #212120;
 	width: 100%;
 	position: fixed;
+	overflow: unset;
 	top: 0;
 }
 
@@ -54,15 +55,15 @@ a.navbar-brand:hover {
 }
 
 div.block:nth-child(1n) {
-	background: #061c2d;
+	background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
 }
 
 div.block:nth-child(2n) {
-	background: hsl(205, 84%, 14%);
+	background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
 }
 
 div.block:nth-child(3n) {
-	background: hsl(205, 90%, 22%);
+	background-image: linear-gradient(to right, #3ab5b0 0%, #3d99be 31%, #56317a 100%);
 }
 
 table {
@@ -123,6 +124,12 @@ th {
 
 .nav-links a:hover {
 	color: #41b883;
+}
+
+.mainColeta {
+	height: 25vh;
+	display: grid;
+	grid-template-columns: auto;
 }
 
 .mainContato {
@@ -194,16 +201,20 @@ th {
 	text-decoration: none;
 	display: inline-block;
 	align-self: center;
-	width: 300px;
-	height: 50px;
+	width: 280px;
+	height: 60px;
+	border: 5px solid transparent;
 	background: #212120;
 	padding: 10px;
 	text-align: center;
-	border-radius: 5px;
+	border-radius: 40px;
 	font-weight: bold;
+	text-align: center;
+	align-items: center;
 }
 #btnContato:hover {
 	color: tomato;
+	box-shadow: -5px 5px 25px #000;
 }
 
 #textoTel:hover {
@@ -223,20 +234,34 @@ th {
 	color: #41b883;
 	text-decoration: none;
 }
-#sobre .p {
+
+#textoColeta {
+	text-align: justify;
+}
+#sobre p {
 	text-align: justify;
 }
 
 #footer {
 	font-size: 16px;
 	font-style: oblique;
-	background-color: #061c2d;
+	align-self: baseline;
+	margin-bottom: 1px;
+	margin-top: 120px;
 }
 
 /* responsive */
 @media screen and (max-width: 1024px) {
+	body {
+		overflow-x: hidden;
+		font-size: 16px;
+	}
+
+	h1 span {
+		display: block;
+	}
 	.nav-links {
-		font-size: 18px;
+		font-size: 16px;
 		line-height: 27px;
 		display: flex;
 		justify-content: space-around;
@@ -247,12 +272,11 @@ th {
 		text-decoration: none;
 		display: inline-block;
 		align-self: center;
-		width: 180px;
-		height: 50px;
+		width: 240px;
+		height: 60px;
 		background: #212120;
 		padding: 10px;
 		text-align: center;
-		border-radius: 5px;
 		font-weight: bold;
 	}
 }
@@ -271,12 +295,11 @@ th {
 		text-decoration: none;
 		display: inline-block;
 		align-self: center;
-		width: 180px;
-		height: 50px;
+		width: 220px;
+		height: 60px;
 		background: #212120;
 		padding: 10px;
 		text-align: center;
-		border-radius: 5px;
 		font-weight: bold;
 	}
 	div.block {
@@ -296,12 +319,11 @@ th {
 		text-decoration: none;
 		display: inline-block;
 		align-self: center;
-		width: 180px;
-		height: 50px;
+		width: 200px;
+		height: 60px;
 		background: #212120;
 		padding: 10px;
 		text-align: center;
-		border-radius: 5px;
 		font-weight: bold;
 	}
 
@@ -315,13 +337,13 @@ th {
 			text-decoration: none;
 			display: inline-block;
 			align-self: center;
-			width: 180px;
-			height: 40px;
+			width: 200px;
+			height: 50px;
 			background: #212120;
 			padding: 10px;
 			text-align: center;
-			border-radius: 5px;
 			font-weight: bold;
+			letter-spacing: 1px;
 		}
 		.mainContato {
 			font-size: 8px;
@@ -412,12 +434,16 @@ th {
 .intro-text {
 	opacity: 0;
 	transform: translateY(20px);
-	transition: 0.5s all ease-in-out;
+	transition: 0.7s all ease-in-out;
+	position: relative;
+	overflow: hidden;
 }
 
 .intro-appear {
 	opacity: 1;
 	transform: translateY(0px);
+	overflow: hidden;
+	position: relative;
 }
 .fromTopIn {
 	transition: transform 1.0s ease, opacity 1.0s ease;
