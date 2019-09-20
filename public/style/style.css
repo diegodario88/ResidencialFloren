@@ -19,6 +19,7 @@ nav {
 	position: fixed;
 	overflow: unset;
 	top: 0;
+	z-index: 1;
 }
 
 body {
