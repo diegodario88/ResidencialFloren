@@ -124,6 +124,41 @@ th {
 .nav-links a:hover {
 	color: #41b883;
 }
+
+.mainContato {
+	height: 50vh;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	display: grid;
+	grid-template-areas: "contato1 contato2" "contato3 contato4";
+	justify-items: center;
+	align-items: center;
+}
+
+.mainContato a {
+	color: rgb(226, 226, 226);
+	text-decoration: none;
+	letter-spacing: 3px;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.mainContato a:hover {
+	color: #41b883;
+}
+.contato1 {
+	grid-area: contato1;
+}
+.contato2 {
+	grid-area: contato2;
+}
+.contato3 {
+	grid-area: contato3;
+}
+.contato4 {
+	grid-area: contato4;
+}
+
 #espacoGordo {
 	background-color: #41b883;
 	color: #41b883;
@@ -190,13 +225,6 @@ th {
 }
 #sobre .p {
 	text-align: justify;
-}
-
-#contato .p {
-	align-items: center;
-	display: flex;
-	justify-content: space-around;
-	width: 100%;
 }
 
 #footer {
@@ -295,6 +323,10 @@ th {
 			border-radius: 5px;
 			font-weight: bold;
 		}
+		.mainContato {
+			font-size: 8px;
+			letter-spacing: 0px;
+		}
 	}
 
 	@media screen and (max-width: 360px) {
@@ -302,7 +334,18 @@ th {
 			font-size: 3em;
 		}
 	}
-
+	.mainContato {
+		font-size: 8px;
+		letter-spacing: normal;
+	}
+	.mainContato {
+		grid-template-columns: 300px;
+		grid-template-rows: 100px;
+		display: grid;
+		grid-template-areas: "contato1" "contato2" "contato3" "contato4";
+		justify-items: center;
+		align-items: center;
+	}
 	.nav-links {
 		position: absolute;
 		right: 0%;
