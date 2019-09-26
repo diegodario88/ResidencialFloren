@@ -26,9 +26,6 @@ const navSlide = () =>
     const nav = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links li')
 
-
-
-
     burger.addEventListener('click', () =>
     {
         //Toggle Nav
@@ -48,7 +45,6 @@ const navSlide = () =>
 
             }
 
-
         });
 
         //Burger Animation
@@ -59,6 +55,34 @@ const navSlide = () =>
 }
 navSlide();
 
+
+//Navigation autoClose ToDO
+const navSlideClose = () =>
+{
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav-links');
+    const navLinks = document.querySelectorAll('.nav-links li')
+
+    navLinks.forEach((item) =>
+    {
+        item.style = 'opacity: 1;';
+        nav.classList.add('nav-links')
+        item.addEventListener('click', () =>
+        {
+
+            burger.classList.toggle('toggle');
+            nav.classList.toggle('nav-active')
+
+        })
+
+
+
+    })
+
+
+}
+
+//navSlideClose();
 
 //cria uma lista com todas as farmácias e suas propriedades
 const listaFarmacia =
@@ -177,13 +201,13 @@ function atualizaPagina(farma1, farma2)
 
     plantao.innerHTML = `${listaFarmacia[farma1].nome}`
     textoData.innerHTML = `Plantão dia: ${dataAtualFormatada()}`
-    textoEnd.innerHTML = `Endereço: ${listaFarmacia[farma1].endereco}`
+    textoEnd.innerHTML = listaFarmacia[farma1].endereco
     textoTel.innerHTML = listaFarmacia[farma1].telefone
 
     textoSecundario.innerHTML = ` ${listaFarmacia[farma2].nome} `
     textoDataSecundario.innerText = `Plantão dia: ${dataAtualFormatada()}`
     textoTelSecundario.innerHTML = listaFarmacia[farma2].telefone
-    textoEndSecundario.innerHTML = `Endereço: ${listaFarmacia[farma2].endereco}`
+    textoEndSecundario.innerHTML = listaFarmacia[farma2].endereco
 
 }
 

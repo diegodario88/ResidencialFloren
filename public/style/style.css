@@ -46,7 +46,14 @@ div.block {
 	height: 100vh;
 	padding: 20vh 15vw 0 15vw;
 }
+a {
+	color: #41b883;
+	text-decoration: none;
+}
 
+a:hover {
+	color: tomato;
+}
 a.navbar-brand {
 	color: rgb(226, 226, 226);
 }
@@ -127,12 +134,6 @@ th {
 	color: #41b883;
 }
 
-.mainColeta {
-	height: 25vh;
-	display: grid;
-	grid-template-columns: auto;
-}
-
 .mainContato {
 	height: 50vh;
 	grid-template-columns: 1fr 1fr;
@@ -165,6 +166,9 @@ th {
 }
 .contato4 {
 	grid-area: contato4;
+}
+.TempoMobile {
+	display: none;
 }
 
 #espacoGordo {
@@ -244,14 +248,43 @@ th {
 }
 
 #footer {
-	font-size: 16px;
+	font-size: 12px;
 	font-style: oblique;
 	align-self: baseline;
-	margin-bottom: 1px;
-	margin-top: 120px;
+	margin-bottom: 5px;
+	margin-top: 100px;
 }
 
 /* responsive */
+@media screen and (max-width: 1366px) {
+	body {
+		overflow-x: hidden;
+		font-size: 16px;
+	}
+
+	h1 span {
+		display: block;
+	}
+	.nav-links {
+		font-size: 16px;
+		line-height: 27px;
+		display: flex;
+		justify-content: space-around;
+		width: 50%;
+	}
+	#btnContato {
+		color: #41b883;
+		text-decoration: none;
+		display: inline-block;
+		align-self: center;
+		width: 240px;
+		height: 60px;
+		background: #212120;
+		padding: 10px;
+		text-align: center;
+		font-weight: bold;
+	}
+}
 @media screen and (max-width: 1024px) {
 	body {
 		overflow-x: hidden;
@@ -328,10 +361,21 @@ th {
 		font-weight: bold;
 	}
 
-	@media screen and (max-width: 420px) {
+	@media only screen and (max-width: 420px) {
 		body {
 			font-size: 12px;
-			line-height: 18px;
+			line-height: 16px;
+		}
+		.Tempo {
+			display: none;
+		}
+
+		.TempoMobile {
+			display: block;
+		}
+		#coleta {
+			height: 100vh;
+			padding: 10vh 10vw 0 10vw;
 		}
 		#btnContato {
 			color: #41b883;
@@ -347,28 +391,131 @@ th {
 			letter-spacing: 1px;
 		}
 		.mainContato {
-			font-size: 8px;
-			letter-spacing: 0px;
+			grid-template-columns: 300px;
+			grid-template-rows: 100px;
+			display: grid;
+			grid-template-areas: "contato1" "contato2" "contato3" "contato4";
+			justify-items: center;
+			align-items: center;
 		}
 	}
 
-	@media screen and (max-width: 360px) {
-		h1 {
-			font-size: 3em;
+	@media only screen and (max-width: 360px) {
+		body {
+			font-size: 12px;
+			line-height: 16px;
+		}
+		#btnContato {
+			color: #41b883;
+			text-decoration: none;
+			display: inline-block;
+			align-self: center;
+			width: 180px;
+			height: 40px;
+			background: #212120;
+			padding: 5px;
+			text-align: center;
+			font-weight: bold;
+			letter-spacing: 1px;
+		}
+		#coleta {
+			height: 100vh;
+			padding: 10vh 10vw 0 10vw;
+		}
+
+		div.mainColeta {
+			padding: 0vh;
+		}
+
+		.Tempo {
+			display: none;
+		}
+
+		.mainContato {
+			grid-template-columns: 250px;
+			grid-template-rows: 90px;
+			display: grid;
+			grid-template-areas: "contato1" "contato2" "contato3" "contato4";
+			justify-items: center;
+			align-items: flex-start;
+			font-size: 8px;
+			letter-spacing: normal;
 		}
 	}
-	.mainContato {
-		font-size: 8px;
-		letter-spacing: normal;
+
+	@media only screen and (max-width: 320px) {
+		body {
+			margin: 0%;
+			font-size: 12px;
+			line-height: 12px;
+		}
+		div.block {
+			height: 100vh;
+			padding: 10vh 10vw 0 10vw;
+		}
+		#coleta {
+			height: 100vh;
+			padding: 10vh 10vw 0 10vw;
+		}
+		#btnContato {
+			color: #41b883;
+			text-decoration: none;
+			display: inline-block;
+			align-self: center;
+			width: 180px;
+			height: 40px;
+			background: #212120;
+			padding: 5px;
+			text-align: center;
+			font-weight: bold;
+			letter-spacing: 1px;
+		}
+
+		div.mainColeta {
+			padding: 0vh;
+		}
+
+		.Tempo {
+			display: none;
+		}
+
+		.mainContato {
+			grid-template-columns: 250px;
+			grid-template-rows: 90px;
+			display: grid;
+			grid-template-areas: "contato1" "contato2" "contato3" "contato4";
+			justify-items: center;
+			align-items: flex-start;
+			font-size: 8px;
+			letter-spacing: normal;
+		}
 	}
-	.mainContato {
-		grid-template-columns: 300px;
-		grid-template-rows: 100px;
-		display: grid;
-		grid-template-areas: "contato1" "contato2" "contato3" "contato4";
-		justify-items: center;
-		align-items: center;
+
+	/* Animations */
+	@keyframes navLinkFadeIn {
+		from {
+			opacity: 0;
+			transform: translateX(50px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateX(0px);
+		}
 	}
+
+	@keyframes navLinkFadeOff {
+		from {
+			opacity: 1;
+			transform: translateX(0px);
+		}
+
+		to {
+			opacity: 0;
+			transform: translateX(50px);
+		}
+	}
+
 	.nav-links {
 		position: absolute;
 		right: 0%;
@@ -393,31 +540,6 @@ th {
 
 .nav-active {
 	transform: translateX(0%);
-}
-
-/* Animations */
-@keyframes navLinkFadeIn {
-	from {
-		opacity: 0;
-		transform: translateX(50px);
-	}
-
-	to {
-		opacity: 1;
-		transform: translateX(0px);
-	}
-}
-
-@keyframes navLinkFadeOff {
-	from {
-		opacity: 1;
-		transform: translateX(0px);
-	}
-
-	to {
-		opacity: 0;
-		transform: translateX(50px);
-	}
 }
 
 .toggle .line1 {
@@ -445,86 +567,4 @@ th {
 	transform: translateY(0px);
 	overflow: hidden;
 	position: relative;
-}
-.fromTopIn {
-	transition: transform 1.0s ease, opacity 1.0s ease;
-	transform: translate(0, 0);
-	opacity: 1.0;
-}
-
-.fromTopOut {
-	transition: transform 1.0s ease, opacity 1.0s ease;
-
-	transform: translate(0, -10px);
-	opacity: 0.0;
-}
-
-.fromBottomIn {
-	transition: transform 1.0s ease, opacity 1.0s ease;
-
-	transform: translate(0, 0);
-	opacity: 1.0;
-}
-
-.fromBottomOut {
-	transition: transform 1.0s ease, opacity 1.0s ease;
-
-	transform: translate(0, 10px);
-	opacity: 0.0;
-}
-
-.fromLeftIn {
-	transition: transform 1.0s ease, opacity 1.0s ease;
-
-	transform: translate(0, 0);
-	opacity: 1.0;
-}
-
-.fromLeftOut {
-	transition: transform 1.0s ease, opacity 1.0s ease;
-
-	transform: translate(-10px, 0);
-	opacity: 0.0;
-}
-
-.fromRightIn {
-	transition: transform 1.0s ease, opacity 1.0s ease;
-
-	transform: translate(0, 0);
-	opacity: 1.0;
-}
-
-.fromRightOut {
-	transition: transform 1.0s ease, opacity 1.0s ease;
-
-	transform: translate(10px, 0);
-	opacity: 0.0;
-}
-
-.scaleUpIn {
-	transition: transform 1.0s ease, opacity 1.0s ease;
-
-	transform: scale(1.0, 1.0);
-	opacity: 1.0;
-}
-
-.scaleUpOut {
-	transition: transform 1.0s ease, opacity 1.0s ease;
-
-	transform: scale(1.3, 1.3);
-	opacity: 0.0;
-}
-
-.scaleDownIn {
-	transition: transform 1.0s ease, opacity 1.0s ease;
-
-	transform: scale(1.0, 1.0);
-	opacity: 1.0;
-}
-
-.scaleDownOut {
-	transition: transform 1.0s ease, opacity 1.0s ease;
-
-	transform: scale(0.7, 0.7);
-	opacity: 0.0;
 }
