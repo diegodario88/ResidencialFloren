@@ -214,65 +214,130 @@ function atualizaPagina(farma1, farma2)
 //altera o plantão "precisa verificar se está ok"
 switch (dataAtualFormatada())
 {
-    case "16/09/2019":
-        atualizaPagina(1, 11)
+    case "01/10/2019":
+        atualizaPagina(8, 9)
         break;
 
-    case "17/09/2019":
-        atualizaPagina(12, 2)
-        break;
-
-    case "18/09/2019":
-        atualizaPagina(3, 5)
-        break;
-
-    case "19/09/2019":
-        atualizaPagina(4, 7)
-        break;
-
-    case "20/09/2019":
-        atualizaPagina(6, 8)
-        break;
-
-    case "21/09/2019":
-        atualizaPagina(12, 2)
-        break;
-
-    case "22/09/2019":
+    case "02/10/2019":
         atualizaPagina(0, 10)
         break;
 
-    case "23/09/2019":
-        atualizaPagina(9, 10)
-        break;
-
-    case "24/09/2019":
-        atualizaPagina(0, 1)
-        break;
-
-    case "25/09/2019":
-        atualizaPagina(11, 12)
-        break;
-
-    case "26/09/2019":
-        atualizaPagina(2, 3)
-        break;
-
-    case "27/09/2019":
-        atualizaPagina(5, 4)
-        break;
-
-    case "28/09/2019":
-        atualizaPagina(3, 5)
-        break;
-
-    case "29/09/2019":
+    case "03/10/2019":
         atualizaPagina(1, 11)
         break;
 
-    case "30/09/2019":
-        atualizaPagina(7, 6)
+    case "04/10/2019":
+        atualizaPagina(2, 12)
         break;
+
+    case "05/10/2019":
+        atualizaPagina(4, 7)
+        break;
+
+    case "06/10/2019":
+        atualizaPagina(12, 2)
+        break;
+
+    case "07/10/2019":
+        atualizaPagina(3, 5)
+        break;
+
+    case "08/10/2019":
+        atualizaPagina(4, 7)
+        break;
+
+    case "09/10/2019":
+        atualizaPagina(6, 8)
+        break;
+
+    case "10/10/2019":
+        atualizaPagina(9, 10)
+        break;
+
+    case "11/10/2019":
+        atualizaPagina(0, 1)
+        break;
+
+    case "12/10/2019":
+        atualizaPagina(6, 8)
+        break;
+
+    case "13/10/2019":
+        atualizaPagina(3, 5)
+        break;
+
+    case "14/10/2019":
+        atualizaPagina(11, 12)
+        break;
+
+    case "15/10/2019":
+        atualizaPagina(2, 3)
+        break;
+
+    case "16/10/2019":
+        atualizaPagina(5, 4)
+        break;
+
+    case "17/10/2019":
+        atualizaPagina(6, 7)
+        break;
+
+    case "18/10/2019":
+        atualizaPagina(8, 9)
+        break;
+
+    case "19/10/2019":
+        atualizaPagina(9, 10)
+        break;
+
+    case "20/10/2019":
+        atualizaPagina(4, 7)
+        break;
+
+    case "21/10/2019":
+        atualizaPagina(0, 10)
+        break;
+
+    case "22/10/2019":
+        atualizaPagina(1, 11)
+        break;
+
+    case "23/10/2019":
+        atualizaPagina(12, 2)
+        break;
+
+    case "24/10/2019":
+        atualizaPagina(3, 5)
+        break;
+
+    case "25/10/2019":
+        atualizaPagina(4, 7)
+        break;
+
+    case "26/10/2019":
+        atualizaPagina(0, 1)
+        break;
+
+    case "27/10/2019":
+        atualizaPagina(6, 8)
+        break;
+
+    case "28/10/2019":
+        atualizaPagina(6, 8)
+        break;
+
+    case "29/10/2019":
+        atualizaPagina(9, 10)
+        break;
+
+    case "30/10/2019":
+        atualizaPagina(0, 1)
+        break;
+
+    case "31/10/2019":
+        atualizaPagina(11, 12)
+        break;
+
     default:
         break;
 }
