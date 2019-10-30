@@ -145,14 +145,14 @@ const listaFarmacia =
         },
         {
             //8
-            nome: "Farmácia Santo Antônio",
+            nome: "Farmácia Sto Antônio",
             telefone: "(44) 3425-5725",
             endereco: "Av.Brasil, 819 - Centro "
 
         },
         {
             //9
-            nome: "Farmácia Santa Terezinha",
+            nome: "Farmácia Sta Terezinha",
             telefone: "(44) 3425-1323",
             endereco: "Av.Brasil, 1094 - Centro "
 
@@ -214,24 +214,24 @@ function atualizaPagina(farma1, farma2)
 //altera o plantão "precisa verificar se está ok"
 switch (dataAtualFormatada())
 {
-    case "01/10/2019":
-        atualizaPagina(8, 9)
+    case "01/11/2019":
+        atualizaPagina(2, 3)
         break;
 
-    case "02/10/2019":
-        atualizaPagina(0, 10)
+    case "02/11/2019":
+        atualizaPagina(11, 12)
         break;
 
-    case "03/10/2019":
-        atualizaPagina(1, 11)
+    case "03/11/2019":
+        atualizaPagina(9, 10)
         break;
 
-    case "04/10/2019":
-        atualizaPagina(2, 12)
+    case "04/11/2019":
+        atualizaPagina(4, 5)
         break;
 
-    case "05/10/2019":
-        atualizaPagina(4, 7)
+    case "05/11/2019":
+        atualizaPagina(6, 7)
         break;
 
     case "06/10/2019":
