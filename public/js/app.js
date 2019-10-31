@@ -234,44 +234,44 @@ switch (dataAtualFormatada())
         atualizaPagina(6, 7)
         break;
 
-    case "06/10/2019":
-        atualizaPagina(12, 2)
+    case "06/11/2019":
+        atualizaPagina(8, 9)
         break;
 
-    case "07/10/2019":
-        atualizaPagina(3, 5)
+    case "07/11/2019":
+        atualizaPagina(0, 10)
         break;
 
-    case "08/10/2019":
-        atualizaPagina(4, 7)
+    case "08/11/2019":
+        atualizaPagina(1, 11)
         break;
 
-    case "09/10/2019":
-        atualizaPagina(6, 8)
+    case "09/11/2019":
+        atualizaPagina(2, 3)
         break;
 
-    case "10/10/2019":
-        atualizaPagina(9, 10)
-        break;
-
-    case "11/10/2019":
+    case "10/11/2019":
         atualizaPagina(0, 1)
         break;
 
-    case "12/10/2019":
-        atualizaPagina(6, 8)
+    case "11/11/2019":
+        atualizaPagina(12, 2)
         break;
 
-    case "13/10/2019":
+    case "12/11/2019":
         atualizaPagina(3, 5)
         break;
 
-    case "14/10/2019":
-        atualizaPagina(11, 12)
+    case "13/11/2019":
+        atualizaPagina(4, 7)
         break;
 
-    case "15/10/2019":
-        atualizaPagina(2, 3)
+    case "14/11/2019":
+        atualizaPagina(6, 8)
+        break;
+
+    case "15/11/2019":
+        atualizaPagina(9, 10)
         break;
 
     case "16/10/2019":
