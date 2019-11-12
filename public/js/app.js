@@ -103,7 +103,7 @@ const listaFarmacia =
             telefone: "(44) 3425-2555",
             endereco: "Av.Des.M.de Mello, 1437 - Centro "
 
-        }
+        },
         {
             //4
             nome: "Farmácia Farma Útil",
