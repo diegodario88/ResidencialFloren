@@ -1,17 +1,14 @@
 //Função Scroll
-function scrollAppear()
-{
+function scrollAppear() {
     var textoColeta = document.querySelector('.intro-text')
     var introPosition = textoColeta.getBoundingClientRect().top
     var screenPosition = window.innerHeight / 2;
 
 
 
-    if (introPosition < screenPosition)
-    {
+    if (introPosition < screenPosition) {
         textoColeta.classList.add('intro-appear')
-    } else
-    {
+    } else {
         textoColeta.classList.remove('intro-appear')
     }
 
@@ -20,27 +17,22 @@ function scrollAppear()
 window.addEventListener('scroll', scrollAppear)
 
 //Navigation
-const navSlide = () =>
-{
+const navSlide = () => {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links li')
 
-    burger.addEventListener('click', () =>
-    {
+    burger.addEventListener('click', () => {
         //Toggle Nav
         nav.classList.toggle('nav-active');
 
         //Animate Links
-        navLinks.forEach((link, index) =>
-        {
+        navLinks.forEach((link, index) => {
 
-            if (link.style.animation)
-            {
+            if (link.style.animation) {
                 link.style.animation = '';
 
-            } else
-            {
+            } else {
                 link.style.animation = `navLinkFadeIn 0.5s ease forwards ${index / 7 + 0.3}s`;
 
             }
@@ -57,18 +49,15 @@ navSlide();
 
 
 //Navigation autoClose ToDO
-const navSlideClose = () =>
-{
+const navSlideClose = () => {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links li')
 
-    navLinks.forEach((item) =>
-    {
+    navLinks.forEach((item) => {
         item.style = 'opacity: 1;';
         nav.classList.add('nav-links')
-        item.addEventListener('click', () =>
-        {
+        item.addEventListener('click', () => {
 
             burger.classList.toggle('toggle');
             nav.classList.toggle('nav-active')
@@ -114,7 +103,7 @@ const listaFarmacia =
             telefone: "(44) 3425-2555",
             endereco: "Av.Des.M.de Mello, 1437 - Centro "
 
-        },
+        }
         {
             //4
             nome: "Farmácia Farma Útil",
@@ -145,14 +134,14 @@ const listaFarmacia =
         },
         {
             //8
-            nome: "Farmácia Santo Antônio",
+            nome: "Farmácia Sto Antônio",
             telefone: "(44) 3425-5725",
             endereco: "Av.Brasil, 819 - Centro "
 
         },
         {
             //9
-            nome: "Farmácia Santa Terezinha",
+            nome: "Farmácia Sta Terezinha",
             telefone: "(44) 3425-1323",
             endereco: "Av.Brasil, 1094 - Centro "
 
@@ -180,8 +169,7 @@ const listaFarmacia =
     ];
 
 //função para formatar a data
-function dataAtualFormatada()
-{
+function dataAtualFormatada() {
     var data = new Date(),
         dia = data.getDate().toString(),
         diaF = (dia.length == 1) ? '0' + dia : dia,
@@ -192,8 +180,7 @@ function dataAtualFormatada()
 }
 
 //Função para atualizar o plantão
-function atualizaPagina(farma1, farma2)
-{
+function atualizaPagina(farma1, farma2) {
     var plantao = document.querySelector('#textoPrincipal')
     var textoData = document.querySelector('#textoData')
     var textoEnd = document.querySelector('#textoEnd')
@@ -212,130 +199,125 @@ function atualizaPagina(farma1, farma2)
 }
 
 //altera o plantão "precisa verificar se está ok"
-switch (dataAtualFormatada())
-{
-    case "01/10/2019":
-        atualizaPagina(8, 9)
-        break;
-
-    case "02/10/2019":
-        atualizaPagina(0, 10)
-        break;
-
-    case "03/10/2019":
-        atualizaPagina(1, 11)
-        break;
-
-    case "04/10/2019":
-        atualizaPagina(2, 12)
-        break;
-
-    case "05/10/2019":
-        atualizaPagina(4, 7)
-        break;
-
-    case "06/10/2019":
-        atualizaPagina(12, 2)
-        break;
-
-    case "07/10/2019":
-        atualizaPagina(3, 5)
-        break;
-
-    case "08/10/2019":
-        atualizaPagina(4, 7)
-        break;
-
-    case "09/10/2019":
-        atualizaPagina(6, 8)
-        break;
-
-    case "10/10/2019":
-        atualizaPagina(9, 10)
-        break;
-
-    case "11/10/2019":
-        atualizaPagina(0, 1)
-        break;
-
-    case "12/10/2019":
-        atualizaPagina(6, 8)
-        break;
-
-    case "13/10/2019":
-        atualizaPagina(3, 5)
-        break;
-
-    case "14/10/2019":
-        atualizaPagina(11, 12)
-        break;
-
-    case "15/10/2019":
+switch (dataAtualFormatada()) {
+    case "01/11/2019":
         atualizaPagina(2, 3)
         break;
 
-    case "16/10/2019":
-        atualizaPagina(5, 4)
+    case "02/11/2019":
+        atualizaPagina(11, 12)
         break;
 
-    case "17/10/2019":
+    case "03/11/2019":
+        atualizaPagina(9, 10)
+        break;
+
+    case "04/11/2019":
+        atualizaPagina(4, 5)
+        break;
+
+    case "05/11/2019":
         atualizaPagina(6, 7)
         break;
 
-    case "18/10/2019":
+    case "06/11/2019":
         atualizaPagina(8, 9)
         break;
 
-    case "19/10/2019":
-        atualizaPagina(9, 10)
-        break;
-
-    case "20/10/2019":
-        atualizaPagina(4, 7)
-        break;
-
-    case "21/10/2019":
+    case "07/11/2019":
         atualizaPagina(0, 10)
         break;
 
-    case "22/10/2019":
+    case "08/11/2019":
         atualizaPagina(1, 11)
         break;
 
-    case "23/10/2019":
+    case "09/11/2019":
+        atualizaPagina(2, 3)
+        break;
+
+    case "10/11/2019":
+        atualizaPagina(0, 1)
+        break;
+
+    case "11/11/2019":
         atualizaPagina(12, 2)
         break;
 
-    case "24/10/2019":
+    case "12/11/2019":
         atualizaPagina(3, 5)
         break;
 
-    case "25/10/2019":
+    case "13/11/2019":
         atualizaPagina(4, 7)
         break;
 
-    case "26/10/2019":
-        atualizaPagina(0, 1)
-        break;
-
-    case "27/10/2019":
+    case "14/11/2019":
         atualizaPagina(6, 8)
         break;
 
-    case "28/10/2019":
-        atualizaPagina(6, 8)
-        break;
-
-    case "29/10/2019":
+    case "15/11/2019":
         atualizaPagina(9, 10)
         break;
 
-    case "30/10/2019":
+    case "16/11/2019":
+        atualizaPagina(5, 4)
+        break;
+
+    case "17/11/2019":
+        atualizaPagina(11, 12)
+        break;
+
+    case "18/11/2019":
         atualizaPagina(0, 1)
         break;
 
-    case "31/10/2019":
+    case "19/11/2019":
         atualizaPagina(11, 12)
+        break;
+
+    case "20/11/2019":
+        atualizaPagina(2, 3)
+        break;
+
+    case "21/11/2019":
+        atualizaPagina(5, 4)
+        break;
+
+    case "22/11/2019":
+        atualizaPagina(7, 6)
+        break;
+
+    case "23/11/2019":
+        atualizaPagina(7, 6)
+        break;
+
+    case "24/11/2019":
+        atualizaPagina(2, 3)
+        break;
+
+    case "25/11/2019":
+        atualizaPagina(8, 9)
+        break;
+
+    case "26/11/2019":
+        atualizaPagina(0, 10)
+        break;
+
+    case "27/11/2019":
+        atualizaPagina(1, 11)
+        break;
+
+    case "28/11/2019":
+        atualizaPagina(12, 2)
+        break;
+
+    case "29/11/2019":
+        atualizaPagina(3, 5)
+        break;
+
+    case "30/11/2019":
+        atualizaPagina(8, 9)
         break;
 
     default:
