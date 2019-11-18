@@ -1,77 +1,3 @@
-//Função Scroll
-function scrollAppear() {
-    var textoColeta = document.querySelector('.intro-text')
-    var introPosition = textoColeta.getBoundingClientRect().top
-    var screenPosition = window.innerHeight / 2;
-
-
-
-    if (introPosition < screenPosition) {
-        textoColeta.classList.add('intro-appear')
-    } else {
-        textoColeta.classList.remove('intro-appear')
-    }
-
-}
-
-window.addEventListener('scroll', scrollAppear)
-
-//Navigation
-const navSlide = () => {
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.nav-links');
-    const navLinks = document.querySelectorAll('.nav-links li')
-
-    burger.addEventListener('click', () => {
-        //Toggle Nav
-        nav.classList.toggle('nav-active');
-
-        //Animate Links
-        navLinks.forEach((link, index) => {
-
-            if (link.style.animation) {
-                link.style.animation = '';
-
-            } else {
-                link.style.animation = `navLinkFadeIn 0.5s ease forwards ${index / 7 + 0.3}s`;
-
-            }
-
-        });
-
-        //Burger Animation
-        burger.classList.toggle('toggle');
-    });
-
-
-}
-navSlide();
-
-
-//Navigation autoClose ToDO
-const navSlideClose = () => {
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.nav-links');
-    const navLinks = document.querySelectorAll('.nav-links li')
-
-    navLinks.forEach((item) => {
-        item.style = 'opacity: 1;';
-        nav.classList.add('nav-links')
-        item.addEventListener('click', () => {
-
-            burger.classList.toggle('toggle');
-            nav.classList.toggle('nav-active')
-
-        })
-
-
-
-    })
-
-
-}
-
-//navSlideClose();
 
 //cria uma lista com todas as farmácias e suas propriedades
 const listaFarmacia =
@@ -198,7 +124,7 @@ function atualizaPagina(farma1, farma2) {
 
 }
 
-//altera o plantão "precisa verificar se está ok"
+//altera o plantão 
 switch (dataAtualFormatada()) {
     case "01/11/2019":
         atualizaPagina(2, 3)
