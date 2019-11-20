@@ -421,7 +421,8 @@ th {
 		}
 		#coleta {
 			height: 100vh;
-			padding: 10vh 10vw 0 10vw;
+			margin: 0vh 0vw 0 0vw;
+		
 		}
 
 		div.mainColeta {
@@ -430,6 +431,9 @@ th {
 
 		.Tempo {
 			display: none;
+		}
+		.TempoMobile{
+			padding-bottom: 10px;
 		}
 
 		.mainContato {
@@ -456,7 +460,7 @@ th {
 		}
 		#coleta {
 			height: 100vh;
-			padding: 10vh 10vw 0 10vw;
+			margin: 0vh 0vw 0 0vw;
 		}
 		#btnContato {
 			color: #41b883;
@@ -474,6 +478,9 @@ th {
 
 		div.mainColeta {
 			padding: 0vh;
+		}
+		.TempoMobile{
+			padding-bottom: 10px;
 		}
 
 		.Tempo {

@@ -111,6 +111,7 @@ export class functions {
 
     }
 
+
     //Função para atualizar a data no rodapé da página
     static rodape(): void {
         let data = new Date();
