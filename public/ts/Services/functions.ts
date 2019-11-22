@@ -36,6 +36,25 @@ export class functions {
 
     }
 
+    //Função Scroll
+    static scrollAppear() {
+        var textoColeta = document.querySelector('.intro-text')
+        var introPosition = textoColeta!.getBoundingClientRect().top
+        var screenPosition = window.innerHeight / 2;
+
+        if (introPosition < screenPosition) {
+            textoColeta!.classList.add('intro-appear')
+            
+
+        } else {
+            textoColeta!.classList.remove('intro-appear')
+            
+
+        }
+
+    }
+
+
 
     //função para formatar a data
     static dataAtualFormatada() {

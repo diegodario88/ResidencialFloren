@@ -157,15 +157,27 @@ th {
 }
 .contato1 {
 	grid-area: contato1;
+	animation-duration: 2s;
+  	animation-delay: 0.5s;
+  	animation-iteration-count: infinite;
 }
 .contato2 {
 	grid-area: contato2;
+	animation-duration: 2s;
+  	animation-delay: 1s;
+  	animation-iteration-count: infinite;
 }
 .contato3 {
 	grid-area: contato3;
+	animation-duration: 2s;
+  	animation-delay: 1.5s;
+  	animation-iteration-count: infinite;
 }
 .contato4 {
 	grid-area: contato4;
+	animation-duration: 2s;
+  	animation-delay: 2s;
+  	animation-iteration-count: infinite;
 }
 .TempoMobile {
 	display: none;
@@ -272,6 +284,10 @@ th {
 		display: flex;
 		justify-content: space-around;
 		width: 50%;
+	}
+	div.block {
+		height: 100vh;
+		padding: 10vh 15vw 0 15vw;
 	}
 	#btnContato {
 		color: #41b883;

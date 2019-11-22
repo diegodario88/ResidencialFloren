@@ -1,5 +1,6 @@
 import { functions } from "./Services/functions";
 
+window.addEventListener('scroll', functions.scrollAppear);
 functions.navSlide();
 
 switch (functions.dataAtualFormatada()) {
