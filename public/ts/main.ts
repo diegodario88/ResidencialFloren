@@ -58,14 +58,14 @@ switch (functions.dataAtualFormatada()) {
     case "18/12/2019":
         functions.atualizaPagina("G5");
         break;
-    case "19/11/2019":
-        functions.atualizaPagina("G10");
+    case "19/12/2019":
+        functions.atualizaPagina("G6");
         break;
-    case "20/11/2019":
-        functions.atualizaPagina("G11");
+    case "20/12/2019":
+        functions.atualizaPagina("G7");
         break;
-    case "21/11/2019":
-        functions.atualizaPagina("G12");
+    case "21/12/2019":
+        functions.atualizaPagina("G4");
         break;
     case "22/11/2019":
         functions.atualizaPagina("G13");

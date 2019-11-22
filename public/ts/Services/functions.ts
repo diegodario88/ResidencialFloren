@@ -38,17 +38,17 @@ export class functions {
 
     //Função Scroll
     static scrollAppear() {
-        var textoColeta = document.querySelector('.intro-text')
-        var introPosition = textoColeta!.getBoundingClientRect().top
-        var screenPosition = window.innerHeight / 2;
+        const textoColeta = document.querySelector('.intro-text')
+        const introPosition = textoColeta!.getBoundingClientRect().top
+        const screenPosition = window.innerHeight / 2;
 
         if (introPosition < screenPosition) {
             textoColeta!.classList.add('intro-appear')
-            
+
 
         } else {
             textoColeta!.classList.remove('intro-appear')
-            
+
 
         }
 
@@ -58,7 +58,7 @@ export class functions {
 
     //função para formatar a data
     static dataAtualFormatada() {
-        let data = new Date(), dia = data.getDate().toString(), diaF = (dia.length == 1) ? '0' + dia : dia, mes = (data.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.
+        const data = new Date(), dia = data.getDate().toString(), diaF = (dia.length == 1) ? '0' + dia : dia, mes = (data.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.
             mesF = (mes.length == 1) ? '0' + mes : mes, anoF = data.getFullYear();
         return diaF + "/" + mesF + "/" + anoF;
     }
@@ -66,27 +66,16 @@ export class functions {
     //Função para atualizar o plantão
     static atualizaPagina(grupo: string) {
 
-        let listaPlantao: Array<Plantao> = seedPlantao.SeedPlantao();
-        let plantaoAtual: Plantao | undefined;
-
-        if (grupo != null) {
-            listaPlantao.forEach(item => {
-                if (item.nome == grupo) {
-                    plantaoAtual = item;
-                }
-            })
-        }
-
+        const plantaoAtual: Plantao = functions.verificaPlantao(grupo);
 
         //Atualiza a Farmácia Principal
-        let textoPrincipal = document.querySelector('#textoPrincipal');
-        let textoDataPrincipal = document.querySelector('#textoDataPrincipal');
-        let textoEndPrincipal = document.querySelector('#textoEndPrincipal');
-        let textoTelPrincipal = document.querySelector('#textoTelPrincipal');
+        const textoPrincipal = document.querySelector('#textoPrincipal');
+        const textoDataPrincipal = document.querySelector('#textoDataPrincipal');
+        const textoEndPrincipal = document.querySelector('#textoEndPrincipal');
+        const textoTelPrincipal = document.querySelector('#textoTelPrincipal');
 
         if (textoPrincipal != null && textoDataPrincipal != null && textoEndPrincipal != null
             && textoTelPrincipal != null && plantaoAtual != undefined) {
-
 
             textoPrincipal.innerHTML = "" + plantaoAtual.farmaciaPrincipal.nome;
 
@@ -94,15 +83,16 @@ export class functions {
 
             textoEndPrincipal.innerHTML = plantaoAtual.farmaciaPrincipal.endereco;
 
-
             textoTelPrincipal.innerHTML = plantaoAtual.farmaciaPrincipal.telefone;
+
+
         }
 
         //Atualiza a Farmácia Secundária
-        let textoSec = document.querySelector('#textoSecundario');
-        let textoDataSec = document.querySelector('#textoDataSecundario');
-        let textoEndSec = document.querySelector('#textoEndSecundario');
-        let textoTelSec = document.querySelector('#textoTelSecundario');
+        const textoSec = document.querySelector('#textoSecundario');
+        const textoDataSec = document.querySelector('#textoDataSecundario');
+        const textoEndSec = document.querySelector('#textoEndSecundario');
+        const textoTelSec = document.querySelector('#textoTelSecundario');
 
         if (textoSec != null && textoDataSec != null && textoEndSec != null
             && textoTelSec != null && plantaoAtual != undefined) {
@@ -121,11 +111,56 @@ export class functions {
 
     //Função para atualizar a data no rodapé da página
     static rodape(): void {
-        let data = new Date();
-        let ano = data.getFullYear();
-        let footer = document.querySelector('#footer');
+        const data = new Date();
+        const ano = data.getFullYear();
+        const footer = document.querySelector('#footer');
         if (footer != null) {
             footer.innerHTML += "&copy " + ano + "  Diego Dario All Rights Reserved ";
+        }
+
+    }
+
+    //Funcão verifica plantão
+    static verificaPlantao(nome: string): Plantao {
+        const data = new Date();
+        const dia = data.getDay();
+        let plantao: Plantao;
+
+        if (dia > 0 && dia < 6) {
+            //chama plantao semanal
+            let listaPlantaoSemanal: Array<Plantao> = seedPlantao.SeedPlantaoSemanal();
+            listaPlantaoSemanal.forEach(item => {
+                if (item.nome == nome) {
+                    plantao = item;
+                    plantao.plantao = data;
+
+                }
+            });
+            return plantao!;
+
+        } else if (dia == 6) {
+            //chama plantao de sábado
+            let listaPlantaoSabado: Array<Plantao> = seedPlantao.SeedPlantaoSabado();
+            listaPlantaoSabado.forEach(item => {
+                if (item.nome === nome) {
+                    plantao = item;
+                    plantao.plantao = data;
+
+                }
+            });
+            return plantao!;
+
+        } else {
+            //chama plantao de domingo
+            let listaPlantaoDomingo: Array<Plantao> = seedPlantao.SeedPlantaoDomingo();
+            listaPlantaoDomingo.forEach(item => {
+                if (item.nome == nome) {
+                    plantao = item;
+                    plantao.plantao = data;
+
+                }
+            });
+            return plantao!;
         }
 
     }
