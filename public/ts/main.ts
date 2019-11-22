@@ -1,7 +1,6 @@
 import { functions } from "./Services/functions";
 
 functions.navSlide();
-window.addEventListener('scroll', functions.scrollAppear); //Animação texto coleta
 
 switch (functions.dataAtualFormatada()) {
     case "01/12/2019":

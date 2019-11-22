@@ -2,13 +2,11 @@
   "name": "ResidencialFloren",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "directories": {
-    "doc": "doc"
-  },
+  "main": "main.js",
+  "directories": {},
   "scripts": {
-    "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:watch": "webpack -w --mode development",
+    "build:prod": "webpack --mode production"
   },
   "repository": {
     "type": "git",

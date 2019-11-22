@@ -36,18 +36,6 @@ export class functions {
 
     }
 
-    //Função Scroll texto aparece em Fade
-    static scrollAppear() {
-        let textoColeta = document.querySelector('.intro-text');
-        let introPosition = textoColeta!.getBoundingClientRect().top;
-        let screenPosition = window.innerHeight / 2;
-        if (introPosition < screenPosition) {
-            textoColeta!.classList.add('intro-appear');
-        }
-        else {
-            textoColeta!.classList.remove('intro-appear');
-        }
-    }
 
     //função para formatar a data
     static dataAtualFormatada() {
