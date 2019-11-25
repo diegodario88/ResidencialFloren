@@ -124,46 +124,32 @@ export class functions {
     static verificaPlantao(nome: string): Plantao {
         const data = new Date();
         const dia = data.getDay();
-        let plantao: Plantao;
+        const found = (grupo: Array<Plantao>) => grupo.find((item: Plantao) => item.nome === nome);
+        const result = (grupo: Plantao) => {
+            grupo.plantao = data;
+            return grupo;
+        }
 
         if (dia > 0 && dia < 6) {
             //chama plantao semanal
-            let listaPlantaoSemanal: Array<Plantao> = seedPlantao.SeedPlantaoSemanal();
-            listaPlantaoSemanal.forEach(item => {
-                if (item.nome == nome) {
-                    plantao = item;
-                    plantao.plantao = data;
-
-                }
-            });
-            return plantao!;
+            const listaPlantaoSemanal: Array<Plantao> = seedPlantao.SeedPlantaoSemanal();
+            const grupoPlantaoSemanal = found(listaPlantaoSemanal);
+            return result(grupoPlantaoSemanal!);
 
         } else if (dia == 6) {
             //chama plantao de sábado
-            let listaPlantaoSabado: Array<Plantao> = seedPlantao.SeedPlantaoSabado();
-            listaPlantaoSabado.forEach(item => {
-                if (item.nome === nome) {
-                    plantao = item;
-                    plantao.plantao = data;
-
-                }
-            });
-            return plantao!;
+            const listaPlantaoSabado: Array<Plantao> = seedPlantao.SeedPlantaoSabado();
+            const grupoPlantaoSabado = found(listaPlantaoSabado);
+            return result(grupoPlantaoSabado!);
 
         } else {
             //chama plantao de domingo
-            let listaPlantaoDomingo: Array<Plantao> = seedPlantao.SeedPlantaoDomingo();
-            listaPlantaoDomingo.forEach(item => {
-                if (item.nome == nome) {
-                    plantao = item;
-                    plantao.plantao = data;
+            const listaPlantaoDomingo: Array<Plantao> = seedPlantao.SeedPlantaoDomingo();
+            const grupoPlantaoDomingo = found(listaPlantaoDomingo);
+            return result(grupoPlantaoDomingo!);
 
-                }
-            });
-            return plantao!;
         }
 
     }
-
 }
 
