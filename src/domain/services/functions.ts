@@ -1,5 +1,5 @@
-import { Plantao } from "../Entities/Plantao";
-import { seedPlantao } from "./seedPlantao";
+import PlantaoService from "./plantaoService";
+import Plantao from "../entities/Plantao";
 
 export class functions {
     constructor() {
@@ -24,7 +24,6 @@ export class functions {
 
                 } else {
                     link.style.animation = `navLinkFadeIn 0.5s ease forwards ${index / 7 + 0.3}s`;
-
                 }
 
             });
@@ -32,8 +31,6 @@ export class functions {
             //Burger Animation
             burger!.classList.toggle('toggle');
         });
-
-
     }
 
     //Função Scroll
@@ -45,17 +42,11 @@ export class functions {
         if (introPosition < screenPosition) {
             textoColeta!.classList.add('intro-appear')
 
-
         } else {
             textoColeta!.classList.remove('intro-appear')
-
-
         }
 
     }
-
-
-
     //função para formatar a data
     static dataAtualFormatada() {
         const data = new Date(), dia = data.getDate().toString(), diaF = (dia.length == 1) ? '0' + dia : dia, mes = (data.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.
@@ -64,27 +55,31 @@ export class functions {
     }
 
     //Função para atualizar o plantão
-    static atualizaPagina(grupo: string) {
+    static async atualizaPagina() {
 
-        const plantaoAtual: Plantao = functions.verificaPlantao(grupo);
+        const res = await PlantaoService.get();
+        const plantaoAtual: Plantao = new Plantao(res);
 
         //Atualiza a Farmácia Principal
         const textoPrincipal = document.querySelector('#textoPrincipal');
         const textoDataPrincipal = document.querySelector('#textoDataPrincipal');
         const textoEndPrincipal = document.querySelector('#textoEndPrincipal');
         const textoTelPrincipal = document.querySelector('#textoTelPrincipal');
+        const relogioPrincipal = document.querySelector('#relogioPrincipal');
+
 
         if (textoPrincipal != null && textoDataPrincipal != null && textoEndPrincipal != null
-            && textoTelPrincipal != null && plantaoAtual != undefined) {
+            && textoTelPrincipal != null && plantaoAtual != undefined && relogioPrincipal != null) {
 
-            textoPrincipal.innerHTML = "" + plantaoAtual.farmaciaPrincipal.nome;
+            textoPrincipal.innerHTML = plantaoAtual.farmacias![0].name;
 
             textoDataPrincipal.innerHTML = "Plantão dia: " + functions.dataAtualFormatada();
 
-            textoEndPrincipal.innerHTML = plantaoAtual.farmaciaPrincipal.endereco;
+            textoEndPrincipal.innerHTML = plantaoAtual.farmacias![0].endereco;
 
-            textoTelPrincipal.innerHTML = plantaoAtual.farmaciaPrincipal.telefone;
+            textoTelPrincipal.innerHTML = plantaoAtual.farmacias![0].telefone;
 
+            relogioPrincipal.textContent = "Aberto até: 22h00min";
 
         }
 
@@ -93,17 +88,19 @@ export class functions {
         const textoDataSec = document.querySelector('#textoDataSecundario');
         const textoEndSec = document.querySelector('#textoEndSecundario');
         const textoTelSec = document.querySelector('#textoTelSecundario');
+        const relogioSecundario = document.querySelector('#relogioSecundario');
 
         if (textoSec != null && textoDataSec != null && textoEndSec != null
-            && textoTelSec != null && plantaoAtual != undefined) {
+            && textoTelSec != null && plantaoAtual != undefined && relogioSecundario != undefined) {
 
-            textoSec.innerHTML = "" + plantaoAtual.farmaciaSecundaria.nome;
+            textoSec.innerHTML = plantaoAtual.farmacias![1].name;
 
             textoDataSec.innerHTML = "Plantão dia: " + functions.dataAtualFormatada();
 
-            textoEndSec.innerHTML = plantaoAtual.farmaciaSecundaria.endereco;
+            textoEndSec.innerHTML = plantaoAtual.farmacias![1].endereco;
 
-            textoTelSec.innerHTML = plantaoAtual.farmaciaSecundaria.telefone;
+            textoTelSec.innerHTML = plantaoAtual.farmacias![1].telefone;
+            relogioSecundario.textContent = "Aberto até: 22h00min";
         }
 
     }
@@ -120,36 +117,6 @@ export class functions {
 
     }
 
-    //Funcão verifica plantão
-    static verificaPlantao(nome: string): Plantao {
-        const data = new Date();
-        const dia = data.getDay();
-        const found = (grupo: Array<Plantao>) => grupo.find((item: Plantao) => item.nome === nome);
-        const result = (grupo: Plantao) => {
-            grupo.plantao = data;
-            return grupo;
-        }
 
-        if (dia > 0 && dia < 6) {
-            //chama plantao semanal
-            const listaPlantaoSemanal: Array<Plantao> = seedPlantao.SeedPlantaoSemanal();
-            const grupoPlantaoSemanal = found(listaPlantaoSemanal);
-            return result(grupoPlantaoSemanal!);
-
-        } else if (dia == 6) {
-            //chama plantao de sábado
-            const listaPlantaoSabado: Array<Plantao> = seedPlantao.SeedPlantaoSabado();
-            const grupoPlantaoSabado = found(listaPlantaoSabado);
-            return result(grupoPlantaoSabado!);
-
-        } else {
-            //chama plantao de domingo
-            const listaPlantaoDomingo: Array<Plantao> = seedPlantao.SeedPlantaoDomingo();
-            const grupoPlantaoDomingo = found(listaPlantaoDomingo);
-            return result(grupoPlantaoDomingo!);
-
-        }
-
-    }
 }
 
