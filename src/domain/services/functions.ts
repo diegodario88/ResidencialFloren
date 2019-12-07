@@ -67,7 +67,6 @@ export class functions {
         const textoTelPrincipal = document.querySelector('#textoTelPrincipal');
         const relogioPrincipal = document.querySelector('#relogioPrincipal');
 
-
         if (textoPrincipal != null && textoDataPrincipal != null && textoEndPrincipal != null
             && textoTelPrincipal != null && plantaoAtual != undefined && relogioPrincipal != null) {
 
