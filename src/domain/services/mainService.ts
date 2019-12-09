@@ -1,10 +1,7 @@
 import PlantaoService from "./plantaoService";
 import Plantao from "../entities/Plantao";
 
-export class functions {
-    constructor() {
-
-    }
+export default class mainService {
 
     //Função NavBar
     static navSlide = () => {
@@ -55,10 +52,10 @@ export class functions {
     }
 
     //Função para atualizar o plantão
-    static async atualizaPagina() {
+    static async atualizaPlantao() {
 
-        const res = await PlantaoService.get();
-        const plantaoAtual: Plantao = new Plantao(res);
+        const resultApi = await PlantaoService.get();
+        const plantaoAtual: Plantao = new Plantao(resultApi);
 
         //Atualiza a Farmácia Principal
         const textoPrincipal = document.querySelector('#textoPrincipal');
@@ -72,7 +69,7 @@ export class functions {
 
             textoPrincipal.innerHTML = plantaoAtual.farmacias![0].name;
 
-            textoDataPrincipal.innerHTML = "Plantão dia: " + functions.dataAtualFormatada();
+            textoDataPrincipal.innerHTML = "Plantão dia: " + mainService.dataAtualFormatada();
 
             textoEndPrincipal.innerHTML = plantaoAtual.farmacias![0].endereco;
 
@@ -94,16 +91,16 @@ export class functions {
 
             textoSec.innerHTML = plantaoAtual.farmacias![1].name;
 
-            textoDataSec.innerHTML = "Plantão dia: " + functions.dataAtualFormatada();
+            textoDataSec.innerHTML = "Plantão dia: " + mainService.dataAtualFormatada();
 
             textoEndSec.innerHTML = plantaoAtual.farmacias![1].endereco;
 
             textoTelSec.innerHTML = plantaoAtual.farmacias![1].telefone;
+
             relogioSecundario.textContent = "Aberto até: 22h00min";
         }
 
     }
-
 
     //Função para atualizar a data no rodapé da página
     static rodape(): void {
@@ -113,9 +110,7 @@ export class functions {
         if (footer != null) {
             footer.innerHTML += "&copy " + ano + "  Diego Dario All Rights Reserved ";
         }
-
     }
-
 
 }
 
