@@ -20,13 +20,13 @@
 <br />
 <p align="center">
   <a href="https://residencialfloren.firebaseapp.com/">
-    <img src="./public/img/florence.png" alt="Logo" width="100" height="100">
+    <img src="./public/img/florence.png" alt="Logo" width="200" height="200">
   </a>
 
   <h3 align="center">Residencial Florença</h3>
 
   <p align="center">
-    Esse é um pequeno projeto desenvolvido com o intuito de ajudar a comunidade local e aprender novas tecnologias! :smile:
+    Esse é um pequeno projeto desenvolvido com o intuito de ajudar a comunidade local e aprender novas tecnologias.
     <br />
     
   </p>
