@@ -1,6 +1,5 @@
 import PlantaoService from "./plantaoService";
 import Plantao from "../entities/Plantao";
-import GoogleService from "./googleService";
 
 export default class mainService {
 
@@ -57,9 +56,6 @@ export default class mainService {
 
         const resultApiFloren = await PlantaoService.get();
         const plantaoAtual: Plantao = new Plantao(resultApiFloren);
-        const geoLocalization = await GoogleService.get([plantaoAtual.farmacias![0].endereco, plantaoAtual.farmacias![1].endereco]);
-        const geoLocFarmPrin = geoLocalization[0].geometry.location;
-        const geoLocFarmSec = geoLocalization[1].geometry.location;
 
         //Atualiza a Farmácia Principal
         const textoPrincipal = document.querySelector('#textoPrincipal');
@@ -76,7 +72,7 @@ export default class mainService {
             textoDataPrincipal.innerHTML = "Plantão dia: " + mainService.dataAtualFormatada();
 
             textoEndPrincipal.innerHTML = plantaoAtual.farmacias![0].endereco;
-            textoEndPrincipal.setAttribute("href", `geo: ${geoLocFarmPrin.lat}, ${geoLocFarmPrin.lng}`);
+            //textoEndPrincipal.setAttribute("href", `geo: ${geoLocFarmPrin.lat}, ${geoLocFarmPrin.lng}`);
 
             textoTelPrincipal.innerHTML = plantaoAtual.farmacias![0].telefone;
 
@@ -99,7 +95,7 @@ export default class mainService {
             textoDataSec.innerHTML = "Plantão dia: " + mainService.dataAtualFormatada();
 
             textoEndSec.innerHTML = plantaoAtual.farmacias![1].endereco;
-            textoEndSec.setAttribute("href", `geo: ${geoLocFarmSec.lat}, ${geoLocFarmSec.lng}`);
+            //textoEndSec.setAttribute("href", `geo: ${geoLocFarmSec.lat}, ${geoLocFarmSec.lng}`);
             textoTelSec.innerHTML = plantaoAtual.farmacias![1].telefone;
 
             relogioSecundario.textContent = "Aberto até: 22h00min";
