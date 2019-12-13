@@ -53,9 +53,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 Esse projeto é uma iniciativa de testar conhecimentos de programação web com algumas tecnologias que tenho interesse e resolver um problema real de um pequeno grupo de pessoas.
 
 O que me motivou?
