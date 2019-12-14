@@ -77,12 +77,13 @@ export default class mainService {
 
 
             textoTelPrincipal.innerHTML = plantaoAtual.farmacias![0].telefone;
-            textoTelPrincipal.setAttribute('href', `tel:+55 ${plantaoAtual.farmacias![0].telefone}`)
+            const tel = plantaoAtual.farmacias![0].telefone;
+            const telparsed = tel.normalize('NFD').replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, '');
+            textoTelPrincipal.setAttribute("href", `tel:0${telparsed}`)
 
             relogioPrincipal.textContent = "Aberto até: 22h00min";
 
         }
-
         //Atualiza a Farmácia Secundária
         const textoSec = document.querySelector('#textoSecundario');
         const textoDataSec = document.querySelector('#textoDataSecundario');
@@ -101,7 +102,10 @@ export default class mainService {
             textoEndSec.setAttribute("href",
                 `geo: ${plantaoAtual.farmacias![1].geoloc.lat}, ${plantaoAtual.farmacias![1].geoloc.lng}`);
             textoTelSec.innerHTML = plantaoAtual.farmacias![1].telefone;
-            textoTelSec.setAttribute('href', `tel:+55 ${plantaoAtual.farmacias![1].telefone}`)
+            const tel = plantaoAtual.farmacias![1].telefone;
+            const telparsed = tel.normalize('NFD').replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, '');
+            textoTelSec.setAttribute("href", `tel:0${telparsed}`)
+
             relogioSecundario.textContent = "Aberto até: 22h00min";
         }
 
