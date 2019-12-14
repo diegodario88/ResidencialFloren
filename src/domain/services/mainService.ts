@@ -72,7 +72,8 @@ export default class mainService {
             textoDataPrincipal.innerHTML = "Plantão dia: " + mainService.dataAtualFormatada();
 
             textoEndPrincipal.innerHTML = plantaoAtual.farmacias![0].endereco;
-            //textoEndPrincipal.setAttribute("href", `geo: ${geoLocFarmPrin.lat}, ${geoLocFarmPrin.lng}`);
+            textoEndPrincipal.setAttribute("href",
+                `geo: ${plantaoAtual.farmacias![0].geoloc.lat}, ${plantaoAtual.farmacias![0].geoloc.lng}`);
 
             textoTelPrincipal.innerHTML = plantaoAtual.farmacias![0].telefone;
 
@@ -95,7 +96,8 @@ export default class mainService {
             textoDataSec.innerHTML = "Plantão dia: " + mainService.dataAtualFormatada();
 
             textoEndSec.innerHTML = plantaoAtual.farmacias![1].endereco;
-            //textoEndSec.setAttribute("href", `geo: ${geoLocFarmSec.lat}, ${geoLocFarmSec.lng}`);
+            textoEndSec.setAttribute("href",
+                `geo: ${plantaoAtual.farmacias![1].geoloc.lat}, ${plantaoAtual.farmacias![1].geoloc.lng}`);
             textoTelSec.innerHTML = plantaoAtual.farmacias![1].telefone;
 
             relogioSecundario.textContent = "Aberto até: 22h00min";
