@@ -72,9 +72,14 @@ export default class mainService {
             textoDataPrincipal.innerHTML = "Plantão dia: " + mainService.dataAtualFormatada();
 
             textoEndPrincipal.innerHTML = plantaoAtual.farmacias![0].endereco;
-            textoEndPrincipal.setAttribute("href",
-                `geo: ${plantaoAtual.farmacias![0].geoloc.lat}, ${plantaoAtual.farmacias![0].geoloc.lng}`);
 
+            const geoLocLat = plantaoAtual.farmacias![0].geoloc.lat;
+            const geoLocLng = plantaoAtual.farmacias![0].geoloc.lng;
+            const place_id = plantaoAtual.farmacias![0].place_id;
+            const url =
+                `https://www.google.com/maps/search/?api=1&query=${geoLocLat},${geoLocLng}&query_place_id=${place_id}`;
+
+            textoEndPrincipal.setAttribute("href", url);
 
             textoTelPrincipal.innerHTML = plantaoAtual.farmacias![0].telefone;
             const tel = plantaoAtual.farmacias![0].telefone;
@@ -99,8 +104,13 @@ export default class mainService {
             textoDataSec.innerHTML = "Plantão dia: " + mainService.dataAtualFormatada();
 
             textoEndSec.innerHTML = plantaoAtual.farmacias![1].endereco;
-            textoEndSec.setAttribute("href",
-                `geo: ${plantaoAtual.farmacias![1].geoloc.lat}, ${plantaoAtual.farmacias![1].geoloc.lng}`);
+            const geoLocLat = plantaoAtual.farmacias![1].geoloc.lat;
+            const geoLocLng = plantaoAtual.farmacias![1].geoloc.lng;
+            const place_id = plantaoAtual.farmacias![1].place_id;
+            const url =
+                `https://www.google.com/maps/search/?api=1&query=${geoLocLat},${geoLocLng}&query_place_id=${place_id}`;
+
+            textoEndSec.setAttribute("href", url);
             textoTelSec.innerHTML = plantaoAtual.farmacias![1].telefone;
             const tel = plantaoAtual.farmacias![1].telefone;
             const telparsed = tel.normalize('NFD').replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, '');
