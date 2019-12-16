@@ -1,0 +1,299 @@
+
+/* responsive */
+@media screen and (max-width: 1366px) {
+	body {
+		overflow-x: hidden;
+		font-size: 16px;
+		line-height: 25px;
+	}
+
+	h1 span {
+		display: block;
+	}
+	.nav-links {
+		font-size: 16px;
+		line-height: 27px;
+		display: flex;
+		justify-content: space-around;
+		width: 50%;
+	}
+	div.block {
+		height: 100vh;
+		padding: 10vh 15vw 0 15vw;
+	}
+	#btnContato {
+		color: #41b883;
+		text-decoration: none;
+		display: inline-block;
+		align-self: center;
+		width: 240px;
+		height: 60px;
+		background: #212120;
+		padding: 10px;
+		text-align: center;
+		font-weight: bold;
+	}
+}
+@media screen and (max-width: 1024px) {
+	body {
+		overflow-x: hidden;
+		font-size: 16px;
+	}
+
+	h1 span {
+		display: block;
+	}
+	.nav-links {
+		font-size: 16px;
+		line-height: 27px;
+		display: flex;
+		justify-content: space-around;
+		width: 50%;
+	}
+	#btnContato {
+		color: #41b883;
+		text-decoration: none;
+		display: inline-block;
+		align-self: center;
+		width: 240px;
+		height: 60px;
+		background: #212120;
+		padding: 10px;
+		text-align: center;
+		font-weight: bold;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	body {
+		overflow-x: hidden;
+		font-size: 16px;
+	}
+
+	h1 span {
+		display: block;
+	}
+	#btnContato {
+		color: #41b883;
+		text-decoration: none;
+		display: inline-block;
+		align-self: center;
+		width: 220px;
+		height: 60px;
+		background: #212120;
+		padding: 10px;
+		text-align: center;
+		font-weight: bold;
+	}
+	div.block {
+		height: 100vh;
+		padding: 15vh 15vw 0 15vw;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	body {
+		overflow-x: hidden;
+		font-size: 14px;
+	}
+
+	#btnContato {
+		color: #41b883;
+		text-decoration: none;
+		display: inline-block;
+		align-self: center;
+		width: 200px;
+		height: 60px;
+		background: #212120;
+		padding: 10px;
+		text-align: center;
+		font-weight: bold;
+	}
+
+	@media only screen and (max-width: 420px) {
+		body {
+			font-size: 12px;
+			line-height: 16px;
+		}
+		.Tempo {
+			display: none;
+		}
+
+		.TempoMobile {
+			display: block;
+		}
+		#coleta {
+			height: 100vh;
+			padding: 10vh 10vw 0 10vw;
+		}
+		#btnContato {
+			color: #41b883;
+			text-decoration: none;
+			display: inline-block;
+			align-self: center;
+			width: 200px;
+			height: 50px;
+			background: #212120;
+			padding: 10px;
+			text-align: center;
+			font-weight: bold;
+			letter-spacing: 1px;
+		}
+		.mainContato {
+			grid-template-columns: 300px;
+			grid-template-rows: 100px;
+			display: grid;
+			grid-template-areas: "contato1" "contato2" "contato3" "contato4";
+			justify-items: center;
+			align-items: center;
+		}
+	}
+
+	@media only screen and (max-width: 360px) {
+		body {
+			font-size: 12px;
+			line-height: 16px;
+		}
+		#btnContato {
+			color: #41b883;
+			text-decoration: none;
+			display: inline-block;
+			align-self: center;
+			width: 180px;
+			height: 40px;
+			background: #212120;
+			padding: 5px;
+			text-align: center;
+			font-weight: bold;
+			letter-spacing: 1px;
+		}
+		#coleta {
+			height: 100vh;
+			margin: 0vh 0vw 0 0vw;
+		
+		}
+
+		div.mainColeta {
+			padding: 0vh;
+		}
+
+		.Tempo {
+			display: none;
+		}
+		.TempoMobile{
+			padding-bottom: 10px;
+		}
+
+		.mainContato {
+			grid-template-columns: 250px;
+			grid-template-rows: 90px;
+			display: grid;
+			grid-template-areas: "contato1" "contato2" "contato3" "contato4";
+			justify-items: center;
+			align-items: flex-start;
+			font-size: 8px;
+			letter-spacing: normal;
+		}
+	}
+
+	@media only screen and (max-width: 320px) {
+		body {
+			margin: 0%;
+			font-size: 12px;
+			line-height: 12px;
+		}
+		div.block {
+			height: 100vh;
+			padding: 10vh 10vw 0 10vw;
+		}
+		#coleta {
+			height: 100vh;
+			margin: 0vh 0vw 0 0vw;
+		}
+		#btnContato {
+			color: #41b883;
+			text-decoration: none;
+			display: inline-block;
+			align-self: center;
+			width: 180px;
+			height: 40px;
+			background: #212120;
+			padding: 5px;
+			text-align: center;
+			font-weight: bold;
+			letter-spacing: 1px;
+		}
+
+		div.mainColeta {
+			padding: 0vh;
+		}
+		.TempoMobile{
+			padding-bottom: 10px;
+		}
+
+		.Tempo {
+			display: none;
+		}
+
+		.mainContato {
+			grid-template-columns: 250px;
+			grid-template-rows: 90px;
+			display: grid;
+			grid-template-areas: "contato1" "contato2" "contato3" "contato4";
+			justify-items: center;
+			align-items: flex-start;
+			font-size: 8px;
+			letter-spacing: normal;
+		}
+	}
+
+	/* Animations */
+	@keyframes navLinkFadeIn {
+		from {
+			opacity: 0;
+			transform: translateX(50px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateX(0px);
+		}
+	}
+
+	.nav-links {
+		position: absolute;
+		right: 0%;
+		height: 92vh;
+		top: 8vh;
+		background-color: #212120;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 30%;
+		transform: translateX(100%);
+		transition: transform 0.5s ease-in;
+	}
+
+	.nav-links li {
+		opacity: 0;
+	}
+	.burger {
+		display: block;
+	}
+}
+
+.nav-active {
+	transform: translateX(0%);
+}
+
+.toggle .line1 {
+	transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle .line2 {
+	opacity: 0;
+}
+
+.toggle .line3 {
+	transform: rotate(45deg) translate(-5px, -6px);
+}
