@@ -73,9 +73,6 @@ export default class mainService {
 
             textoEndPrincipal.innerHTML = plantaoAtual.farmacias![0].endereco;
 
-            const geoLocLat = plantaoAtual.farmacias![0].geoloc.lat;
-            const geoLocLng = plantaoAtual.farmacias![0].geoloc.lng;
-            const place_id = plantaoAtual.farmacias![0].place_id;
             const url =
                 `https://www.google.com/maps/search/?api=1&query=${plantaoAtual.farmacias![0].name},${plantaoAtual.farmacias![0].endereco}`;
 
@@ -104,9 +101,7 @@ export default class mainService {
             textoDataSec.innerHTML = "Plantão dia: " + mainService.dataAtualFormatada();
 
             textoEndSec.innerHTML = plantaoAtual.farmacias![1].endereco;
-            const geoLocLat = plantaoAtual.farmacias![1].geoloc.lat;
-            const geoLocLng = plantaoAtual.farmacias![1].geoloc.lng;
-            const place_id = plantaoAtual.farmacias![1].place_id;
+
             const url =
                 `https://www.google.com/maps/search/?api=1&query=${plantaoAtual.farmacias![1].name},${plantaoAtual.farmacias![1].endereco}`;
 
