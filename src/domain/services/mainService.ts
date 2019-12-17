@@ -73,11 +73,17 @@ export default class mainService {
 
             textoEndPrincipal.innerHTML = plantaoAtual.farmacias![0].endereco;
 
+            //Cria URL para busca no Google Places
+            const name = plantaoAtual.farmacias![0].name;
+            const end = plantaoAtual.farmacias![0].endereco;
+
+            const nameParsed = name.normalize('NFD').replace(/([\u0300-\u036f]|[^0-9a-zA-Z\s])/g, '');
             const url =
-                `https://www.google.com/maps/search/?api=1&query=${plantaoAtual.farmacias![0].name},${plantaoAtual.farmacias![0].endereco}`;
+                `https://www.google.com/maps/search/?api=1&query=${nameParsed},${end} - Loanda - PR`;
 
             textoEndPrincipal.setAttribute("href", url);
 
+            //Atualiza TEL, e normalize para protocolo mobile
             textoTelPrincipal.innerHTML = plantaoAtual.farmacias![0].telefone;
             const tel = plantaoAtual.farmacias![0].telefone;
             const telparsed = tel.normalize('NFD').replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, '');
@@ -102,10 +108,17 @@ export default class mainService {
 
             textoEndSec.innerHTML = plantaoAtual.farmacias![1].endereco;
 
+            //Cria URL para busca no Google Places
+            const name = plantaoAtual.farmacias![1].name;
+            const end = plantaoAtual.farmacias![1].endereco;
+
+            const nameParsed = name.normalize('NFD').replace(/([\u0300-\u036f]|[^0-9a-zA-Z\s])/g, '');
             const url =
-                `https://www.google.com/maps/search/?api=1&query=${plantaoAtual.farmacias![1].name},${plantaoAtual.farmacias![1].endereco}`;
+                `https://www.google.com/maps/search/?api=1&query=${nameParsed},${end} - Loanda - PR`;
 
             textoEndSec.setAttribute("href", url);
+
+            //Atualiza TEL, e normalize para protocolo mobile
             textoTelSec.innerHTML = plantaoAtual.farmacias![1].telefone;
             const tel = plantaoAtual.farmacias![1].telefone;
             const telparsed = tel.normalize('NFD').replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, '');
