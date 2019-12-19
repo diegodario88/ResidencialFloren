@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 html {
 	scroll-behavior: smooth;
+	scroll-snap-type: block mandatory;
 }
 * {
 	margin: 0px;
@@ -45,6 +46,8 @@ h1 {
 div.block {
 	height: 100vh;
 	padding: 20vh 15vw 0 15vw;
+	scroll-snap-align: start;
+
 }
 a {
 	color: #41b883;
