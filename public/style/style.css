@@ -14,7 +14,7 @@ nav {
 	justify-content: space-around;
 	align-items: center;
 	min-height: 8vh;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Poppins';
 	background-color: #212120;
 	width: 100%;
 	position: fixed;
@@ -26,7 +26,6 @@ nav {
 body {
 	background: #193b55;
 	color: #d7e7f3;
-	font-family: 'Roboto', sans-serif;
 	text-align: center;
 	font-size: 22px;
 	line-height: 33px;
@@ -41,6 +40,7 @@ h1 {
 	height: auto;
 	-webkit-font-smoothing: subpixel-antialiased;
 	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
 }
 
 div.block {
