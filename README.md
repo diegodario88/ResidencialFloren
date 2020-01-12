@@ -20,7 +20,7 @@
 <br />
 <p align="center">
   <a href="https://residencialfloren.firebaseapp.com/">
-    <img src="./public/img/florence.png" alt="Logo" width="200" height="200">
+    <img src="./public/img/florence.ico" alt="Logo" width="200" height="200">
   </a>
 
   <h3 align="center">Residencial Florença</h3>
