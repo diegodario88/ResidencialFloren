@@ -40,7 +40,7 @@ h1 {
 	height: auto;
 	-webkit-font-smoothing: subpixel-antialiased;
 	box-sizing: border-box;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Roboto';
 }
 p {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
