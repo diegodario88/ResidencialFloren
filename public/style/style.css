@@ -54,6 +54,7 @@ div.block {
 a {
 	color: #41b883;
 	text-decoration: none;
+	
 }
 
 a:hover {
@@ -147,6 +148,7 @@ th {
 	grid-template-areas: "contato1 contato2" "contato3 contato4";
 	justify-items: center;
 	align-items: center;
+	font-family: 'Poppins';
 }
 
 .mainContato a {
@@ -255,9 +257,10 @@ th {
 	padding: 10px;
 	text-align: center;
 	border-radius: 40px;
-	font-weight: bold;
+	font-weight: bolder;
 	text-align: center;
 	align-items: center;
+	font-family: 'Roboto';
 }
 #btnContato:hover {
 	color: tomato;
