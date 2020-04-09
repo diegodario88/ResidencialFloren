@@ -129,6 +129,6 @@ export default class PdfMaker {
         // alignment: 'justify'
       },
     };
-    pdfMake.createPdf(docDefinition as any).open();
+    pdfMake.createPdf(docDefinition as any).download(`Escala-${currentMonth}.pdf`);
   }
 }
