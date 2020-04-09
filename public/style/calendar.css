@@ -1,0 +1,187 @@
+section .form-calendar{
+	font-size: 16px;
+	width: 80%;
+	margin-left: 10%;
+}
+section .select-month{
+	margin-top: 5%;
+	margin-bottom: 10%;
+	text-align: center;
+}
+
+.form-calendar input[type="month"]{
+	transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	background: #fff;
+	margin-bottom: 4%;
+	border: 1px solid rgb(243, 239, 239);
+	padding: 3%;
+	width: 100%;
+	color: #555;
+	text-align: center;
+	font: 95% Arial, Helvetica, sans-serif;
+}
+
+.form-calendar input[type="month"]:focus{
+	box-shadow: 0 0 5px #43D1AF;
+	padding: 3%;
+	border: 1px solid #43D1AF;
+}
+
+.form-calendar input[type="submit"]{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	padding: 3%;
+	background: #43D1AF;
+	border-bottom: 2px solid #30C29E;
+	border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;	
+	color: #fff;
+}
+
+.form-calendar input[type="submit"]:hover{
+	background: rgb(12, 184, 141);
+    color: #323232;
+}
+
+.pharma-one {
+	grid-area: sidePharm;
+	width: 90%;
+}
+
+.calendar-month {
+	grid-area: sideMonth;
+	width: 10%;
+	font-size: 1.5em;
+	line-height: 2.5em;
+	text-transform: uppercase;
+	writing-mode: vertical-lr;
+	text-orientation: upright;
+	color: #3f4c76;
+}
+
+.phama-two {
+	grid-area: sidePharm;
+}
+
+.calendar-header{
+	display: grid;
+	min-height: 250px;
+	grid-template-columns: 90% 10%;
+	row-gap: 5px;
+    grid-template-areas: "sidePharm sideMonth" 
+        "sidePharm sideMonth";
+    background-color: #fff;
+    color: #444;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td {
+	padding: 0;
+}
+
+
+.calendar-container {
+	width: 100%px;
+	
+}
+
+.calendar-container header {
+	border-radius: 1em 1em 0 0;
+	background: #41b883;
+	color: #fff;
+	padding: 1em 1em;
+}
+
+
+.onCallThatDay {
+	font-size: 3em;
+	line-height: 1em;
+	text-transform: capitalize;
+}
+
+.calendar {
+	background: #fff;
+	border-radius: 0 0 1em 1em;
+	-webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, .2), 0 3px 1px #fff;
+	box-shadow: 0 2px 1px rgba(0, 0, 0, .2), 0 3px 1px #fff;
+	color: #555;
+	width: 100%;
+	
+}
+
+.calendar thead {
+	color: #06416b;
+	font-weight: 700;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.calendar td {
+	padding: .4em 1em;
+	text-align: center;
+}
+
+.calendar tbody td:hover {
+	background: #cacaca;
+	color: tomato;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.current-day {
+	color: tomato;
+	font-weight: bold;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.prev-and-next-buttons{
+	min-width: 100px;
+	min-height: 20px;
+	font-family: 'Roboto';
+	color: #494949 !important;
+	background: #f5f4f3;
+	border-radius: 50px;
+	transition: all 0.4s ease 0s;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+.prev-and-next-buttons:hover{
+	color: #41b883 !important;
+	border-color: #41b883 !important;
+	transition: all 0.4s ease 0s;
+}
+
+.make-pdf-button{
+	font-family: 'Roboto';
+	color: #494949 !important;
+	text-transform: uppercase;
+	text-decoration: none;
+	background: #f5f4f3;
+	padding: 10px;
+	border-radius: 50px;
+	border: 2px solid #3f3d56 !important;
+	display: inline-block;
+	transition: all 0.4s ease 0s;
+	cursor: pointer;
+}
+
+.make-pdf-button:hover{
+	color: #41b883 !important;
+	border-color: #41b883 !important;
+	transition: all 0.4s ease 0s;
+}

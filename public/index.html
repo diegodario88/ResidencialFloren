@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/responsive.css">
+    <link rel="stylesheet" href="./style/calendar.css">
+    <link rel="stylesheet" href="./style/magic.min.css">
     <link rel="shortcut icon" type="imagem/png" href="img/florence.ico">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
@@ -19,14 +21,20 @@
         <div class="logo">
             <a class="navbar-brand" style="text-decoration:none" href="#plantao" onclick="javascript:setTimeout(() => {
                     location.reload();
-                }, 1000);">
+                }, 1500);">
                 <i class="fas fa-spa"></i> Residencial Florença</a>
         </div>
         <ul class="nav-links">
-            <li><a href="#plantao"> <i class="fas fa-medkit"></i> Plantão</a></li>
-            <li><a href="#coleta"> <i class="fas fa-trash-alt"></i> Coleta</a></li>
-            <li><a href="#sobre"> <i class="fas fa-address-card"></i> Sobre</a></li>
-            <li><a href="#contato"> <i class="fas fa-hands-helping"></i> Contato</a>
+            <li><a href="#plantao"><i class="fas fa-medkit"></i>
+                    <br>Plantão</a></li>
+            <li><a href="#calendario"><i class="far fa-calendar-alt"></i>
+                    <br>Calendário</a></li>
+            <li><a href="#coleta"><i class="fas fa-trash-alt"></i>
+                    <br>Coleta</a></li>
+            <li><a href="#sobre"><i class="fas fa-address-card"></i>
+                    <br>Sobre</a></li>
+            <li><a href="#contato"><i class="fas fa-hands-helping"></i>
+                    <br>Contato</a>
             </li>
         </ul>
         <div class="burger">
@@ -38,36 +46,55 @@
 
     <!---PLantão-->
     <div class="block" id="plantao">
-        <h1 id="textoPrincipal"></h1>
+            <h1 id="textoPrincipal"></h1>
 
-        <p id="textoDataPrincipal"> </p>
-        <p><i class='far fa-building'></i>&nbsp;&nbsp; <a id="textoEndPrincipal" href=""></a>
+            <p id="textoDataPrincipal"> </p>
+            <p><i class='far fa-building'></i>&nbsp;&nbsp; <a id="textoEndPrincipal" href=""></a>
+                <br>
+                <i id="fone" class='fas fa-phone'></i>&nbsp;&nbsp; <a href="" id="textoTelPrincipal"></a>
+                <br>
+                <i id="clock" class='far fa-clock'></i>&nbsp;&nbsp; <a id="relogioPrincipal"></a>
+            </p>
             <br>
-            <i id="fone" class='fas fa-phone'></i>&nbsp;&nbsp; <a href="" id="textoTelPrincipal"></a>
+
+            <hr id="espacoGordo" />
+
+            <br> <br>
+
+            <h1 id="textoSecundario"></h1>
+
+            <p id="textoDataSecundario"> </p>
+            <p><i class='far fa-building'></i>&nbsp;&nbsp; <a id="textoEndSecundario" href=""></a>
+                <br>
+                <i class='fas fa-phone'></i>&nbsp;&nbsp; <a href="" id="textoTelSecundario"></a>
+                <br>
+                <i class='far fa-clock'></i>&nbsp;&nbsp; <a id="relogioSecundario"></a>
+            </p>
             <br>
-            <i id="clock" class='far fa-clock'></i>&nbsp;&nbsp; <a id="relogioPrincipal"></a>
-        </p>
-        <br>
-
-        <hr id="espacoGordo" />
-
-        <br> <br>
-
-        <h1 id="textoSecundario"></h1>
-
-        <p id="textoDataSecundario"> </p>
-        <p><i class='far fa-building'></i>&nbsp;&nbsp; <a id="textoEndSecundario" href=""></a>
+            <hr id="espacoMagro">
             <br>
-            <i class='fas fa-phone'></i>&nbsp;&nbsp; <a href="" id="textoTelSecundario"></a>
-            <br>
-            <i class='far fa-clock'></i>&nbsp;&nbsp; <a id="relogioSecundario"></a>
-        </p>
-        <br>
-        <hr id="espacoMagro">
-        <br>
-        <a href="#contato" id="btnContato" class="animated bounceInLeft slow">
-            <i class="fas fa-wrench"></i>
-            <span>Relatar Problema</span></a>
+            <div class="buttons">
+                <a href="#calendario" id="btnCalendario" class="animated bounceInLeft slow">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>Gerar Calendário</span></a>
+                <a href="#contato" id="btnContato" class="animated bounceInRight slow">
+                    <i class="fas fa-wrench"></i>
+                    <span>Relatar Problema</span></a>
+            </div>
+    </div>
+    <!---Calendário-->
+    <div class="block" id="calendario">
+        <h1>Selecione um período </h1>
+        <section class="calendar-section">
+            <p><i class="fas fa-calendar-check"></i> Farmácias de plantão em qualquer data futura</p>
+            <form class="form-calendar">
+                <img src="./img/calendar.svg" alt="calendar with dates" height="50%" width="100%"
+                    class="calendar-svg" />
+                <span><i class="far fa-calendar-alt"></i> Selecione um Mês:</span>
+                <input class="select-month" id="selectMonth" type="month" min="" max="" name="month">
+                <input type="submit" value="ENVIAR" id="btnSubmit" />
+            </form>
+        </section>
     </div>
     <!---Coleta-->
     <div class="block" id="coleta">
@@ -158,44 +185,51 @@
 
         </div>
     </div>
-
+    <!---Sobre-->
     <div class="block" id="sobre">
         <h1>Sobre</h1>
         <br>
-        <hr>
+        <hr id="espacoMagro">
 
         <br>
-        <p> Esse projeto é uma iniciativa de testar conhecimentos de programação web com algumas tecnologias que tenho
-            interesse e resolver um problema real de um pequeno grupo de pessoas. </p><br><br>
-
+        <div class="sobre-text">
+            <p> Esse projeto é uma iniciativa de testar conhecimentos de programação web com algumas tecnologias que
+                tenho
+                interesse e resolver um problema real de um pequeno grupo de pessoas. </p><br><br>
+        </div>
         <h1>motivo</h1>
         <br><br>
-        <p>
-            Constantemente as pessoas perguntando nos grupos qual a farmácia de plantão, alguém tirava uma foto de uma
-            escala manual impressa e começava a repassar.
-            Todo dia um funcionário faz o serviço manual e repetitivo de colar na fachada do estabelecimento quais serão
-            as farmácias
-            que iram atender o plantão, desperdiçando material e tempo com algo que eu poderia automatizar utilizando o
-            meu conhecimento.
+        <div class="motivo">
+            <p>
+                Constantemente as pessoas perguntando nos grupos qual a farmácia de plantão, alguém tirava uma foto de
+                uma
+                escala manual impressa e começava a repassar.
+                Todo dia um funcionário faz o serviço manual e repetitivo de colar na fachada do estabelecimento quais
+                serão
+                as farmácias
+                que iram atender o plantão, desperdiçando material e tempo com algo que eu poderia automatizar
+                utilizando o
+                meu conhecimento.
 
-        </p>
+            </p>
+        </div>
     </div>
+    <!---Contato-->
     <div class="block" id="contato">
         <h1>Contatos</h1>
         <br>
-        <hr>
+        <hr id="espacoMagro">
         <br>
 
         <div class="mainContato">
             <div class="contato1 animated pulse">
-                <i class="fas fa-phone fa-3x"></i><br>
-                <a href="tel:044988255633">44 98825-5633</a>
+                <i class="fab fa-telegram-plane fa-3x"></i><br>
+                <a href="https://t.me/carcar4h">Telegram</a>
             </div>
 
             <div class="contato2 animated pulse">
                 <i class="fas fa-envelope fa-3x"></i><br>
-                <a href="mailto:diegodario88@gmail.com"><span class="__cf_email__"
-                        data-cfemail="deb4bfbdb5adb1b0a8bbacb7adadb7b3b19eb6b1aab3bfb7b2f0bdb1b3">[email&#160;protected]</span></a>
+                <A HREF="&#109;&#97;&#105;&#108;&#116;&#111;&#58;%64%69%65%67%6F%64%61%72%69%6F%38%38%40%67%6D%61%69%6C%2E%63%6F%6D">Email</A>
             </div>
 
             <div class="contato3 animated pulse">

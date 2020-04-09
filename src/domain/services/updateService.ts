@@ -1,4 +1,4 @@
-import PlantaoService from "./plantaoService";
+import apiService from "./api";
 import Plantao from "../entities/Plantao";
 import mainService from "./mainService";
 
@@ -6,7 +6,7 @@ export default class updateService {
 
     static async updatePlantao() {
 
-        const resultApiFloren = await PlantaoService.get();
+        const resultApiFloren = await apiService.get('plantoes/atual');
         const plantaoAtual: Plantao = new Plantao(resultApiFloren);
 
         //Atualiza a Farmácia Principal

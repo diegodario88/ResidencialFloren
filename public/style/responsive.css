@@ -1,5 +1,35 @@
 
 /* responsive */
+@media only screen and (min-width: 768px) {
+	/* For desktop: */
+.calendar-section{
+	width: 50%;
+	margin-left: 25%;
+}
+
+.calendar-header-img{
+	display: none;
+}
+
+.calendar-container{
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.mainContato{
+	height: 50vh;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	display: grid;
+	grid-template-areas: "contato1 contato2" "contato3 contato4";
+	justify-items: center;
+	align-items: center;
+	font-family: 'Poppins';
+}
+#btnContato{
+	margin-top: 30px;
+	}
+}
 @media screen and (max-width: 1366px) {
 	body {
 		overflow-x: hidden;
@@ -19,9 +49,12 @@
 	}
 	div.block {
 		height: 100vh;
-		padding: 10vh 15vw 0 15vw;
+		padding: 12vh 2vw 0 2vw;
 	}
-	#btnContato {
+	#btnContato{
+		margin-top: 10px;
+	}
+	#btnContato, #btnCalendario {
 		color: #41b883;
 		text-decoration: none;
 		display: inline-block;
@@ -31,7 +64,6 @@
 		background: #212120;
 		padding: 10px;
 		text-align: center;
-		font-weight: bold;
 	}
 }
 @media screen and (max-width: 1024px) {
@@ -50,7 +82,7 @@
 		justify-content: space-around;
 		width: 50%;
 	}
-	#btnContato {
+	#btnContato, #btnCalendario {
 		color: #41b883;
 		text-decoration: none;
 		display: inline-block;
@@ -60,7 +92,6 @@
 		background: #212120;
 		padding: 10px;
 		text-align: center;
-		font-weight: bold;
 	}
 }
 
@@ -73,7 +104,7 @@
 	h1 span {
 		display: block;
 	}
-	#btnContato {
+	#btnContato, #btnCalendario {
 		color: #41b883;
 		text-decoration: none;
 		display: inline-block;
@@ -83,11 +114,10 @@
 		background: #212120;
 		padding: 10px;
 		text-align: center;
-		font-weight: bold;
 	}
 	div.block {
 		height: 100vh;
-		padding: 15vh 15vw 0 15vw;
+		padding: 12vh 2vw 0 2vw;
 	}
 }
 
@@ -97,7 +127,7 @@
 		font-size: 14px;
 	}
 
-	#btnContato {
+	#btnContato, #btnCalendario {
 		color: #41b883;
 		text-decoration: none;
 		display: inline-block;
@@ -107,144 +137,6 @@
 		background: #212120;
 		padding: 10px;
 		text-align: center;
-		font-weight: bold;
-	}
-
-	@media only screen and (max-width: 420px) {
-		body {
-			font-size: 12px;
-			line-height: 16px;
-		}
-		.Tempo {
-			display: none;
-		}
-
-		.TempoMobile {
-			display: block;
-		}
-		#coleta {
-			height: 100vh;
-			padding: 10vh 10vw 0 10vw;
-		}
-		#btnContato {
-			color: #41b883;
-			text-decoration: none;
-			display: inline-block;
-			align-self: center;
-			width: 200px;
-			height: 50px;
-			background: #212120;
-			padding: 10px;
-			text-align: center;
-			font-weight: bold;
-			letter-spacing: 1px;
-		}
-		.mainContato {
-			grid-template-columns: 300px;
-			grid-template-rows: 100px;
-			display: grid;
-			grid-template-areas: "contato1" "contato2" "contato3" "contato4";
-			justify-items: center;
-			align-items: center;
-		}
-	}
-
-	@media only screen and (max-width: 360px) {
-		body {
-			font-size: 12px;
-			line-height: 16px;
-		}
-		#btnContato {
-			color: #41b883;
-			text-decoration: none;
-			display: inline-block;
-			align-self: center;
-			width: 180px;
-			height: 40px;
-			background: #212120;
-			padding: 5px;
-			text-align: center;
-			font-weight: bold;
-			letter-spacing: 1px;
-		}
-		#coleta {
-			height: 100vh;
-			margin: 0vh 0vw 0 0vw;
-		
-		}
-
-		div.mainColeta {
-			padding: 0vh;
-		}
-
-		.Tempo {
-			display: none;
-		}
-		.TempoMobile{
-			padding-bottom: 10px;
-		}
-
-		.mainContato {
-			grid-template-columns: 250px;
-			grid-template-rows: 90px;
-			display: grid;
-			grid-template-areas: "contato1" "contato2" "contato3" "contato4";
-			justify-items: center;
-			align-items: flex-start;
-			font-size: 8px;
-			letter-spacing: normal;
-		}
-	}
-
-	@media only screen and (max-width: 320px) {
-		body {
-			margin: 0%;
-			font-size: 12px;
-			line-height: 12px;
-		}
-		div.block {
-			height: 100vh;
-			padding: 10vh 10vw 0 10vw;
-		}
-		#coleta {
-			height: 100vh;
-			margin: 0vh 0vw 0 0vw;
-		}
-		#btnContato {
-			color: #41b883;
-			text-decoration: none;
-			display: inline-block;
-			align-self: center;
-			width: 180px;
-			height: 40px;
-			background: #212120;
-			padding: 5px;
-			text-align: center;
-			font-weight: bold;
-			letter-spacing: 1px;
-		}
-
-		div.mainColeta {
-			padding: 0vh;
-		}
-		.TempoMobile{
-			padding-bottom: 10px;
-		}
-
-		.Tempo {
-			display: none;
-		}
-
-		.mainContato {
-			grid-template-columns: 250px;
-			grid-template-rows: 90px;
-			display: grid;
-			grid-template-areas: "contato1" "contato2" "contato3" "contato4";
-			justify-items: center;
-			align-items: flex-start;
-			font-size: 8px;
-			letter-spacing: normal;
-		}
 	}
 
 	/* Animations */
@@ -279,6 +171,147 @@
 	}
 	.burger {
 		display: block;
+	}
+}
+
+@media only screen and (max-width: 420px) {
+	body {
+		font-size: 12px;
+		line-height: 16px;
+	}
+	.Tempo {
+		display: none;
+	}
+
+	.TempoMobile {
+		display: block;
+	}
+	#coleta {
+		height: 100vh;
+		padding: 10vh 10vw 0 10vw;
+	}
+	#btnContato, #btnCalendario {
+		color: #41b883;
+		text-decoration: none;
+		display: inline-block;
+		align-self: center;
+		width: 200px;
+		height: 50px;
+		background: #212120;
+		padding: 10px;
+		text-align: center;
+		letter-spacing: 1px;
+	}
+	.mainContato {
+		grid-template-columns: 300px;
+		grid-template-rows: 100px;
+		display: grid;
+		grid-template-areas: "contato1" "contato2" "contato3" "contato4";
+		justify-items: center;
+		align-items: center;
+		margin-left: 10%;
+	}
+}
+
+@media only screen and (max-width: 360px) {
+	body {
+		font-size: 12px;
+		line-height: 16px;
+	}
+	#btnContato, #btnCalendario {
+		color: #41b883;
+		text-decoration: none;
+		display: inline-block;
+		align-self: center;
+		width: 180px;
+		height: 40px;
+		background: #212120;
+		padding: 5px;
+		text-align: center;
+		letter-spacing: 1px;
+	}
+	#coleta {
+		height: 100vh;
+		margin: 0vh 0vw 0 0vw;
+	
+	}
+
+	div.mainColeta {
+		padding: 0vh;
+	}
+
+	.Tempo {
+		display: none;
+	}
+	.TempoMobile{
+		padding-bottom: 10px;
+	}
+
+	.mainContato {
+		grid-template-columns: 250px;
+		grid-template-rows: 90px;
+		display: grid;
+		grid-template-areas: "contato1" "contato2" "contato3" "contato4";
+		justify-items: center;
+		align-items: flex-start;
+		font-size: 8px;
+		letter-spacing: normal;
+		margin-left: 15%;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	body {
+		margin: 0%;
+		font-size: 12px;
+		line-height: 12px;
+	}
+
+	#coleta {
+		height: 100vh;
+		margin: 0vh 0vw 0 0vw;
+	}
+
+	#btnContato, #btnCalendario {
+		color: #41b883;
+		text-decoration: none;
+		display: inline-block;
+		align-self: center;
+		width: 180px;
+		height: 40px;
+		background: #212120;
+		padding: 5px;
+		text-align: center;
+		letter-spacing: 1px;
+	}
+
+	div.mainColeta {
+		padding: 0vh;
+	}
+	.TempoMobile{
+		padding-bottom: 10px;
+	}
+
+	.Tempo {
+		display: none;
+	}
+
+	.mainContato {
+		grid-template-columns: 250px;
+		grid-template-rows: 90px;
+		display: grid;
+		grid-template-areas: "contato1" "contato2" "contato3" "contato4";
+		justify-items: center;
+		align-items: flex-start;
+		font-size: 8px;
+		letter-spacing: normal;
+		margin-left: 10%;
+	}
+	#calendar-header{
+		min-height: 0;
+	}
+	#calendar td {
+		padding: 2%;
 	}
 }
 

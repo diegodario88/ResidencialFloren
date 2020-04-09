@@ -1,6 +1,3 @@
-import PlantaoService from "./plantaoService";
-import Plantao from "../entities/Plantao";
-
 export default class mainService {
 
     //Função NavBar

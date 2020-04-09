@@ -47,10 +47,11 @@ p {
 }
 div.block {
 	height: 100vh;
-	padding: 20vh 15vw 0 15vw;
+	padding: 15vh 15vw 0 15vw;
 	scroll-snap-align: start;
 
 }
+
 a {
 	color: #41b883;
 	text-decoration: none;
@@ -68,23 +69,23 @@ a.navbar-brand:hover {
 	color: #41b883;
 }
 
-div.block:nth-child(1n) {
-	background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
-}
-
 div.block:nth-child(2n) {
 	background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
 }
 
 div.block:nth-child(3n) {
+	background-image: linear-gradient(-60deg, #2b5876 0%, #4e4376 100%);
+}
+
+div.block:nth-child(4n) {
 	background-image: linear-gradient(to right, #3ab5b0 0%, #3d99be 31%, #56317a 100%);
 }
 
-table {
+.table {
 	width: 100%;
 	border-collapse: collapse;
 }
-tr:nth-of-type(odd) {
+.table tr:nth-of-type(odd) {
 	background: #41b883;
 }
 th {
@@ -144,8 +145,9 @@ th {
 	height: 50vh;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
-	display: grid;
-	grid-template-areas: "contato1 contato2" "contato3 contato4";
+	display: flex;
+	flex-direction: column;
+	margin: 5%;
 	justify-items: center;
 	align-items: center;
 	font-family: 'Poppins';
@@ -190,16 +192,18 @@ th {
 	display: none;
 }
 
+.sobre-text, .motivo{
+margin-left: 7%;
+margin-right: 7%;
+}
+
 #espacoGordo {
 	background-color: #41b883;
 	color: #41b883;
 	margin: 0;
-	height: 6px;
+	height: 1%;
 	width: 10%;
-	position: relative;
-	top: 1%;
-	left: 50%;
-	margin-right: -50%;
+	margin-left: 50%;
 	transform: translate(-50%, -50%);
 	border: 0;
 	background-image: linear-gradient(to right, #41b883, #35956a, #246d4c);
@@ -209,7 +213,9 @@ th {
 #espacoMagro {
 	border: 0;
 	height: 1px;
+	width: 70%;
 	background-image: linear-gradient(to right, #41b883, #35956a, #246d4c);
+	margin-left: 15%;
 }
 
 #textoPrincipal {
@@ -227,7 +233,6 @@ th {
 	color: rgb(226, 226, 226);
 }
 #textoPrincipal:empty {
-	
 	display: block;
 	content: '';
 	position: relative;
@@ -236,7 +241,7 @@ th {
 	transform: translateX(-100%);
 	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
 	animation: loading 1.5s infinite;
-}
+} 
  
 @keyframes loading {
 	100% {
@@ -244,11 +249,11 @@ th {
 	}
   }
 
-#btnContato {
+#btnContato, #btnCalendario {
 	color: #41b883;
 	text-decoration: none;
 	display: inline-block;
-	position: static;
+	position: relative;
 	align-self: center;
 	width: 280px;
 	height: 60px;
@@ -257,12 +262,13 @@ th {
 	padding: 10px;
 	text-align: center;
 	border-radius: 40px;
-	font-weight: bolder;
+	font-weight: 400;
 	text-align: center;
 	align-items: center;
 	font-family: 'Roboto';
 }
-#btnContato:hover {
+
+#btnContato:hover,#btnCalendario:hover {
 	color: tomato;
 	box-shadow: -5px 5px 25px #000;
 }
