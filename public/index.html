@@ -4,15 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel='manifest' href='./manifest.json'>
+    <meta name="theme-color" content="#41b883"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Residencial Florença</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect dns-prefetch" href="https://weatherwidget.io" crossorigin >
+    <link rel="preconnect dns-prefetch" href="https://floren-api.appspot.com" crossorigin>
+    <link rel="preconnect dns-prefetch" href="https://forecast7.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/responsive.css">
     <link rel="stylesheet" href="./style/calendar.css">
     <link rel="stylesheet" href="./style/magic.min.css">
-    <link rel="shortcut icon" type="imagem/png" href="img/florence.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet"> 
+    <link rel="shortcut icon" type="imagem/png" href="./img/florence.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+    <!-- ios Icons -->
+		<link rel="apple-touch-icon" sizes="180x180" href="./img/180x180.png">
 </head>
 
 <body>
@@ -193,14 +201,14 @@
 
         <br>
         <div class="sobre-text">
-            <p> Esse projeto é uma iniciativa de testar conhecimentos de programação web com algumas tecnologias que
+            <p class="intro-text"> Esse projeto é uma iniciativa de testar conhecimentos de programação web com algumas tecnologias que
                 tenho
                 interesse e resolver um problema real de um pequeno grupo de pessoas. </p><br><br>
         </div>
         <h1>motivo</h1>
         <br><br>
         <div class="motivo">
-            <p>
+            <p class="intro-text">
                 Constantemente as pessoas perguntando nos grupos qual a farmácia de plantão, alguém tirava uma foto de
                 uma
                 escala manual impressa e começava a repassar.
@@ -250,6 +258,28 @@
     <!-- Scripts -->
     <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
     <script defer src="./js/main.js"></script>
+    <script>
+        // This is the service worker with the Cache-first network
+
+        // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
+
+        // Check compatibility for the browser we're running this in
+        if ("serviceWorker" in navigator) {
+            if (navigator.serviceWorker.controller) {
+                console.log("[PWA Builder] active service worker found, no need to register");
+            } else {
+                // Register the service worker
+                navigator.serviceWorker
+                    .register("pwabuilder-sw.js", {
+                        scope: "./"
+                    })
+                    .then(function (reg) {
+                        console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+                    });
+            }
+        }
+
+    </script>
 </body>
 
 </html>

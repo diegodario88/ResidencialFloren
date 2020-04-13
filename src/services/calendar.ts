@@ -146,13 +146,6 @@ export default class CalendarOnCall {
       
       prevBtn.addEventListener("click",async () => {
         if (prevMonth !== currentMonthNumber - 1) {
-         await Swal.fire({
-            //position: 'top-end',
-            icon: 'success',
-            title: 'Voltando',
-            showConfirmButton: false,
-            timer: 1500
-          })
           const { firstDate, secondDate } = getCurrentPeriod(prevMonthAndYear);
           if (firstDate !== undefined && secondDate !== undefined) {
             const result = await getFutureOnCallDates(firstDate, secondDate);
@@ -173,13 +166,6 @@ export default class CalendarOnCall {
       
       nextBtn.addEventListener("click", async () =>{
         if (nextMonth !== 0) {
-          await Swal.fire({
-            //position: 'top-end',
-            icon: 'success',
-            title: 'Avançando',
-            showConfirmButton: false,
-            timer: 1500
-          })
           const { firstDate, secondDate } = getCurrentPeriod(nextMonthAndYear);
           if (firstDate !== undefined && secondDate !== undefined) {
             const result = await getFutureOnCallDates(firstDate, secondDate);

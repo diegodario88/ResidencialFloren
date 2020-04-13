@@ -91,8 +91,8 @@ export default class PdfMaker {
         },
         {
           text:
-            "Escala gerada através do aplicativo FlorenAPP disponível em (https://residencialfloren.firebaseapp.com), é possível acompanhar o plantão diário através do App ou pelo Twitter, publicado todos os dias após as 18:00 horas no @PlantaoFarmacia.",
-          link: "https://residencialfloren.firebaseapp.com/",
+            "Escala gerada através do aplicativo FlorenAPP disponível em (https://residencialfloren.web.app/), é possível acompanhar o plantão diário através do App ou pelo Twitter, publicado todos os dias após as 18:00 horas no @PlantaoFarmacia.",
+          link: "https://residencialfloren.web.app/",
         },
       ],
       images: {

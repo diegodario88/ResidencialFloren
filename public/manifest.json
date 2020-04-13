@@ -1,0 +1,30 @@
+{
+	"dir" : "ltr",
+	"lang" : "Portuguese",
+	"name" : "FlorenApp",
+	"scope" : "/",
+    "display" : "standalone",
+    "start_url": "/?utm=pwa",
+	"short_name" : "FlorenApp",
+	"theme_color" : "#41b883",
+	"description" : "Farmácias de plantão em loanda",
+	"orientation" : "portrait",
+	"background_color" : "#212120",
+	"related_applications" : [],
+	"prefer_related_applications" : false,
+	"icons" : [
+		{
+			"src": "./img/maskable_icon.png",
+			"sizes": "301x301",
+			"types": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "./img/512x512.png",
+			"sizes": "512x512"
+		}
+	],
+	"url" : "https://residencialfloren.firebaseapp.com/",
+	"screenshots" : [],
+	"generated" : "true"
+}
