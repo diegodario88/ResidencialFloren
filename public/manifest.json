@@ -6,7 +6,7 @@
     "display" : "standalone",
     "start_url": "/?utm=pwa",
 	"short_name" : "FlorenApp",
-	"theme_color" : "#41b883",
+	"theme_color" : "#212120",
 	"description" : "Farmácias de plantão em loanda",
 	"orientation" : "portrait",
 	"background_color" : "#212120",

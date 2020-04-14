@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 html {
 	scroll-behavior: smooth;
 	scroll-snap-type: block mandatory;
@@ -14,7 +13,7 @@ nav {
 	justify-content: space-around;
 	align-items: center;
 	min-height: 8vh;
-	font-family: 'Poppins';
+	font-family: 'Roboto';
 	background-color: #212120;
 	width: 100%;
 	position: fixed;
@@ -24,11 +23,12 @@ nav {
 }
 
 body {
-	background: #193b55;
+	background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
 	color: #d7e7f3;
 	text-align: center;
 	font-size: 22px;
 	line-height: 33px;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue;
 }
 
 h1 {
@@ -63,6 +63,7 @@ a:hover {
 }
 a.navbar-brand {
 	color: rgb(226, 226, 226);
+	margin-left: 40px;
 }
 
 a.navbar-brand:hover {
@@ -114,7 +115,6 @@ th {
 }
 .logo {
 	color: rgb(226, 226, 226);
-	text-transform: uppercase;
 	letter-spacing: 5px;
 	font-size: 20px;
 }
@@ -197,17 +197,27 @@ margin-left: 7%;
 margin-right: 7%;
 }
 
-#espacoGordo {
-	background-color: #41b883;
+.phone-text {
 	color: #41b883;
-	margin: 0;
-	height: 1%;
-	width: 10%;
-	margin-left: 50%;
-	transform: translate(-50%, -50%);
-	border: 0;
-	background-image: linear-gradient(to right, #41b883, #35956a, #246d4c);
-	border-radius: 7px;
+	text-decoration: none;
+}
+
+.phone-text:hover {
+	color: tomato;
+}
+
+.modal-container{
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgb(0, 0, 0, 0.5);
+	display: none;
+}
+
+.modal-container.show{
+	display: flex;
 }
 
 #espacoMagro {
@@ -217,37 +227,6 @@ margin-right: 7%;
 	background-image: linear-gradient(to right, #41b883, #35956a, #246d4c);
 	margin-left: 15%;
 }
-
-#textoPrincipal {
-	font-size: 3em;
-	font-weight: 200;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	line-height: normal;
-	-webkit-font-smoothing: subpixel-antialiased;
-}
-#relogioPrincipal {
-	color: rgb(226, 226, 226);
-}
-#relogioSecundario {
-	color: rgb(226, 226, 226);
-}
-#textoPrincipal:empty {
-	display: block;
-	content: '';
-	position: relative;
-	width: 100vh;
-	height: 100vh;
-	transform: translateX(-100%);
-	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
-	animation: loading 1.5s infinite;
-} 
- 
-@keyframes loading {
-	100% {
-	  transform: translateX(100%);
-	}
-  }
 
 #btnContato, #btnCalendario {
 	color: #41b883;
@@ -273,27 +252,10 @@ margin-right: 7%;
 	box-shadow: -5px 5px 25px #000;
 }
 
-#textoTel:hover {
-	color: tomato;
-}
-
-#textoTel {
-	color: #41b883;
-	text-decoration: none;
-}
-
-#textoTelSecundario:hover {
-	color: tomato;
-}
-
-#textoTelSecundario {
-	color: #41b883;
-	text-decoration: none;
-}
-
 #textoColeta {
 	text-align: justify;
 }
+
 #sobre p {
 	text-align: justify;
 }

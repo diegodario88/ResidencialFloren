@@ -1,11 +1,11 @@
-import mainService from './services/mainService';
-import updateService from './services/updateService';
-import calendarService from './services/calendar';
+import page from './services/page';
+import update from './services/update';
+import calendar from './services/calendar';
 
-window.addEventListener('scroll', mainService.scrollAppear);
-mainService.navSlide();
-mainService.rodape();
-updateService.updatePlantao();
-calendarService.calendarOnCall();
+update.updateOnCallPharmacy();
+page.navSlide();
+page.rodape();
+calendar.calendarOnCall();
+window.addEventListener('scroll', page.scrollAppear);
 
 

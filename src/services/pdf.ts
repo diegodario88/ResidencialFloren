@@ -1,7 +1,7 @@
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import moment from 'moment'
-import utils from '../shared/utils-handler'
+import utils from '../shared/image-handler'
 
 export default class PdfMaker {
   public static async downloadPdf(periodList: Array<any>, onCallList: Array<any>, currentMonth: string) {

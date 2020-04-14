@@ -7,13 +7,14 @@
     <link rel='manifest' href='./manifest.json'>
     <meta name="theme-color" content="#41b883"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Residencial Florença</title>
+    <title>Florence Farma</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect dns-prefetch" href="https://weatherwidget.io" crossorigin >
     <link rel="preconnect dns-prefetch" href="https://floren-api.appspot.com" crossorigin>
     <link rel="preconnect dns-prefetch" href="https://forecast7.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/card.css">
     <link rel="stylesheet" href="./style/responsive.css">
     <link rel="stylesheet" href="./style/calendar.css">
     <link rel="stylesheet" href="./style/magic.min.css">
@@ -27,13 +28,14 @@
     <!--Navgation-->
     <nav>
         <div class="logo">
-            <a class="navbar-brand" style="text-decoration:none" href="#plantao" onclick="javascript:setTimeout(() => {
+            <span></span>
+            <a class="navbar-brand" style="text-decoration:none" href="#onCall" onclick="javascript:setTimeout(() => {
                     location.reload();
                 }, 1500);">
-                <i class="fas fa-spa"></i> Residencial Florença</a>
+                <i class="fas fa-spa fa-1x"></i> FlorenceApp</a>
         </div>
         <ul class="nav-links">
-            <li><a href="#plantao"><i class="fas fa-medkit"></i>
+            <li><a href="#onCall"><i class="fas fa-medkit"></i>
                     <br>Plantão</a></li>
             <li><a href="#calendario"><i class="far fa-calendar-alt"></i>
                     <br>Calendário</a></li>
@@ -53,42 +55,18 @@
     </nav>
 
     <!---PLantão-->
-    <div class="block" id="plantao">
-            <h1 id="textoPrincipal"></h1>
-
-            <p id="textoDataPrincipal"> </p>
-            <p><i class='far fa-building'></i>&nbsp;&nbsp; <a id="textoEndPrincipal" href=""></a>
-                <br>
-                <i id="fone" class='fas fa-phone'></i>&nbsp;&nbsp; <a href="" id="textoTelPrincipal"></a>
-                <br>
-                <i id="clock" class='far fa-clock'></i>&nbsp;&nbsp; <a id="relogioPrincipal"></a>
-            </p>
-            <br>
-
-            <hr id="espacoGordo" />
-
-            <br> <br>
-
-            <h1 id="textoSecundario"></h1>
-
-            <p id="textoDataSecundario"> </p>
-            <p><i class='far fa-building'></i>&nbsp;&nbsp; <a id="textoEndSecundario" href=""></a>
-                <br>
-                <i class='fas fa-phone'></i>&nbsp;&nbsp; <a href="" id="textoTelSecundario"></a>
-                <br>
-                <i class='far fa-clock'></i>&nbsp;&nbsp; <a id="relogioSecundario"></a>
-            </p>
-            <br>
-            <hr id="espacoMagro">
-            <br>
-            <div class="buttons">
-                <a href="#calendario" id="btnCalendario" class="animated bounceInLeft slow">
-                    <i class="far fa-calendar-alt"></i>
-                    <span>Gerar Calendário</span></a>
-                <a href="#contato" id="btnContato" class="animated bounceInRight slow">
-                    <i class="fas fa-wrench"></i>
-                    <span>Relatar Problema</span></a>
-            </div>
+    <div class="block" id="onCall">
+        <div class="container">
+            <section class="card loading">
+            <h1 class="card-title loading"></h1>
+                <p class="card-date loading">
+                </p>
+                <div class="card-detail">
+                    <p class="card-description loading">
+                    </p>
+                </div>
+            </section>
+        </div>
     </div>
     <!---Calendário-->
     <div class="block" id="calendario">
@@ -237,11 +215,11 @@
 
             <div class="contato2 animated pulse">
                 <i class="fas fa-envelope fa-3x"></i><br>
-                <A HREF="&#109;&#97;&#105;&#108;&#116;&#111;&#58;%64%69%65%67%6F%64%61%72%69%6F%38%38%40%67%6D%61%69%6C%2E%63%6F%6D">Email</A>
+                <A HREF="&#109;&#97;&#105;&#108;&#116;&#111;&#58;%64%69%65%67%6F%64%61%72%69%6F%38%38%40%67%6D%61%69%6C%2E%63%6F%6D">E-mail</A>
             </div>
 
             <div class="contato3 animated pulse">
-                <i class="fab fa-twitter fa-3x mb-3 sr-contact-2"></i><br>
+                <i class="fab fa-twitter fa-3x"></i><br>
                 <a href="https://twitter.com/PlantaoFarmacia">FlorenBOT</a>
             </div>
 
@@ -254,6 +232,10 @@
         </div>
 
         <footer id="footer"> </footer>
+    </div>
+    <!-- Modal -->
+    <div id="modalContainer" class="modal-container">
+        
     </div>
     <!-- Scripts -->
     <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
