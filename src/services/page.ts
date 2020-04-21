@@ -2,7 +2,7 @@ import dateHandler from "../shared/date-handler";
 
 export default class pageFunctions {
   //NavBar
-  static navSlide = () => {
+  static navSlide() {
     const modal = document.getElementById('modalContainer');
     const burger = document.querySelector(".burger");
     const nav = document.querySelector(".nav-links");

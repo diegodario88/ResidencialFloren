@@ -7,11 +7,11 @@
     <link rel='manifest' href='./manifest.json'>
     <meta name="theme-color" content="#41b883"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Florence Farma</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <title>Florence Farmácias</title>
     <link rel="preconnect dns-prefetch" href="https://weatherwidget.io" crossorigin >
     <link rel="preconnect dns-prefetch" href="https://floren-api.appspot.com" crossorigin>
     <link rel="preconnect dns-prefetch" href="https://forecast7.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/card.css">
@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="./style/calendar.css">
     <link rel="stylesheet" href="./style/magic.min.css">
     <link rel="shortcut icon" type="imagem/png" href="./img/florence.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
     <!-- ios Icons -->
 		<link rel="apple-touch-icon" sizes="180x180" href="./img/180x180.png">
 </head>
@@ -56,17 +55,7 @@
 
     <!---PLantão-->
     <div class="block" id="onCall">
-        <div class="container">
-            <section class="card loading">
-            <h1 class="card-title loading"></h1>
-                <p class="card-date loading">
-                </p>
-                <div class="card-detail">
-                    <p class="card-description loading">
-                    </p>
-                </div>
-            </section>
-        </div>
+        <section class="loading"></section>
     </div>
     <!---Calendário-->
     <div class="block" id="calendario">
@@ -240,27 +229,13 @@
     <!-- Scripts -->
     <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
     <script defer src="./js/main.js"></script>
-    <script>
-        // This is the service worker with the Cache-first network
-
-        // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
-
-        // Check compatibility for the browser we're running this in
-        if ("serviceWorker" in navigator) {
-            if (navigator.serviceWorker.controller) {
-                console.log("[PWA Builder] active service worker found, no need to register");
-            } else {
-                // Register the service worker
-                navigator.serviceWorker
-                    .register("pwabuilder-sw.js", {
-                        scope: "./"
-                    })
-                    .then(function (reg) {
-                        console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
-                    });
-            }
-        }
-
+    <script type="module">
+    // This is the service worker with the Cache-first network
+    import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+    
+    const el = document.createElement('pwa-update');
+    document.body.appendChild(el);
+    
     </script>
 </body>
 

@@ -1,11 +1,10 @@
-  
   .container {
     margin: auto auto;
     max-width: 100%;
     display: -webkit-box;
     display: flex;
     -webkit-box-pack: center;
-            justify-content: center;
+    justify-content: center;
   }
   
   .card {
@@ -37,14 +36,18 @@
     max-width: 100%;
     height: auto;
   }
+
+  /* skeleton Animation */
   
-  .loading {
+  /* .loading {
     position: relative;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
   }
+
   .loading.card-title {
     border-radius: 0;
   }
+
   .loading::after {
     display: block;
     content: '';
@@ -80,11 +83,7 @@
   .card-title.loading {
     height: 300px;
   }
-  
-  .card-title.h1 {
-    max-width: 100%;
-    height: auto;
-  }
+    
   .card-description.loading {
     height: 80px;
   }
@@ -92,4 +91,4 @@
     height: 80px;
     margin-top: 5px;
   }
-  
+    */

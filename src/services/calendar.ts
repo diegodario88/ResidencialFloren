@@ -1,95 +1,36 @@
 import apiService from "./api";
+import dateHandler from "../shared/date-handler";
 import pdfService from "./pdf";
 import moment from "moment";
 import Swal from 'sweetalert2'
-declare var browser: any
 
 export default class CalendarOnCall {
   
   public static async calendarOnCall() {
-    const getLastDay = (y: number, m: number) =>
-      new Date(y, m, 0).getDate().toString();
-    const currentYear = moment().format("YYYY");
-    const currentMonth = moment().format("MM");
-    const currentMonthNumber = moment().month();
     const btnSubmit = document.getElementById("btnSubmit");
     const inputSelectedMonth = document.getElementById("selectMonth");
     const calendarSection = document.getElementById(
       "calendario"
     ) as HTMLElement;
-    const months = [
-      "Janeiro",
-      "Fevereiro",
-      "Março",
-      "Abril",
-      "Maio",
-      "Junho",
-      "Julho",
-      "Agosto",
-      "Setembro",
-      "Outubro",
-      "Novembro",
-      "Dezembro",
-    ];
-
-    //Set future day
-    const tomorrowDay = moment().add(1, "day").format("DD");
 
     //Default values and Min selectable date
-    inputSelectedMonth?.setAttribute("min", `${currentYear}-${currentMonth}`);
-    inputSelectedMonth?.setAttribute("max", `${currentYear}-12`);
+    inputSelectedMonth?.setAttribute("min", `${dateHandler.currentYear}-${dateHandler.currentMonth}`);
+    inputSelectedMonth?.setAttribute("max", `${dateHandler.currentYear}-12`);
     (<HTMLInputElement>(
       inputSelectedMonth
-    )).value = `${currentYear}-${currentMonth}`;
+    )).value = `${dateHandler.currentYear}-${dateHandler.currentMonth}`;
 
     //Submit Action
     btnSubmit?.addEventListener("click", handleSubmitClick);
-
-    function getCurrentPeriod(selectedMonthAndYear: string) {
-      const selectedMonthParsed = selectedMonthAndYear.split("-");
-      const yearSelected = selectedMonthParsed[0];
-      const monthSelected = selectedMonthParsed[1];
-      const lastDayOfSelectedMonth = getLastDay(+yearSelected, +monthSelected);
-
-      if (selectedMonthParsed.length !== 2) {
-        Swal.fire({
-          title: "Error!",
-          text: `Data incorreta, mês não pode ser vazio.`,
-          icon: "error",
-          confirmButtonText: "Ok",
-        });
-
-        return {firstDate: undefined, secondDate: undefined}
-      } else {
-        const secondDate = moment(
-          `${yearSelected}-${monthSelected}-${lastDayOfSelectedMonth}`
-        )
-          .utcOffset("-03:00")
-          .format("YYYY-MM-DD");
-
-        if (monthSelected === currentMonth) {
-          const firstDate = moment(
-            `${yearSelected}-${monthSelected}-${tomorrowDay}`
-          )
-            .utcOffset("-03:00")
-            .format("YYYY-MM-DD");
-          return { firstDate, secondDate };
-        }
-        const firstDate = moment(`${yearSelected}-${monthSelected}-01`)
-          .utcOffset("-03:00")
-          .format("YYYY-MM-DD");
-        return { firstDate, secondDate };
-      }
-    } 
-
+    
     async function handleSubmitClick(event: Event) {
       event.preventDefault();
-      const { firstDate, secondDate }  = getCurrentPeriod(
+      const { firstDate, secondDate }  = CalendarOnCall.getCurrentPeriod(
         (<HTMLInputElement>inputSelectedMonth).value
       );
       
       if (firstDate !== undefined && secondDate !== undefined) {
-        const result = await getFutureOnCallDates(firstDate, secondDate);
+        const result = await CalendarOnCall.getFutureOnCallDates(firstDate, secondDate);
         if (result !== undefined) {
           renderCalendar("slideUpReturn");
           fetchTableOnCallPeriod(firstDate, result);
@@ -98,18 +39,7 @@ export default class CalendarOnCall {
       }
        
     }
-
-    async function getFutureOnCallDates(firstDate: string, secondDate: string){
-      if (firstDate !== undefined && secondDate !== undefined) {
-        const result = await apiService.post("plantoes/future", {
-          firstDate,
-          secondDate,
-        });
-        return result
-      }
-      return undefined
-    }
-
+    
     function handleDayClick(event: Event) {
       const clickedElement = event.target as HTMLElement;
       removeColorToSelectedDay();
@@ -145,10 +75,10 @@ export default class CalendarOnCall {
       const nextMonth = moment(currentMonthSelected).add(1, "M").month()
       
       prevBtn.addEventListener("click",async () => {
-        if (prevMonth !== currentMonthNumber - 1) {
-          const { firstDate, secondDate } = getCurrentPeriod(prevMonthAndYear);
+        if (prevMonth !== dateHandler.currentMonthNumber - 1) {
+          const { firstDate, secondDate } = CalendarOnCall.getCurrentPeriod(prevMonthAndYear);
           if (firstDate !== undefined && secondDate !== undefined) {
-            const result = await getFutureOnCallDates(firstDate, secondDate);
+            const result = await CalendarOnCall.getFutureOnCallDates(firstDate, secondDate);
             if (result !== undefined) {
               renderCalendar('slideLeftReturn');
               fetchTableOnCallPeriod(firstDate, result);
@@ -166,10 +96,10 @@ export default class CalendarOnCall {
       
       nextBtn.addEventListener("click", async () =>{
         if (nextMonth !== 0) {
-          const { firstDate, secondDate } = getCurrentPeriod(nextMonthAndYear);
+          const { firstDate, secondDate } = CalendarOnCall.getCurrentPeriod(nextMonthAndYear);
           if (firstDate !== undefined && secondDate !== undefined) {
-            const result = await getFutureOnCallDates(firstDate, secondDate);
-            if (result !== undefined) {
+            const result = await CalendarOnCall.getFutureOnCallDates(firstDate, secondDate);
+            if (result !== null) {
               renderCalendar('slideRightReturn');
               fetchTableOnCallPeriod(firstDate, result);
               return;
@@ -263,7 +193,7 @@ export default class CalendarOnCall {
         "calendarMonth"
       ) as HTMLElement;
 
-      calendarMonth.innerHTML = months[moment(currentMonthSelected).month()];
+      calendarMonth.innerHTML = dateHandler.months[moment(currentMonthSelected).month()];
     }
 
     function fetchTableOnCallPeriod(firstDate: string, result: Array<any>) {
@@ -271,7 +201,7 @@ export default class CalendarOnCall {
       const onCallList = result.map((item) => item[1]);
       const firstDay = moment(periodList[0]).day();
       const tableBody = document.getElementById("calendar-body");
-      const currentMonthString = months[moment(firstDate).month()]
+      const currentMonthString = dateHandler.months[moment(firstDate).month()]
       // creating all cells
       let date = moment(periodList[0]).date();
       let dateCounter = 0;
@@ -358,7 +288,6 @@ export default class CalendarOnCall {
               /* Read more about handling dismissals below */
               if (result.dismiss === Swal.DismissReason.timer) {
                 Swal.fire("Feito!", "Seu arquivo foi salvo.", "success");
-                //browser.downloads.showDefaultFolder();
               }
             });
             
@@ -372,5 +301,62 @@ export default class CalendarOnCall {
       })
       
     }
+  }
+
+  public static getCurrentPeriod(selectedMonthAndYear: string) {
+    const selectedMonthParsed = selectedMonthAndYear.split("-");
+    const yearSelected = selectedMonthParsed[0];
+    const monthSelected = selectedMonthParsed[1];
+    const lastDayOfSelectedMonth = dateHandler.getLastDay(+yearSelected, +monthSelected);
+
+    if (selectedMonthParsed.length !== 2) {
+      Swal.fire({
+        title: "Error!",
+        text: `Data incorreta, mês não pode ser vazio.`,
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+
+      return {firstDate: undefined, secondDate: undefined}
+    } else {
+      const secondDate = moment(
+        `${yearSelected}-${monthSelected}-${lastDayOfSelectedMonth}`
+      )
+        .utcOffset("-03:00")
+        .format("YYYY-MM-DD");
+
+      if (monthSelected === dateHandler.currentMonth) {
+        const firstDate = moment(
+          `${yearSelected}-${monthSelected}-${dateHandler.tomorrowDay.format('DD')}`
+        )
+          .utcOffset("-03:00")
+          .format("YYYY-MM-DD");
+        return { firstDate, secondDate };
+      }
+      const firstDate = moment(`${yearSelected}-${monthSelected}-01`)
+        .utcOffset("-03:00")
+        .format("YYYY-MM-DD");
+      return { firstDate, secondDate };
+    }
+  } 
+
+  public static async getFutureOnCallDates(firstDate: string, secondDate: string){
+    if (firstDate !== undefined && secondDate !== undefined) {
+      const Month = dateHandler.months[moment(firstDate).month()]
+      const localStorageResult = localStorage.getItem(Month) as any
+      let resultLocal = JSON.parse(localStorageResult)
+
+      if (!resultLocal) {
+        resultLocal = await apiService.post("plantoes/future", {
+          firstDate,
+          secondDate,
+        });
+        console.log("getting data from Api 😆");
+        resultLocal !== null ?
+        localStorage.setItem(Month, JSON.stringify(resultLocal)) : null
+      } 
+      return resultLocal
+    }
+    return null
   }
 }

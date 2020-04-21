@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default class Api {
   //production
-  static baseUrl : string = 'https://floren-api.appspot.com/api/v1/'
+  static baseUrl: string = "https://floren-api.appspot.com/api/v1/";
 
   //dev
   //static baseUrl: string = "http://localhost:1337/api/v1/";

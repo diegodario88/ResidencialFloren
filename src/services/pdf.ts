@@ -61,7 +61,7 @@ export default class PdfMaker {
       pageSize: "A4",
       pageOrientation: "landscape",
       // margin: [left, top, right, bottom]
-      pageMargins: [30, 5, 30, 5],
+      pageMargins: [20, 5, 20, 5],
       info: {
         title: `Escala-${currentMonth}.pdf`,
         author: 'Diego Dario',
@@ -91,8 +91,8 @@ export default class PdfMaker {
         },
         {
           text:
-            "Escala gerada através do aplicativo FlorenAPP disponível em (https://residencialfloren.web.app/), é possível acompanhar o plantão diário através do App ou pelo Twitter, publicado todos os dias após as 18:00 horas no @PlantaoFarmacia.",
-          link: "https://residencialfloren.web.app/",
+            "Escala gerada através do aplicativo FlorenApp disponível em (https://floren.app). É possível acompanhar o plantão diário através do App ou pelo Twitter, publicado todos os dias após as 18:00 horas no @PlantaoFarmacia.",
+          link: "https://floren.app",
         },
       ],
       images: {
