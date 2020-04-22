@@ -71,7 +71,7 @@ export default class PdfMaker {
         },
       content: [
         {
-          text: `Escala ${currentMonth} de ${dateHandler.getFullYear}`,
+          text: `Escala ${currentMonth} de ${dateHandler.getFullYear()}.`,
           style: "header",
         },
         {

@@ -44,9 +44,9 @@
   }
 
   .card-detail-scale {
-    color: rgb(155, 155, 155);
-    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+    color: rgb(215,231,243, 0.5);
     margin-bottom: 3px;
+    font-family: Roboto;
   }
   .card-detail-scale-header {
     font-size: 15px;

@@ -43,7 +43,7 @@ h1 {
 	font-family: 'Roboto';
 }
 p {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Roboto;
 }
 div.block {
 	height: 100vh;
@@ -63,7 +63,7 @@ a:hover {
 }
 a.navbar-brand {
 	color: rgb(226, 226, 226);
-	margin-left: 40px;
+	margin-left: 60px;
 }
 
 a.navbar-brand:hover {
