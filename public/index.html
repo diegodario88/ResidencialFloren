@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel='manifest' href='./manifest.json'>
-    <meta name="theme-color" content="#41b883"/>
+    <meta name="theme-color" content="#212120"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Florence Farmácias</title>
     <link rel="preconnect dns-prefetch" href="https://weatherwidget.io" crossorigin >
     <link rel="preconnect dns-prefetch" href="https://floren-api.appspot.com" crossorigin>
     <link rel="preconnect dns-prefetch" href="https://forecast7.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/card.css">
     <link rel="stylesheet" href="./style/responsive.css">
     <link rel="stylesheet" href="./style/calendar.css">
     <link rel="stylesheet" href="./style/magic.min.css">
+    <link rel="stylesheet" href="./style/animate.min.css">
     <link rel="shortcut icon" type="imagem/png" href="./img/florence.ico">
     <!-- ios Icons -->
 		<link rel="apple-touch-icon" sizes="180x180" href="./img/180x180.png">
@@ -31,7 +31,7 @@
             <a class="navbar-brand" style="text-decoration:none" href="#onCall" onclick="javascript:setTimeout(() => {
                     location.reload();
                 }, 1500);">
-                <i class="fas fa-spa fa-1x"></i> FlorenceApp</a>
+                <i class="fas fa-spa fa-1x"></i> FlorenApp</a>
         </div>
         <ul class="nav-links">
             <li><a href="#onCall"><i class="fas fa-medkit"></i>
@@ -229,14 +229,6 @@
     <!-- Scripts -->
     <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
     <script defer src="./js/main.js"></script>
-    <script type="module">
-    // This is the service worker with the Cache-first network
-    import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
-    
-    const el = document.createElement('pwa-update');
-    document.body.appendChild(el);
-    
-    </script>
 </body>
 
 </html>

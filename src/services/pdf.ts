@@ -1,7 +1,8 @@
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import moment from 'moment'
-import utils from '../shared/image-handler'
+import moment from 'moment';
+import utils from '../shared/image-handler';
+import dateHandler from '../shared/date-handler';
 
 export default class PdfMaker {
   public static async downloadPdf(periodList: Array<any>, onCallList: Array<any>, currentMonth: string) {
@@ -70,7 +71,7 @@ export default class PdfMaker {
         },
       content: [
         {
-          text: `Escala de ${currentMonth} de 2020`,
+          text: `Escala ${currentMonth} de ${dateHandler.getFullYear}`,
           style: "header",
         },
         {

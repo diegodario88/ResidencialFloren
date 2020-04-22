@@ -51,7 +51,10 @@ export default class CalendarOnCall {
         const onCallPharmacyTwo = clickedElement.getAttribute(
           "on-callPharmacy-two"
         );
-        renderCalendarHeader({ onCallPharmacyOne, onCallPharmacyTwo });
+        const onCallPharmacyScale = clickedElement.getAttribute(
+          "on-callPharmacy-scale"
+        );
+        renderCalendarHeader({ onCallPharmacyOne, onCallPharmacyTwo, onCallPharmacyScale });
         clickedElement.classList.add("current-day");
       }
     }
@@ -175,16 +178,21 @@ export default class CalendarOnCall {
     }
 
     function renderCalendarHeader(data: any) {
-      const { onCallPharmacyOne, onCallPharmacyTwo } = data;
+      const { onCallPharmacyOne, onCallPharmacyTwo, onCallPharmacyScale } = data;
       const pharmacyOneContainer = document.getElementById(
         "pharmacyOne"
       ) as HTMLElement;
       const pharmacyTwoContainer = document.getElementById(
         "pharmacyTwo"
       ) as HTMLElement;
-      
+
+      const scale = document.createElement('h6')
+      scale.innerHTML = `${onCallPharmacyScale}`;
+      scale.classList.add('card-detail-scale-header', 'magictime', 'vanishIn');
+
       //Clean previous text and sets new one
       pharmacyOneContainer.innerHTML = `<section class="magictime vanishIn"><i class="fas fa-notes-medical fa-xs"></i> ${onCallPharmacyOne}</section>`;
+      pharmacyOneContainer.appendChild(scale)
       pharmacyTwoContainer.innerHTML = `<section class="magictime vanishIn"><i class="fas fa-notes-medical fa-xs"></i> ${onCallPharmacyTwo}</section>`;
     }
 
@@ -227,6 +235,10 @@ export default class CalendarOnCall {
             cell.setAttribute(
               "on-callPharmacy-two",
               onCallList[dateCounter].farmacias[1].name
+            );
+            cell.setAttribute(
+              "on-callPharmacy-scale",
+              onCallList[dateCounter].name
             );
             cell.addEventListener("click", handleDayClick);
             let cellText = document.createTextNode(

@@ -50,7 +50,7 @@ export default class UpdateOnCall {
             <section class="card">
             <h1 class="card-title">${pharmacy.name}</h1>
                 <div class="card-detail">
-                    <p class="card-description">
+                    <p>
                         <i class='far fa-building'></i>&nbsp;&nbsp; 
                         <a 
                         id="textoEndPrincipal" 
@@ -84,20 +84,19 @@ export default class UpdateOnCall {
     }
     if (onCallDiv !== null) {
       onCallDiv.innerHTML = `
-        <div class="magictime spaceInUp">
+        <div class="animated fadeIn">
            ${renderCard(mainPharma)}
-            <br>
+            <p class="card-detail-scale">
+            Escala ${name}
+            </p>
             ${renderCard(secPharma)}
             <br>
-            <p class="card-date">
+            <p class="card-detail card-detail-date">
             Plantão dia: ${
                 dateHandler.toDateFormated(new Date(dateHandler.verifyDay(scaleDates)))}
             </p>
-            <p class="card-date">
+            <p>
             Aberto até: 22h00min
-            </p>
-            <p class="card-date">
-            Escala: ${name}
             </p>
             <br>
             <hr id="espacoMagro">

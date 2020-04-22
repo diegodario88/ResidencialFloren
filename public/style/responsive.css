@@ -266,6 +266,9 @@
 		font-size: 12px;
 		line-height: 12px;
 	}
+	.card-detail-scale-header {
+		bottom: -25px;
+   }
 
 	#coleta {
 		height: 100vh;
@@ -313,6 +316,7 @@
 	#calendar td {
 		padding: 2%;
 	}
+	
 }
 
 .nav-active {
