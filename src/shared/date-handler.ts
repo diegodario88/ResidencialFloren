@@ -31,7 +31,7 @@ export default class DateHandler {
     let year = parseInt(values[0]);
     let month = parseInt(values[1]) - 1;
     let day = parseInt(values[2]);
-    return new Date(Date.UTC(year, month, day, 3, 0, 0));
+    return new Date(Date.UTC(year, month, day, 3, 0, 0) || '');
   }
 
   static toDateFormated(date: Date): string {

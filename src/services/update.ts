@@ -3,46 +3,61 @@ import dateHandler from "../shared/date-handler";
 import stringUtils from "../shared/string-utils";
 import Pharmacy from "../entities/Pharmacy";
 import moment from "moment";
-import calendar from "./calendar";
 
 export default class UpdateOnCall {
   static async updateOnCallPharmacy() {
-    
+   
     const todayDate = moment(new Date()).format("YYYY-MM-DD");
-    const currentMonth = dateHandler.months[moment(todayDate).month()];
-    const localStorageMonth = localStorage.getItem(currentMonth) as any;
-    const result = JSON.parse(localStorageMonth);
-    let currentOnCallLocalDate = ''
+    const tomorrowDate = moment(todayDate).add(1, 'd').format("YYYY-MM-DD");
     
+    if(localStorage.length < 1) {
+      console.log("getting data from api 😍");
+
+      const fullCalendar = await Api.post("plantoes/future", {
+        firstDate: tomorrowDate,
+        secondDate: "2020-12-31",
+      });
+
+      fullCalendar.forEach((element: string) => {
+        element !== undefined ?
+        localStorage.setItem(`${Object.keys(element)}`, JSON.stringify(element)) : null
+      });
+    } 
+
+    const currentMonth = dateHandler.months[moment(todayDate).month()] as any;
+    const localStorageMonth = localStorage.getItem(currentMonth) as any;
+    const result = JSON.parse(localStorageMonth) as any[];
+    let localStorageData = null
+
     if (result) {
-      currentOnCallLocalDate = result.find(
-       (item: string[]) => item[0] === todayDate
-     ) || '';
+      for (const iterator of result[currentMonth]) {
+        if(iterator.day === todayDate){
+          localStorageData = iterator
+        } else{
+          localStorageData = ''
+        }
+      }
+    }
+    
+    if(!localStorageData) {
+      var { farmacias, name } = await Api.get("plantoes/atual")
     }
 
-    const { farmacias, name, escalaSemanal, escalaSabado, escalaDomingo } =
-      currentOnCallLocalDate[1] || (await Api.get("plantoes/atual"));
-    const scaleDates = [escalaSemanal, escalaSabado, escalaDomingo];
-    //Adicionar lib offline para avisar app pwa
-   // const onCallDate = moment(new Date(dateHandler.verifyDay(scaleDates)));
-   // const currentInitialDate = moment().startOf("day");
-    const { firstDate, secondDate } = calendar.getCurrentPeriod(
-      `${dateHandler.currentYear}-${dateHandler.currentMonth}`
+    const { pharmacys = '', group = '', day = '' } = localStorageData
+            
+    const mainPharma = new Pharmacy(
+      pharmacys ? pharmacys[0].name : farmacias[0].name,
+      pharmacys ? pharmacys[0].telefone : farmacias[0].telefone,
+      pharmacys ? pharmacys[0].endereco : farmacias[0].endereco
     );
 
-    calendar.getFutureOnCallDates(firstDate || "", secondDate || "");
-    
-    
-    const mainPharma = new Pharmacy(
-      farmacias[0].name,
-      farmacias[0].telefone,
-      farmacias[0].endereco
-    );
+
     const secPharma = new Pharmacy(
-      farmacias[1].name,
-      farmacias[1].telefone,
-      farmacias[1].endereco
+      pharmacys ? pharmacys[1].name : farmacias[1].name,
+      pharmacys ? pharmacys[1].telefone : farmacias[1].telefone,
+      pharmacys ? pharmacys[1].endereco : farmacias[1].endereco
     );
+
     const onCallDiv = document.getElementById("onCall");
     const renderCard = (pharmacy: Pharmacy): string => {
     return `
@@ -87,13 +102,13 @@ export default class UpdateOnCall {
         <div class="animated fadeIn">
            ${renderCard(mainPharma)}
             <p class="card-detail-scale">
-            Escala ${name}
+            Escala ${name || group}
             </p>
             ${renderCard(secPharma)}
             <br>
             <p class="card-detail card-detail-date">
             Plantão dia: ${
-                dateHandler.toDateFormated(new Date(dateHandler.verifyDay(scaleDates)))}
+                dateHandler.toDateFormated(dateHandler.toDate(day || moment().format('YYYY-MM-DD')))}
             </p>
             <p>
             Aberto até: 22h00min

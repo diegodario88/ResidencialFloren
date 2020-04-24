@@ -5,8 +5,8 @@ import utils from '../shared/image-handler';
 import dateHandler from '../shared/date-handler';
 
 export default class PdfMaker {
-  public static async downloadPdf(periodList: Array<any>, onCallList: Array<any>, currentMonth: string) {
-
+  public static async downloadPdf(periodList: any[], onCallList: any[], groupNames: any[], currentMonth: string) {
+    
     function fetchTable(){
       const firstDay = moment(periodList[0]).day();
       const lastDay = moment(periodList[periodList.length - 1]).date()
@@ -42,9 +42,9 @@ export default class PdfMaker {
             let cell = {
               text: [
                 { text: `${moment(periodList[dateCounter]).date()}\n`, alignment: 'center', fontSize: 11,},
-                { text: `${onCallList[dateCounter].farmacias[0].name}\n`, alignment: 'center', bold: true, italics: true},
-                { text: `${onCallList[dateCounter].name}\n`, alignment: 'center', color: 'gray', bold: true, fontSize: 11},
-                { text: `${onCallList[dateCounter].farmacias[1].name}`, alignment: 'center', bold: true, italics: true},
+                { text: `${onCallList[dateCounter][0].name}\n`, alignment: 'center', bold: true, italics: true},
+                { text: `${groupNames[dateCounter]}\n`, alignment: 'center', color: 'gray', bold: true, fontSize: 11},
+                { text: `${onCallList[dateCounter][1].name}`, alignment: 'center', bold: true, italics: true},
               ], fillColor: '#eeffee'
             }; 
             row.push(cell);

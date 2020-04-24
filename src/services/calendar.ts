@@ -33,7 +33,7 @@ export default class CalendarOnCall {
         const result = await CalendarOnCall.getFutureOnCallDates(firstDate, secondDate);
         if (result !== undefined) {
           renderCalendar("slideUpReturn");
-          fetchTableOnCallPeriod(firstDate, result);
+          fetchTableOnCallPeriod(firstDate, result as any);
           return;
         }
       }
@@ -84,9 +84,9 @@ export default class CalendarOnCall {
             const result = await CalendarOnCall.getFutureOnCallDates(firstDate, secondDate);
             if (result !== undefined) {
               renderCalendar('slideLeftReturn');
-              fetchTableOnCallPeriod(firstDate, result);
-              return;
+              fetchTableOnCallPeriod(firstDate, result as any);
             }
+            return;
           }
         }
         Swal.fire({
@@ -104,9 +104,9 @@ export default class CalendarOnCall {
             const result = await CalendarOnCall.getFutureOnCallDates(firstDate, secondDate);
             if (result !== null) {
               renderCalendar('slideRightReturn');
-              fetchTableOnCallPeriod(firstDate, result);
-              return;
+              fetchTableOnCallPeriod(firstDate, result as any);
             }
+            return;
           }
         }
         Swal.fire({
@@ -204,14 +204,17 @@ export default class CalendarOnCall {
       calendarMonth.innerHTML = dateHandler.months[moment(currentMonthSelected).month()];
     }
 
-    function fetchTableOnCallPeriod(firstDate: string, result: Array<any>) {
-      const periodList = result.map((item) => item[0]);
-      const onCallList = result.map((item) => item[1]);
-      const firstDay = moment(periodList[0]).day();
+    function fetchTableOnCallPeriod(firstDate: string, result: any[] ) {
+      const Month = Object.values(result)[0] as any
+      const daysInMonth = Month.map((item: { day: any; }) => item.day )
+      const onCallList = Month.map((item: { pharmacys: any; }) => item.pharmacys);
+      const groupNames = Month.map((item: { group: string; }) => item.group);
+      const firstDay = moment(daysInMonth[0]).day();
       const tableBody = document.getElementById("calendar-body");
       const currentMonthString = dateHandler.months[moment(firstDate).month()]
+      
       // creating all cells
-      let date = moment(periodList[0]).date();
+      let date = moment(daysInMonth[0]).date();
       let dateCounter = 0;
       for (let i = 0; i < 6; i++) {
         // creates a table row
@@ -224,25 +227,25 @@ export default class CalendarOnCall {
             let cellText = document.createTextNode("");
             cell.appendChild(cellText);
             row.appendChild(cell);
-          } else if (date > moment(periodList[periodList.length - 1]).date()) {
+          } else if (date > moment(daysInMonth[daysInMonth.length - 1]).date()) {
             break;
           } else {
             let cell = document.createElement("td");
             cell.setAttribute(
               "on-callPharmacy-one",
-              onCallList[dateCounter].farmacias[0].name
+              onCallList[dateCounter][0].name
             );
             cell.setAttribute(
               "on-callPharmacy-two",
-              onCallList[dateCounter].farmacias[1].name
+              onCallList[dateCounter][1].name
             );
             cell.setAttribute(
               "on-callPharmacy-scale",
-              onCallList[dateCounter].name
+              Month[dateCounter].group
             );
             cell.addEventListener("click", handleDayClick);
             let cellText = document.createTextNode(
-              moment(periodList[dateCounter]).date().toString()
+              moment(daysInMonth[dateCounter]).date().toString()
             );
             cell.appendChild(cellText);
             row.appendChild(cell);
@@ -254,10 +257,10 @@ export default class CalendarOnCall {
       }
       renderCalendarMonth(firstDate)
       handlePrevAndNextButtons(firstDate)
-      handlePdfActionButton(periodList, onCallList, currentMonthString)
+      handlePdfActionButton(daysInMonth, onCallList, groupNames, currentMonthString)
     }
 
-    function handlePdfActionButton(periodList: Array<any>, onCallList: Array<any>, currentMonth: string){
+    function handlePdfActionButton(daysInMonth: any[], onCallList: any[], groupNames: any[], currentMonth: string){
       const pdfButton = document.getElementById('pdfButton') as HTMLElement
       pdfButton.addEventListener('click', () => {
         
@@ -273,7 +276,7 @@ export default class CalendarOnCall {
           
         }).then((result) => {
           if (result.value) {
-            pdfService.downloadPdf(periodList, onCallList, currentMonth)
+            pdfService.downloadPdf(daysInMonth, onCallList, groupNames, currentMonth)
             let timerInterval : any;
             Swal.fire({
               title: "Baixando!",
@@ -333,21 +336,15 @@ export default class CalendarOnCall {
     } else {
       const secondDate = moment(
         `${yearSelected}-${monthSelected}-${lastDayOfSelectedMonth}`
-      )
-        .utcOffset("-03:00")
-        .format("YYYY-MM-DD");
+      ).format("YYYY-MM-DD");
 
       if (monthSelected === dateHandler.currentMonth) {
         const firstDate = moment(
           `${yearSelected}-${monthSelected}-${dateHandler.tomorrowDay.format('DD')}`
-        )
-          .utcOffset("-03:00")
-          .format("YYYY-MM-DD");
+        ).format("YYYY-MM-DD");
         return { firstDate, secondDate };
       }
-      const firstDate = moment(`${yearSelected}-${monthSelected}-01`)
-        .utcOffset("-03:00")
-        .format("YYYY-MM-DD");
+      const firstDate = moment(`${yearSelected}-${monthSelected}-01`).format("YYYY-MM-DD");
       return { firstDate, secondDate };
     }
   } 
@@ -365,10 +362,11 @@ export default class CalendarOnCall {
         });
         console.log("getting data from Api 😆");
         resultLocal !== null ?
-        localStorage.setItem(Month, JSON.stringify(resultLocal)) : null
+        localStorage.setItem(`${Object.keys(resultLocal[0])}`, JSON.stringify(resultLocal[0])) : null
+        return resultLocal[0]
       } 
       return resultLocal
     }
-    return null
+    return {}
   }
 }
