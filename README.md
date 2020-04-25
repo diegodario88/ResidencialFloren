@@ -20,13 +20,13 @@
 <br />
 <p align="center">
   <a href="https://residencialfloren.firebaseapp.com/">
-    <img src="./public/img/florence.ico" alt="Logo" width="200" height="200">
+    <img src="./public/img/FlorenApp.png" alt="Logo" width="200" height="200">
   </a>
 
-  <h3 align="center">Residencial Florença</h3>
+  <h3 align="center">FlorenApp</h3>
 
   <p align="center">
-    Esse é um pequeno projeto desenvolvido com o intuito de ajudar a comunidade local e aprender novas tecnologias.
+    Esse é um pequeno projeto desenvolvido com o intuito de ajudar a comunidade local e aprender novas tecnologias. Disponível em <a href="http://floren.app">http://floren.app</a>
     <br />
     
   </p>
@@ -68,12 +68,16 @@ claro, esse projeto é realmente algo pequeno e eu pretendo adicionar mais funci
 ### Built With
 Uma lista com as principais ferramentas que utilizei estará abaixo.
 
+* [TypeScript](https://www.typescriptlang.org/)
+* [MomentJS](https://momentjs.com/)
+* [pdfMake](http://pdfmake.org/)
 * [fontAwesome](https://fontawesome.com/)
+* [SweetAlert2](https://sweetalert2.github.io/)
 * [animateCss](https://github.com/daneden/animate.css)
 * [forecast7](https://forecast7.com/)
-* [ResidencialFlorenApi](https://github.com/diegodario88/ResidencialFlorenApi)
+* [FlorenApi](https://github.com/diegodario88/ResidencialFlorenApi)
 * [mongodb](https://mongodb.com/)
-* [qr-code-generator](https://app.qr-code-generator.com/)
+* [firebase](https://firebase.google.com/?hl=pt-br)
 
 
 <!-- GETTING STARTED -->
@@ -110,6 +114,7 @@ const API_KEY = 'ENTER YOUR API';
 ## Usage
 
 ![](demo.gif)
+![](scale-pdf.png)
 
 
 
