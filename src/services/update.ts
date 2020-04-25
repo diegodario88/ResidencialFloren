@@ -11,8 +11,7 @@ export default class UpdateOnCall {
     const tomorrowDate = moment(todayDate).add(1, 'd').format("YYYY-MM-DD");
     
     if(localStorage.length < 1) {
-      console.log("getting data from api 😍");
-
+      console.log("getting data from Api and feeding localStorage");
       const fullCalendar = await Api.post("plantoes/future", {
         firstDate: tomorrowDate,
         secondDate: "2020-12-31",
@@ -31,12 +30,12 @@ export default class UpdateOnCall {
 
     if (result) {
       for (const iterator of result[currentMonth]) {
-        if(iterator.day === todayDate){
-          localStorageData = iterator
-        } else{
-          localStorageData = ''
+        if (iterator.day === todayDate) {
+          localStorageData = iterator;
         }
       }
+    } else {
+      localStorageData = "";
     }
     
     if(!localStorageData) {
