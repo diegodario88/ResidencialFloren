@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel='manifest' href='./manifest.json'>
-    <meta name="theme-color" content="#212120"/>
+    <meta name="theme-color" content="#212120" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Florence Farmácias</title>
-    <link rel="preconnect dns-prefetch" href="https://weatherwidget.io" crossorigin >
+    <link rel="preconnect dns-prefetch" href="https://weatherwidget.io" crossorigin>
     <link rel="preconnect dns-prefetch" href="https://floren-api.appspot.com" crossorigin>
     <link rel="preconnect dns-prefetch" href="https://forecast7.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="./style/animate.min.css">
     <link rel="shortcut icon" type="imagem/png" href="./img/florence.ico">
     <!-- ios Icons -->
-		<link rel="apple-touch-icon" sizes="180x180" href="./img/180x180.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/180x180.png">
 </head>
 
 <body>
@@ -80,7 +80,8 @@
             <p class="intro-text" id="textoColeta">
                 Coleta seletiva é o termo utilizado para o recolhimento dos materiais que são passíveis de serem
                 reciclados, previamente
-                separados na fonte geradora. A coleta seletiva tanto pode ser realizada por uma pessoa sozinha quanto por um grupo de pessoas (empresas,
+                separados na fonte geradora. A coleta seletiva tanto pode ser realizada por uma pessoa sozinha quanto
+                por um grupo de pessoas (empresas,
                 condomínios,
                 escolas, cidades,
                 etc.).</p>
@@ -141,7 +142,15 @@
                 data-days="5">LOANDA
                 Previsão do Tempo</a>
             <script>
-                !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+                ! function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = 'https://weatherwidget.io/js/widget.min.js';
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, 'script', 'weatherwidget-io-js');
             </script>
         </div>
         <div class="TempoMobile">
@@ -150,7 +159,15 @@
                 data-days="3">LOANDA
                 Previsão do Tempo</a>
             <script>
-                !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+                ! function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = 'https://weatherwidget.io/js/widget.min.js';
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, 'script', 'weatherwidget-io-js');
             </script>
 
         </div>
@@ -163,7 +180,8 @@
 
         <br>
         <div class="sobre-text">
-            <p class="intro-text"> Esse projeto é uma iniciativa de testar conhecimentos de programação web com algumas tecnologias que
+            <p class="intro-text"> Esse projeto é uma iniciativa de testar conhecimentos de programação web com algumas
+                tecnologias que
                 tenho
                 interesse e resolver um problema real de um pequeno grupo de pessoas. </p><br><br>
         </div>
@@ -199,7 +217,8 @@
 
             <div class="contato2 animated pulse">
                 <i class="fas fa-envelope fa-3x"></i><br>
-                <A HREF="&#109;&#97;&#105;&#108;&#116;&#111;&#58;%64%69%65%67%6F%64%61%72%69%6F%38%38%40%67%6D%61%69%6C%2E%63%6F%6D">E-mail</A>
+                <A
+                    HREF="&#109;&#97;&#105;&#108;&#116;&#111;&#58;%64%69%65%67%6F%64%61%72%69%6F%38%38%40%67%6D%61%69%6C%2E%63%6F%6D">E-mail</A>
             </div>
 
             <div class="contato3 animated pulse">
@@ -219,16 +238,19 @@
     </div>
     <!-- Modal -->
     <div id="modalContainer" class="modal-container">
-        
+
     </div>
     <!-- Scripts -->
     <script defer src="./js/fontAwesomeall.js"></script>
     <script defer src="./js/main.js"></script>
-    <script type="module">
-        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
-
-        const el = document.createElement('pwa-update');
-        document.body.appendChild(el);
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js');
+            });
+        }
     </script>
 </body>
 

@@ -1,31 +1,31 @@
 {
-	"dir" : "ltr",
-	"lang" : "Portuguese",
-	"name" : "FlorenApp",
-	"scope" : "/",
-    "display" : "standalone",
-    "start_url": "/index.html",
-	"short_name" : "FlorenApp",
-	"theme_color" : "#212120",
-	"description" : "Farmácias de plantão em loanda",
-	"orientation" : "portrait",
-	"background_color" : "#212120",
-	"related_applications" : [],
-	"prefer_related_applications" : false,
-	"icons" : [
-		{
-			"src": "./img/maskable_icon.png",
-			"sizes": "301x301",
-			"types": "image/png",
-			"purpose": "any maskable"
-		},
-		{
-			"src": "./img/FlorenApp.png",
-			"types": "image/png",
-			"sizes": "512x512"
-		}
-	],
-	"url" : "https://residencialfloren.firebaseapp.com/",
-	"screenshots" : [],
-	"generated" : "true"
+  "dir": "ltr",
+  "lang": "Portuguese",
+  "name": "FlorenApp",
+  "scope": "/",
+  "display": "standalone",
+  "start_url": "/index.html",
+  "short_name": "FlorenApp",
+  "theme_color": "#212120",
+  "description": "Farmácias de plantão em loanda",
+  "orientation": "portrait",
+  "background_color": "#212120",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "./img/maskable_icon.png",
+      "sizes": "301x301",
+      "types": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./img/FlorenApp.png",
+      "types": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "url": "https://residencialfloren.firebaseapp.com/",
+  "screenshots": [],
+  "generated": "true"
 }

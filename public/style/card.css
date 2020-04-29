@@ -6,7 +6,7 @@
     -webkit-box-pack: center;
     justify-content: center;
   }
-  
+
   .card {
     overflow: hidden;
     border-radius: .25rem;
@@ -15,14 +15,15 @@
     -webkit-transition: ease box-shadow 0.3s;
     transition: ease box-shadow 0.3s;
   }
-  .card:hover {
+
+  /* .main-onCall:hover {
     box-shadow: 0 15px 60px 0 rgba(0, 0, 0, 0.08), 0 5px 25px 0 rgba(0, 0, 0, 0.08);
-  }
-  
+  } */
+
   .card-detail {
     padding: .4rem 1rem;
   }
-  
+
   .card-detail p {
     line-height: 1.3rem;
   }
@@ -32,30 +33,30 @@
     padding: 0;
     overflow: hidden;
   }
+
   .card-title h1 {
     max-width: 100%;
     height: auto;
   }
+
   .card-detail-date {
     font-size: 1.5em;
     text-align: center;
     color: #d7e7f3;
-    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
   }
 
   .card-detail-scale {
-    color: rgb(215,231,243, 0.5);
+    color: rgb(215, 231, 243, 0.5);
     margin-bottom: 3px;
     font-family: Roboto;
   }
+
   .card-detail-scale-header {
     font-size: 15px;
     line-height: 2.5em;
-    color: rgb(63,76,118, 0.5);
-    position: absolute; 
-    bottom:0;
+    color: rgb(63, 76, 118, 0.5);
+    position: absolute;
+    bottom: 0;
     margin-left: 45%;
   }
-  
-
-  

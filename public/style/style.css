@@ -2,6 +2,7 @@ html {
 	scroll-behavior: smooth;
 	scroll-snap-type: block mandatory;
 }
+
 * {
 	margin: 0px;
 	padding: 0px;
@@ -28,7 +29,7 @@ body {
 	text-align: center;
 	font-size: 22px;
 	line-height: 33px;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue;
 }
 
 h1 {
@@ -42,9 +43,11 @@ h1 {
 	box-sizing: border-box;
 	font-family: 'Roboto';
 }
+
 p {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Roboto;
 }
+
 div.block {
 	height: 100vh;
 	padding: 15vh 15vw 0 15vw;
@@ -55,12 +58,13 @@ div.block {
 a {
 	color: #41b883;
 	text-decoration: none;
-	
+
 }
 
 a:hover {
 	color: tomato;
 }
+
 a.navbar-brand {
 	color: rgb(226, 226, 226);
 	margin-left: 60px;
@@ -86,9 +90,11 @@ div.block:nth-child(4n) {
 	width: 100%;
 	border-collapse: collapse;
 }
+
 .table tr:nth-of-type(odd) {
 	background: #41b883;
 }
+
 th {
 	background: hsl(205, 90%, 22%);
 	color: rgb(226, 226, 226);
@@ -113,6 +119,7 @@ th {
 	cursor: pointer;
 	transition: all 0.3s ease;
 }
+
 .logo {
 	color: rgb(226, 226, 226);
 	letter-spacing: 5px;
@@ -134,7 +141,7 @@ th {
 	text-decoration: none;
 	letter-spacing: 3px;
 	font-weight: bold;
-	font-size: 14px;
+	font-size: 17px;
 }
 
 .nav-links a:hover {
@@ -164,37 +171,43 @@ th {
 .mainContato a:hover {
 	color: #41b883;
 }
+
 .contato1 {
 	grid-area: contato1;
 	animation-duration: 2s;
-  	animation-delay: 0.5s;
-  	animation-iteration-count: infinite;
+	animation-delay: 0.5s;
+	animation-iteration-count: infinite;
 }
+
 .contato2 {
 	grid-area: contato2;
 	animation-duration: 2s;
-  	animation-delay: 1s;
-  	animation-iteration-count: infinite;
+	animation-delay: 1s;
+	animation-iteration-count: infinite;
 }
+
 .contato3 {
 	grid-area: contato3;
 	animation-duration: 2s;
-  	animation-delay: 1.5s;
-  	animation-iteration-count: infinite;
+	animation-delay: 1.5s;
+	animation-iteration-count: infinite;
 }
+
 .contato4 {
 	grid-area: contato4;
 	animation-duration: 2s;
-  	animation-delay: 2s;
-  	animation-iteration-count: infinite;
+	animation-delay: 2s;
+	animation-iteration-count: infinite;
 }
+
 .TempoMobile {
 	display: none;
 }
 
-.sobre-text, .motivo{
-margin-left: 7%;
-margin-right: 7%;
+.sobre-text,
+.motivo {
+	margin-left: 7%;
+	margin-right: 7%;
 }
 
 .phone-text {
@@ -206,7 +219,7 @@ margin-right: 7%;
 	color: tomato;
 }
 
-.modal-container{
+.modal-container {
 	width: 100vw;
 	height: 100vh;
 	position: fixed;
@@ -216,25 +229,26 @@ margin-right: 7%;
 	display: none;
 }
 
-.modal-container.show{
+.modal-container.show {
 	display: flex;
 }
 
-.loading:empty{
-display: block;
-content: '';
-width: 100%;
-height: 100%;
-position: relative;
-transform: translateX(-100%);
-background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
-animation: loading 1.5s infinite;
+.loading:empty {
+	display: block;
+	content: '';
+	width: 100%;
+	height: 100%;
+	position: relative;
+	transform: translateX(-100%);
+	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
+	animation: loading 1.5s infinite;
 }
+
 @keyframes loading {
 	100% {
-	  transform: translateX(100%);
+		transform: translateX(100%);
 	}
-  }
+}
 
 #espacoMagro {
 	border: 0;
@@ -244,7 +258,8 @@ animation: loading 1.5s infinite;
 	margin-left: 15%;
 }
 
-#btnContato, #btnCalendario {
+#btnContato,
+#btnCalendario {
 	color: #41b883;
 	text-decoration: none;
 	display: inline-block;
@@ -263,7 +278,8 @@ animation: loading 1.5s infinite;
 	font-family: 'Roboto';
 }
 
-#btnContato:hover,#btnCalendario:hover {
+#btnContato:hover,
+#btnCalendario:hover {
 	color: tomato;
 	box-shadow: -5px 5px 25px #000;
 }
@@ -297,7 +313,41 @@ animation: loading 1.5s infinite;
 	transform: translateY(0px);
 	overflow: hidden;
 	position: relative;
-} 
+}
 
- 
 
+
+/* Animations */
+@keyframes navLinkFadeIn {
+	from {
+		opacity: 0;
+		transform: translateX(50px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(0px);
+	}
+}
+
+.nav-links {
+	position: absolute;
+	right: 0%;
+	height: 92vh;
+	top: 8vh;
+	background-color: #212120;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 18%;
+	transform: translateX(100%);
+	transition: transform 0.5s ease-in;
+}
+
+.nav-links li {
+	opacity: 0;
+}
+
+.burger {
+	display: block;
+}
