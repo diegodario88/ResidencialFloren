@@ -43,7 +43,6 @@ export default class pageFunctions {
     burger!.addEventListener("click", handleClikedLink);
   };
 
-  //Scroll
   static scrollAppear() {
     const textAppear = (classToAdd: string, height: number) => {
       const text = document.querySelectorAll(classToAdd);
@@ -60,7 +59,6 @@ export default class pageFunctions {
     textAppear(".intro-text", 1);
   }
 
-  //Footer
   static rodape() {
     const footer = document.querySelector("#footer");
     if (footer != null) {

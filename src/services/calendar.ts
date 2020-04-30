@@ -1,170 +1,170 @@
-import apiService from "./api";
-import dateHandler from "../shared/date-handler";
-import pdfService from "./pdf";
-import moment from "moment";
-import Swal from "sweetalert2";
+import apiService from './api'
+import dateHandler from '../shared/date-handler'
+import pdfService from './pdf'
+import moment from 'moment'
+import Swal from 'sweetalert2'
 
 export default class CalendarOnCall {
-  private static getCalendarElements() {
-    const btnSubmit = document.getElementById("btnSubmit") as HTMLButtonElement;
+  private static getCalendarElements () {
+    const btnSubmit = document.getElementById('btnSubmit') as HTMLButtonElement
     const inputSelectedMonth = document.getElementById(
-      "selectMonth"
-    ) as HTMLElement;
+      'selectMonth'
+    ) as HTMLElement
     const calendarSection = document.getElementById(
-      "calendario"
-    ) as HTMLElement;
+      'calendario'
+    ) as HTMLElement
 
-    return { btnSubmit, inputSelectedMonth, calendarSection };
+    return { btnSubmit, inputSelectedMonth, calendarSection }
   }
 
-  private static setDefaultInputValue() {
-    const { inputSelectedMonth } = this.getCalendarElements();
+  private static setDefaultInputValue () {
+    const { inputSelectedMonth } = this.getCalendarElements()
 
     inputSelectedMonth?.setAttribute(
-      "min",
+      'min',
       `${dateHandler.currentYear}-${dateHandler.currentMonth}`
-    );
+    )
 
-    inputSelectedMonth?.setAttribute("max", `${dateHandler.currentYear}-12`);
+    inputSelectedMonth?.setAttribute('max', `${dateHandler.currentYear}-12`);
     (<HTMLInputElement>(
       inputSelectedMonth
-    )).value = `${dateHandler.currentYear}-${dateHandler.currentMonth}`;
+    )).value = `${dateHandler.currentYear}-${dateHandler.currentMonth}`
   }
 
-  private static handlePdfActionButton(
+  private static handlePdfActionButton (
     daysInMonth: any[],
     onCallList: any[],
     currentMonth: string
   ) {
-    const pdfButton = document.getElementById("pdfButton") as HTMLElement;
-    pdfButton.addEventListener("click", () => {
+    const pdfButton = document.getElementById('pdfButton') as HTMLElement
+    pdfButton.addEventListener('click', () => {
       Swal.fire({
-        title: "Baixar Escala?",
-        text: "O arquivo será salvo em seu dispositivo.",
-        icon: "warning",
+        title: 'Baixar Escala?',
+        text: 'O arquivo será salvo em seu dispositivo.',
+        icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: "Sim, download!",
-        cancelButtonText: "Não, cancela!",
+        confirmButtonText: 'Sim, download!',
+        cancelButtonText: 'Não, cancela!',
         reverseButtons: true,
-        allowOutsideClick: false,
+        allowOutsideClick: false
       }).then((result) => {
         if (result.value) {
-          pdfService.downloadPdf(daysInMonth, onCallList, currentMonth);
-          let timerInterval: any;
+          pdfService.downloadPdf(daysInMonth, onCallList, currentMonth)
+          let timerInterval: any
           Swal.fire({
-            title: "Baixando!",
-            html: "Irá demorar <b></b> millisegundos.",
+            title: 'Baixando!',
+            html: 'Irá demorar <b></b> millisegundos.',
             timer: 2000,
             timerProgressBar: true,
             allowOutsideClick: false,
             onBeforeOpen: () => {
-              Swal.showLoading();
+              Swal.showLoading()
               timerInterval = setInterval(() => {
-                const content = Swal.getContent();
+                const content = Swal.getContent()
                 if (content) {
-                  const b: any = content.querySelector("b");
+                  const b: any = content.querySelector('b')
                   if (b) {
-                    b.textContent = Swal.getTimerLeft();
+                    b.textContent = Swal.getTimerLeft()
                   }
                 }
-              }, 100);
+              }, 100)
             },
             onClose: () => {
-              clearInterval(timerInterval);
-            },
+              clearInterval(timerInterval)
+            }
           }).then((result) => {
             /* Read more about handling dismissals below */
             if (result.dismiss === Swal.DismissReason.timer) {
-              Swal.fire("Feito!", "Seu arquivo foi salvo.", "success");
+              Swal.fire('Feito!', 'Seu arquivo foi salvo.', 'success')
             }
-          });
+          })
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
         ) {
-          Swal.fire("Cancelado!", "Deixa pra lá, voltemos... :)", "error");
+          Swal.fire('Cancelado!', 'Deixa pra lá, voltemos... :)', 'error')
         }
-      });
-    });
+      })
+    })
   }
 
-  private static getCurrentPeriod(selectedMonthAndYear: string) {
-    const selectedMonthParsed = selectedMonthAndYear.split("-");
-    const yearSelected = selectedMonthParsed[0];
-    const monthSelected = selectedMonthParsed[1];
+  private static getCurrentPeriod (selectedMonthAndYear: string) {
+    const selectedMonthParsed = selectedMonthAndYear.split('-')
+    const yearSelected = selectedMonthParsed[0]
+    const monthSelected = selectedMonthParsed[1]
     const lastDayOfSelectedMonth = dateHandler.getLastDay(
       +yearSelected,
       +monthSelected
-    );
+    )
 
     if (selectedMonthParsed.length !== 2) {
       Swal.fire({
-        title: "Error!",
-        text: `Data incorreta, mês não pode ser vazio.`,
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
+        title: 'Error!',
+        text: 'Data incorreta, mês não pode ser vazio.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
 
-      return { firstDate: undefined, secondDate: undefined };
+      return { firstDate: undefined, secondDate: undefined }
     } else {
       const secondDate = moment(
         `${yearSelected}-${monthSelected}-${lastDayOfSelectedMonth}`
-      ).format("YYYY-MM-DD");
+      ).format('YYYY-MM-DD')
 
       if (monthSelected === dateHandler.currentMonth) {
         const firstDate = moment(
           `${yearSelected}-${monthSelected}-${dateHandler.tomorrowDay.format(
-            "DD"
+            'DD'
           )}`
-        ).format("YYYY-MM-DD");
-        return { firstDate, secondDate };
+        ).format('YYYY-MM-DD')
+        return { firstDate, secondDate }
       }
       const firstDate = moment(`${yearSelected}-${monthSelected}-01`).format(
-        "YYYY-MM-DD"
-      );
-      return { firstDate, secondDate };
+        'YYYY-MM-DD'
+      )
+      return { firstDate, secondDate }
     }
   }
 
-  private static async getFutureOnCallDates(
+  private static async getFutureOnCallDates (
     firstDate: string,
     secondDate: string
   ) {
     if (firstDate !== undefined && secondDate !== undefined) {
-      const Month = dateHandler.months[moment(firstDate).month()];
-      const localStorageResult = localStorage.getItem(Month) as any;
-      let resultLocal = JSON.parse(localStorageResult);
+      const Month = dateHandler.months[moment(firstDate).month()]
+      const localStorageResult = localStorage.getItem(Month) as any
+      let resultLocal = JSON.parse(localStorageResult)
 
       if (!resultLocal) {
-        resultLocal = await apiService.post("plantoes/future", {
+        resultLocal = await apiService.post('plantoes/future', {
           firstDate,
-          secondDate,
-        });
-        console.log("getting data from Api 😆");
+          secondDate
+        })
+        console.log('getting data from Api 😆')
         resultLocal !== null
           ? localStorage.setItem(
-              `${Object.keys(resultLocal[0])}`,
-              JSON.stringify(resultLocal[0])
-            )
-          : null;
-        return resultLocal[0];
+            `${Object.keys(resultLocal[0])}`,
+            JSON.stringify(resultLocal[0])
+          )
+          : null
+        return resultLocal[0]
       }
-      return resultLocal;
+      return resultLocal
     }
-    return {};
+    return {}
   }
 
-  private static renderCalendarMonth(currentMonthSelected: string) {
+  private static renderCalendarMonth (currentMonthSelected: string) {
     const calendarMonth = document.getElementById(
-      "calendarMonthHeader"
-    ) as HTMLElement;
+      'calendarMonthHeader'
+    ) as HTMLElement
 
     calendarMonth.innerHTML =
-      dateHandler.months[moment(currentMonthSelected).month()];
+      dateHandler.months[moment(currentMonthSelected).month()]
   }
 
-  private static renderCalendar(animation: string) {
-    const { calendarSection } = this.getCalendarElements();
+  private static renderCalendar (animation: string) {
+    const { calendarSection } = this.getCalendarElements()
     calendarSection.innerHTML = `
     <div class="calendar-container magictime ${animation}">
   
@@ -219,199 +219,198 @@ export default class CalendarOnCall {
       </div>
     </div> <!-- end calendar-container -->
         
-    `;
+    `
   }
 
-  private static removeColorToSelectedDay() {
-    const calendarTable = document.getElementById("calendar") as HTMLElement;
-    const td = calendarTable.getElementsByClassName("current-day")[0];
+  private static removeColorToSelectedDay () {
+    const calendarTable = document.getElementById('calendar') as HTMLElement
+    const td = calendarTable.getElementsByClassName('current-day')[0]
     if (td !== undefined) {
-      td.classList.remove("current-day");
+      td.classList.remove('current-day')
     }
   }
 
-  private static renderCalendarHeader(data: any) {
-    const { onCallPharmacyOne, onCallPharmacyTwo, onCallPharmacyScale } = data;
+  private static renderCalendarHeader (data: any) {
+    const { onCallPharmacyOne, onCallPharmacyTwo, onCallPharmacyScale } = data
     const pharmacyOneContainer = document.getElementById(
-      "pharmacyOne"
-    ) as HTMLElement;
+      'pharmacyOne'
+    ) as HTMLElement
     const pharmacyTwoContainer = document.getElementById(
-      "pharmacyTwo"
-    ) as HTMLElement;
+      'pharmacyTwo'
+    ) as HTMLElement
 
-    const scale = document.createElement("h6");
-    scale.innerHTML = `${onCallPharmacyScale}`;
-    scale.classList.add("card-detail-scale-header", "magictime", "vanishIn");
+    const scale = document.createElement('h6')
+    scale.innerHTML = `${onCallPharmacyScale}`
+    scale.classList.add('card-detail-scale-header', 'magictime', 'vanishIn')
 
-    //Clean previous text and sets new one
+    // Clean previous text and sets new one
     pharmacyOneContainer.innerHTML = `<section class="magictime vanishIn"><i class="fas fa-notes-medical fa-xs"></i> 
-    ${onCallPharmacyOne}</section>`;
+    ${onCallPharmacyOne}</section>`
 
-    pharmacyOneContainer.appendChild(scale);
+    pharmacyOneContainer.appendChild(scale)
 
     pharmacyTwoContainer.innerHTML = `<section class="magictime vanishIn"><i class="fas fa-notes-medical fa-xs"></i> 
-    ${onCallPharmacyTwo}</section>`;
+    ${onCallPharmacyTwo}</section>`
   }
 
-  private static handleDayClick(event: Event) {
-    const clickedElement = event.target as HTMLElement;
-    CalendarOnCall.removeColorToSelectedDay();
+  private static handleDayClick (event: Event) {
+    const clickedElement = event.target as HTMLElement
+    CalendarOnCall.removeColorToSelectedDay()
 
-    if (clickedElement.tagName === "TD") {
+    if (clickedElement.tagName === 'TD') {
       const onCallPharmacyOne = clickedElement.getAttribute(
-        "on-callPharmacy-one"
-      );
+        'on-callPharmacy-one'
+      )
       const onCallPharmacyTwo = clickedElement.getAttribute(
-        "on-callPharmacy-two"
-      );
+        'on-callPharmacy-two'
+      )
       const onCallPharmacyScale = clickedElement.getAttribute(
-        "on-callPharmacy-scale"
-      );
+        'on-callPharmacy-scale'
+      )
       CalendarOnCall.renderCalendarHeader({
         onCallPharmacyOne,
         onCallPharmacyTwo,
-        onCallPharmacyScale,
-      });
-      clickedElement.classList.add("current-day");
+        onCallPharmacyScale
+      })
+      clickedElement.classList.add('current-day')
     }
   }
 
-  private static handlePrevAndNextButtons(currentMonthSelected: string) {
-    const prevBtn = document.getElementById("prevBtn") as HTMLElement;
-    const nextBtn = document.getElementById("nextBtn") as HTMLElement;
+  private static handlePrevAndNextButtons (currentMonthSelected: string) {
+    const prevBtn = document.getElementById('prevBtn') as HTMLElement
+    const nextBtn = document.getElementById('nextBtn') as HTMLElement
 
     const prevMonthAndYear = moment(currentMonthSelected)
-      .subtract(1, "M")
-      .format("YYYY-MM");
-    const prevMonth = moment(currentMonthSelected).subtract(1, "M").month();
+      .subtract(1, 'M')
+      .format('YYYY-MM')
+    const prevMonth = moment(currentMonthSelected).subtract(1, 'M').month()
 
     const nextMonthAndYear = moment(currentMonthSelected)
-      .add(1, "M")
-      .format("YYYY-MM");
-    const nextMonth = moment(currentMonthSelected).add(1, "M").month();
+      .add(1, 'M')
+      .format('YYYY-MM')
+    const nextMonth = moment(currentMonthSelected).add(1, 'M').month()
 
-    prevBtn.addEventListener("click", async () => {
+    prevBtn.addEventListener('click', async () => {
       if (prevMonth !== dateHandler.currentMonthNumber - 1) {
         const { firstDate, secondDate } = this.getCurrentPeriod(
           prevMonthAndYear
-        );
+        )
         if (firstDate !== undefined && secondDate !== undefined) {
-          const result = await this.getFutureOnCallDates(firstDate, secondDate);
+          const result = await this.getFutureOnCallDates(firstDate, secondDate)
           if (result !== undefined) {
-            this.renderCalendar("slideLeftReturn");
-            this.fetchTableOnCallPeriod(firstDate, result as any);
+            this.renderCalendar('slideLeftReturn')
+            this.fetchTableOnCallPeriod(firstDate, result as any)
           }
-          return;
+          return
         }
       }
       Swal.fire({
-        title: "Error!",
-        text: `O mês atual é o menor periódo de data selecionável`,
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
-    });
+        title: 'Error!',
+        text: 'O mês atual é o menor periódo de data selecionável',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
+    })
 
-    nextBtn.addEventListener("click", async () => {
+    nextBtn.addEventListener('click', async () => {
       if (nextMonth !== 0) {
         const { firstDate, secondDate } = this.getCurrentPeriod(
           nextMonthAndYear
-        );
+        )
         if (firstDate !== undefined && secondDate !== undefined) {
-          const result = await this.getFutureOnCallDates(firstDate, secondDate);
+          const result = await this.getFutureOnCallDates(firstDate, secondDate)
           if (result !== null) {
-            this.renderCalendar("slideRightReturn");
-            this.fetchTableOnCallPeriod(firstDate, result as any);
+            this.renderCalendar('slideRightReturn')
+            this.fetchTableOnCallPeriod(firstDate, result as any)
           }
-          return;
+          return
         }
       }
       Swal.fire({
-        title: "Error!",
-        text: `O mês atual é o maior periódo de data selecionável`,
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
-    });
+        title: 'Error!',
+        text: 'O mês atual é o maior periódo de data selecionável',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
+    })
   }
 
-  private static fetchTableOnCallPeriod(firstDate: string, result: any[]) {
-    const Month = Object.values(result)[0] as any;
-    const daysInMonth = Month.map((item: { day: any }) => item.day);
+  private static fetchTableOnCallPeriod (firstDate: string, result: any[]) {
+    const Month = Object.values(result)[0] as any
+    const daysInMonth = Month.map((item: { day: any }) => item.day)
     const onCallList = Month.map((onCall: any) => ({
       group: onCall.group,
-      pharmacys: onCall.pharmacys,
-    }));
-    const firstDay = moment(daysInMonth[0]).day();
-    const tableBody = document.getElementById("calendar-body");
-    const currentMonthString = dateHandler.months[moment(firstDate).month()];
+      pharmacys: onCall.pharmacys
+    }))
+    const firstDay = moment(daysInMonth[0]).day()
+    const tableBody = document.getElementById('calendar-body')
+    const currentMonthString = dateHandler.months[moment(firstDate).month()]
 
     // creating all cells
-    let date = moment(daysInMonth[0]).date();
-    let dateCounter = 0;
+    let date = moment(daysInMonth[0]).date()
+    let dateCounter = 0
     for (let i = 0; i < 6; i++) {
       // creates a table row
-      const row = document.createElement("tr");
-      //creating individual cells, filing them up with data.
+      const row = document.createElement('tr')
+      // creating individual cells, filing them up with data.
       for (let j = 0; j < 7; j++) {
         if (i === 0 && j < firstDay) {
-          let cell = document.createElement("td");
-          cell.classList.add("prev-month");
-          let cellText = document.createTextNode("");
-          cell.appendChild(cellText);
-          row.appendChild(cell);
+          const cell = document.createElement('td')
+          cell.classList.add('prev-month')
+          const cellText = document.createTextNode('')
+          cell.appendChild(cellText)
+          row.appendChild(cell)
         } else if (date > moment(daysInMonth[daysInMonth.length - 1]).date()) {
-          break;
+          break
         } else {
-          let cell = document.createElement("td");
+          const cell = document.createElement('td')
           cell.setAttribute(
-            "on-callPharmacy-one",
+            'on-callPharmacy-one',
             onCallList[dateCounter].pharmacys[0].name
-          );
+          )
           cell.setAttribute(
-            "on-callPharmacy-two",
+            'on-callPharmacy-two',
             onCallList[dateCounter].pharmacys[1].name
-          );
-          cell.setAttribute("on-callPharmacy-scale", Month[dateCounter].group);
-          cell.addEventListener("click", this.handleDayClick);
-          let cellText = document.createTextNode(
+          )
+          cell.setAttribute('on-callPharmacy-scale', Month[dateCounter].group)
+          cell.addEventListener('click', this.handleDayClick)
+          const cellText = document.createTextNode(
             moment(daysInMonth[dateCounter]).date().toString()
-          );
-          cell.appendChild(cellText);
-          row.appendChild(cell);
-          date++;
-          dateCounter++;
+          )
+          cell.appendChild(cellText)
+          row.appendChild(cell)
+          date++
+          dateCounter++
         }
       }
-      tableBody!.appendChild(row); // appending each row into calendar body.
+      tableBody!.appendChild(row) // appending each row into calendar body.
     }
-    this.renderCalendarMonth(firstDate);
-    this.handlePrevAndNextButtons(firstDate);
-    this.handlePdfActionButton(daysInMonth, onCallList, currentMonthString);
+    this.renderCalendarMonth(firstDate)
+    this.handlePrevAndNextButtons(firstDate)
+    this.handlePdfActionButton(daysInMonth, onCallList, currentMonthString)
   }
 
-  public static async calendarOnCall() {
-    const { btnSubmit, inputSelectedMonth } = this.getCalendarElements();
+  public static async calendarOnCall () {
+    const { btnSubmit, inputSelectedMonth } = this.getCalendarElements()
 
-    this.setDefaultInputValue();
+    this.setDefaultInputValue()
 
-    btnSubmit?.addEventListener("click", handleSubmitClick);
+    btnSubmit?.addEventListener('click', handleSubmitClick)
 
-    async function handleSubmitClick(event: Event) {
-      event.preventDefault();
+    async function handleSubmitClick (event: Event) {
+      event.preventDefault()
       const { firstDate, secondDate } = CalendarOnCall.getCurrentPeriod(
         (<HTMLInputElement>inputSelectedMonth).value
-      );
+      )
 
       if (firstDate !== undefined && secondDate !== undefined) {
         const result = await CalendarOnCall.getFutureOnCallDates(
           firstDate,
           secondDate
-        );
+        )
         if (result !== undefined) {
-          CalendarOnCall.renderCalendar("slideUpReturn");
-          CalendarOnCall.fetchTableOnCallPeriod(firstDate, result as any);
-          return;
+          CalendarOnCall.renderCalendar('slideUpReturn')
+          CalendarOnCall.fetchTableOnCallPeriod(firstDate, result as any)
         }
       }
     }

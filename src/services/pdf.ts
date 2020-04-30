@@ -1,8 +1,8 @@
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
-import moment from "moment";
-import utils from "../shared/image-handler";
-import dateHandler from "../shared/date-handler";
+import pdfMake from "pdfmake/build/pdfmake"
+import pdfFonts from "pdfmake/build/vfs_fonts"
+import moment from "moment"
+import utils from "../shared/image-handler"
+import dateHandler from "../shared/date-handler"
 
 export default class PdfMaker {
   public static async downloadPdf(
@@ -11,10 +11,10 @@ export default class PdfMaker {
     currentMonth: string
   ) {
     function fetchTable() {
-      const firstDay = moment(periodList[0]).day();
-      const lastDay = moment(periodList[periodList.length - 1]).date();
-      let date = moment(periodList[0]).date();
-      let dateCounter = 0;
+      const firstDay = moment(periodList[0]).day()
+      const lastDay = moment(periodList[periodList.length - 1]).date()
+      let date = moment(periodList[0]).date()
+      let dateCounter = 0
       const body: any = [
         [
           { text: "DOMINGO", alignment: "center" },
@@ -25,10 +25,10 @@ export default class PdfMaker {
           { text: "SEXTA", alignment: "center" },
           { text: "SÁBADO", alignment: "center" },
         ],
-      ];
+      ]
       for (let i = 0; i < 6; i++) {
         // creates a table row
-        let row: any = [];
+        let row: any = []
         //creating individual cells, filing them up with data.
         for (let j = 0; j < 7; j++) {
           if ((i === 0 && j < firstDay) || date > lastDay) {
@@ -37,10 +37,10 @@ export default class PdfMaker {
               width: 70,
               opacity: 0.5,
               alignment: "center",
-            };
-            row.push(cell);
+            }
+            row.push(cell)
           } else if (date > lastDay) {
-            break;
+            break
           } else {
             let cell = {
               text: [
@@ -70,18 +70,18 @@ export default class PdfMaker {
                 },
               ],
               fillColor: "#eeffee",
-            };
-            row.push(cell);
-            date++;
-            dateCounter++;
+            }
+            row.push(cell)
+            date++
+            dateCounter++
           }
         }
-        body.push(row); // appending each row into calendar body.
+        body.push(row) // appending each row into calendar body.
       }
-      return body;
+      return body
     }
 
-    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+    pdfMake.vfs = pdfFonts.pdfMake.vfs
     const docDefinition = {
       pageSize: "A4",
       pageOrientation: "landscape",
@@ -110,7 +110,7 @@ export default class PdfMaker {
               node: any,
               columnIndex: any
             ) {
-              return rowIndex === 0 ? "#CCCCCC" : null;
+              return rowIndex === 0 ? "#CCCCCC" : null
             },
           },
         },
@@ -153,9 +153,9 @@ export default class PdfMaker {
       defaultStyle: {
         // alignment: 'justify'
       },
-    };
+    }
     pdfMake
       .createPdf(docDefinition as any)
-      .download(`Escala-${currentMonth}.pdf`);
+      .download(`Escala-${currentMonth}.pdf`)
   }
 }
