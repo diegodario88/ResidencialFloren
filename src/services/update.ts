@@ -51,7 +51,9 @@ export default class UpdateOnCall {
           pharmacys: farmacias
         }]
       }
-      localStorage.setItem(`${currentMonth}`, JSON.stringify(todayObjToSave))
+      const existting = localStorage.getItem(currentMonth)
+      const data = existting ? [...existting, todayObjToSave] : todayObjToSave
+      localStorage.setItem(`${currentMonth}`, JSON.stringify(data))
     }
 
     const { pharmacys = false, group = false, day = false } = localStorageData
@@ -77,10 +79,7 @@ export default class UpdateOnCall {
                         <i class='far fa-building'></i>&nbsp;&nbsp; 
                         <a 
                         id="textoEndPrincipal" 
-                        href="${stringUtils.makeUrl(
-    pharmacy.name,
-    pharmacy.adress
-  )}">
+                        href="${stringUtils.makeUrl(pharmacy.name, pharmacy.adress)}">
                             ${pharmacy.adress}
                         </a>
                         <br>
