@@ -1,59 +1,57 @@
 import Api from './api'
-import dateHandler from '../shared/date-handler'
-import stringUtils from '../shared/string-utils'
+import Date from '../shared/date-handler'
+import Utils from '../shared/string-utils'
 import Pharmacy from '../entities/Pharmacy'
-import moment from 'moment'
 
 export default class UpdateOnCall {
+
   static async updateOnCallPharmacy () {
-    const todayDate = moment(new Date())
-    const tomorrowDate = moment(todayDate).add(1, 'd').format('YYYY-MM-DD')
-    const totalMonthsLocal = dateHandler.months.length - todayDate.month()
+    const tomorrowDate = Date.tomorrowDay.format('YYYY-MM-DD')
+    const totalMonthsLocal = Date.months.length - Date.currentMonthNumber
 
     if (localStorage.length < totalMonthsLocal) {
       localStorage.clear()
       console.log('getting data from Api and feeding localStorage')
-      const fullCalendar = await Api.post('plantoes/future', {
+      const fullCalendarFromApi = await Api.post('plantoes/future', {
         firstDate: tomorrowDate,
         secondDate: '2020-12-31'
       })
+      const fullCalendar = fullCalendarFromApi.map(month => Object.values(month))
+      console.log(fullCalendar)
 
-      fullCalendar.forEach((element: string) =>
-        element !== undefined
-          ? localStorage.setItem(
-            `${Object.keys(element)}`,
-            JSON.stringify(element)
-          )
-          : null
-      )
+      fullCalendarFromApi.forEach((item: string, index: string | number) => {
+        if (item !== undefined) {
+          const [monthName] = Object.keys(item)
+          const [daysInMonth] = fullCalendar[index]
+          localStorage.setItem(monthName,JSON.stringify(daysInMonth))
+        }
+      })
     }
-
-    const currentMonth = dateHandler.months[moment(todayDate).month()] as any
-    const localStorageMonth = localStorage.getItem(currentMonth) as any
-    const result = JSON.parse(localStorageMonth) as any[]
+    const localStorageMonth = localStorage.getItem(Date.currentMonthPTBR) as string
+    const result : any[] = Object.values(JSON.parse(localStorageMonth)) 
+    
     let localStorageData = null
 
     if (result) {
-      for (const item of result[currentMonth]) {
-        if (item.day === todayDate.format('YYYY-MM-DD')) {
-          localStorageData = item
-        }
-      }
+      const todayDateLocalStorage = result.find(({ day }) => day === Date.todayDate.format('YYYY-MM-DD'))
+      todayDateLocalStorage ? (localStorageData = todayDateLocalStorage) : null
     }
 
     if (!localStorageData) {
       localStorageData = false
       var { farmacias, name } = await Api.get('plantoes/atual')
+      console.log('feeding today date')
       const todayObjToSave = {
-        [currentMonth]: [{
-          day: todayDate.format('YYYY-MM-DD'),
-          group: name,
-          pharmacys: farmacias
-        }]
+        day: Date.todayDate.format('YYYY-MM-DD'),
+        pharmacys: farmacias,
+        group: name
       }
-      const existting = localStorage.getItem(currentMonth)
-      const data = existting ? [...existting, todayObjToSave] : todayObjToSave
-      localStorage.setItem(`${currentMonth}`, JSON.stringify(data))
+      const existing = localStorage.getItem(Date.currentMonthPTBR)
+      const existingParsed : any[] = existing !== null ? Object.values(JSON.parse(existing)) : []
+
+      existingParsed.unshift(todayObjToSave)
+      const data = existingParsed ? existingParsed : todayObjToSave
+      localStorage.setItem(`${Date.currentMonthPTBR}`, JSON.stringify(data))
     }
 
     const { pharmacys = false, group = false, day = false } = localStorageData
@@ -79,13 +77,13 @@ export default class UpdateOnCall {
                         <i class='far fa-building'></i>&nbsp;&nbsp; 
                         <a 
                         id="textoEndPrincipal" 
-                        href="${stringUtils.makeUrl(pharmacy.name, pharmacy.adress)}">
+                        href="${Utils.makeUrl(pharmacy.name, pharmacy.adress)}">
                             ${pharmacy.adress}
                         </a>
                         <br>
                         <i id="fone" class='fas fa-phone'></i>&nbsp;&nbsp; 
                         <a class="phone-text" 
-                        href="tel:0${stringUtils.normalize(pharmacy.phone)}">
+                        href="tel:0${Utils.normalize(pharmacy.phone)}">
                             ${pharmacy.phone}
                         </a>
                         <br>
@@ -117,8 +115,8 @@ export default class UpdateOnCall {
             ${renderCard(secPharma)}
             <br>
             <p class="card-detail card-detail-date">
-            Plantão dia: ${dateHandler.toDateFormated(
-    dateHandler.toDate(day || moment().format('YYYY-MM-DD'))
+            Plantão dia: ${Date.toDateFormated(
+    Date.toDate(day || Date.todayDate.format('YYYY-MM-DD'))
   )}
             </p>
             <p>
