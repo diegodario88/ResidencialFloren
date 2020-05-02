@@ -1,4 +1,12 @@
 {
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "sourceType": "module",
+    "ecmaFeatures": {
+        "experimentalObjectRestSpread": true
+    }
+},   
     "env": {
         "browser": true,
         "es6": true
@@ -11,14 +19,7 @@
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": 2020,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true
-        }
-    },
+    
     "plugins": [
         "@typescript-eslint"
     ],

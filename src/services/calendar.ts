@@ -147,8 +147,9 @@ export default class CalendarOnCall {
             JSON.stringify(resultLocal[0])
           )
           : null
-        return resultLocal[0]
+        return resultLocal
       }
+      
       return resultLocal
     }
     return {}
@@ -336,7 +337,7 @@ export default class CalendarOnCall {
   }
 
   private static fetchTableOnCallPeriod (firstDate: string, result: any[]) {
-    const Month = Object.values(result)[0] as any
+    const Month = Object.values(result) as any
     const daysInMonth = Month.map((item: { day: any }) => item.day)
     const onCallList = Month.map((onCall: any) => ({
       group: onCall.group,
@@ -392,7 +393,7 @@ export default class CalendarOnCall {
 
   public static async calendarOnCall () {
     const { btnSubmit, inputSelectedMonth } = this.getCalendarElements()
-
+    
     this.setDefaultInputValue()
 
     btnSubmit?.addEventListener('click', handleSubmitClick)
