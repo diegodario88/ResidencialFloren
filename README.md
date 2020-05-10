@@ -1,20 +1,9 @@
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
-
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -32,7 +21,11 @@
   </p>
 </p>
 
+<!-- USAGE EXAMPLES -->
+## Usage
 
+![](demo.gif)
+![](scale-pdf.png)
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
@@ -62,9 +55,6 @@ O que me motivou?
 
 claro, esse projeto é realmente algo pequeno e eu pretendo adicionar mais funcionalidades conforme minha bagagem de conhecimento for aumentando. Sinta-se livre para sugerir alterações.
 
-
-
-
 ### Built With
 Uma lista com as principais ferramentas que utilizei estará abaixo.
 
@@ -78,7 +68,6 @@ Uma lista com as principais ferramentas que utilizei estará abaixo.
 * [FlorenApi](https://github.com/diegodario88/ResidencialFlorenApi)
 * [mongodb](https://mongodb.com/)
 * [firebase](https://firebase.google.com/?hl=pt-br)
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -107,23 +96,9 @@ npm install
 ```JS
 const API_KEY = 'ENTER YOUR API';
 ```
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-![](demo.gif)
-![](scale-pdf.png)
-
-
-
 <!-- ROADMAP -->
 ## Roadmap
-
 See the [open issues](https://github.com/diegodario88/ResidencialFloren/issues) for a list of proposed features (and known issues).
-
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -136,14 +111,10 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-
 
 <!-- CONTACT -->
 ## Contact
@@ -151,8 +122,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Diego Dario - [@your_twitter](https://twitter.com/litlebirddd) 
 
 Project Link: [https://github.com/diegodario88](https://github.com/diegodario88)
-
-
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
@@ -168,22 +137,18 @@ Project Link: [https://github.com/diegodario88](https://github.com/diegodario88)
 * [JVectorMap](http://jvectormap.com)
 * [Font Awesome](https://fontawesome.com)
 
-
-
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[contributors-url]: https://github.com/diegodario88/ResidencialFloren/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[forks-url]:https://github.com/diegodario88/ResidencialFloren/network/members
 [stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[stars-url]: https://github.com/diegodario88/ResidencialFloren/stargazers
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[issues-url]: https://github.com/diegodario88/ResidencialFloren/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://www.linkedin.com/in/diego-dario-47542862/
 [product-screenshot]: images/screenshot.png

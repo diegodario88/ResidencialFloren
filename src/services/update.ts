@@ -1,24 +1,26 @@
 import Api from './api'
 import Date from '../shared/date-handler'
 import Utils from '../shared/string-utils'
+import { OnCallGroup, Pharmacy } from '../entities/OnCallGroup'
 
 export default class UpdateOnCall {
   private static tomorrowDate = Date.tomorrowDay.format('YYYY-MM-DD')
   private static totalMonthsLocal = (Date.months.length - Date.currentMonthNumber)
 
-  private static findCurrentGroupInLocalStorage(){
+  private static findCurrentGroupInLocalStorage(): OnCallGroup | undefined {
     const localStorageMonth = localStorage.getItem(Date.currentMonthPTBR) as string
-    const result : any[] | null = localStorageMonth ? Object.values(JSON.parse(localStorageMonth)) : null
-    let localStorageData = null
+    const result: OnCallGroup[] | null = localStorageMonth ? 
+      Object.values(JSON.parse(localStorageMonth)) : null
+    
     if (result) {
       const todayDateLocalStorage = result
-        .find(({ day }) => day === Date.todayDate.format('YYYY-MM-DD'))
-      localStorageData = todayDateLocalStorage
+        .find(( { day }: OnCallGroup) => day === Date.todayDate.format('YYYY-MM-DD'))
+      const localStorageData: OnCallGroup | undefined = todayDateLocalStorage
+      return localStorageData
     }
-    return localStorageData
   }
 
-  private static async feedCalendarInLocalStorage(){
+  private static async feedCalendarInLocalStorage(): Promise<void>{
     if (localStorage.length < this.totalMonthsLocal) {
       localStorage.clear()
       console.log('🤖 getting data from Api and feeding localStorage')
@@ -46,7 +48,7 @@ export default class UpdateOnCall {
         group: name
       }
       const existing = localStorage.getItem(Date.currentMonthPTBR)
-      const existingParsed : any[] = existing !== null ? Object.values(JSON.parse(existing)) : []
+      const existingParsed: object[] = existing !== null ? Object.values(JSON.parse(existing)) : []
 
       existingParsed.unshift(todayObjToSave)
       const data = existingParsed ? existingParsed : todayObjToSave
@@ -55,24 +57,7 @@ export default class UpdateOnCall {
     }
   }
 
-  static async updateOnCallPharmacy () {
-    const elementOnCall = document.getElementById('onCall')
-    
-    await this.feedCalendarInLocalStorage()
-
-    interface Pharmacy {
-      name: string,
-      telefone: string,
-      endereco: string
-    }
-
-    interface OnCallGroup {
-      day: string,
-      pharmacys: Pharmacy[],
-      group: string
-    }
-  
-    const renderCard = ({ name, telefone, endereco} : Pharmacy ): string => `
+  private static renderCard = ({ name, telefone, endereco}: Pharmacy ): string => `
         <div class="container">
             <section class="card">
             <h1 class="card-title">${name}</h1>
@@ -97,7 +82,7 @@ export default class UpdateOnCall {
         </div>
         `
 
-    const renderButtons = (): string => `
+  private static renderButtons = (): string => `
         <div class="buttons">
                 <a href="#calendario" id="btnCalendario" class="animated bounceInLeft slow">
                     <i class="far fa-calendar-alt"></i>
@@ -106,32 +91,42 @@ export default class UpdateOnCall {
                     <i class="fas fa-wrench"></i>
                     <span>Relatar Problema</span></a>
         </div>`
-     
-    const renderOnCallGroup = (OnCallToday: OnCallGroup): string => {
-      const { day, group, pharmacys: [mainPharma, secPharma] } = OnCallToday
-      
-      return elementOnCall!.innerHTML = `
-        <div class="animated fadeIn">
-           ${renderCard(mainPharma)}
-            <p class="card-detail-scale">
-            Escala ${group}
-            </p>
-            ${renderCard(secPharma)}
-            <br>
-            <p class="card-detail card-detail-date">
-            Plantão dia: ${Date.toDateFormated(Date.toDate(day))}
-            </p>
-            <p>
-            Aberto até: 22h00min
-            </p>
-            <br>
-            <hr id="espacoMagro">
-            <br>
-            ${renderButtons()}
-        </div>`
-    }
 
-    const mainGroup: OnCallGroup = this.findCurrentGroupInLocalStorage()
-    elementOnCall !== null ? renderOnCallGroup(mainGroup) : null
+  private static renderOnCallGroup = (OnCallToday: OnCallGroup | undefined): string | undefined => {
+    if (OnCallToday !== undefined) {
+      const { day, group, pharmacys: [mainPharma, secPharma] } = OnCallToday
+          
+      return  `
+            <div class="animated fadeIn">
+               ${UpdateOnCall.renderCard(mainPharma)}
+                <p class="card-detail-scale">
+                Escala ${group}
+                </p>
+                ${UpdateOnCall.renderCard(secPharma)}
+                <br>
+                <p class="card-detail card-detail-date">
+                Plantão dia: ${Date.toDateFormated(Date.toDate(day))}
+                </p>
+                <p>
+                Aberto até: 22h00min
+                </p>
+                <br>
+                <hr id="espacoMagro">
+                <br>
+                ${UpdateOnCall.renderButtons()}
+            </div>`
+    }
+  }
+
+  static async updateOnCallPharmacy(): Promise<void> {
+    const elementOnCall = document.getElementById('onCall')
+    
+    await this.feedCalendarInLocalStorage()
+    
+    const currentGroup: OnCallGroup | undefined = this.findCurrentGroupInLocalStorage()
+
+    elementOnCall !== null ? 
+      elementOnCall.innerHTML = this.renderOnCallGroup(currentGroup) || '' : null
+
   }
 }

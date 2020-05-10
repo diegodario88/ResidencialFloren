@@ -1,18 +1,17 @@
 import apiService from './api'
-import dateHandler from '../shared/date-handler'
+import Date from '../shared/date-handler'
 import pdfService from './pdf'
 import moment from 'moment'
 import Swal from 'sweetalert2'
 
 export default class CalendarOnCall {
   private static getCalendarElements () {
-    const btnSubmit = document.getElementById('btnSubmit') as HTMLButtonElement
-    const inputSelectedMonth = document.getElementById(
-      'selectMonth'
-    ) as HTMLElement
-    const calendarSection = document.getElementById(
-      'calendario'
-    ) as HTMLElement
+    const btnSubmit = document
+      .getElementById('btnSubmit') as HTMLButtonElement
+    const inputSelectedMonth = document
+      .getElementById('selectMonth') as HTMLElement
+    const calendarSection = document
+      .getElementById('calendario') as HTMLElement
 
     return { btnSubmit, inputSelectedMonth, calendarSection }
   }
@@ -22,13 +21,13 @@ export default class CalendarOnCall {
 
     inputSelectedMonth?.setAttribute(
       'min',
-      `${dateHandler.currentYear}-${dateHandler.currentMonth}`
+      `${Date.currentYear}-${Date.currentMonth}`
     )
 
-    inputSelectedMonth?.setAttribute('max', `${dateHandler.currentYear}-12`);
+    inputSelectedMonth?.setAttribute('max', `${Date.currentYear}-12`);
     (<HTMLInputElement>(
       inputSelectedMonth
-    )).value = `${dateHandler.currentYear}-${dateHandler.currentMonth}`
+    )).value = `${Date.currentYear}-${Date.currentMonth}`
   }
 
   private static handlePdfActionButton (
@@ -92,7 +91,7 @@ export default class CalendarOnCall {
     const selectedMonthParsed = selectedMonthAndYear.split('-')
     const yearSelected = selectedMonthParsed[0]
     const monthSelected = selectedMonthParsed[1]
-    const lastDayOfSelectedMonth = dateHandler.getLastDay(
+    const lastDayOfSelectedMonth = Date.getLastDay(
       +yearSelected,
       +monthSelected
     )
@@ -111,9 +110,9 @@ export default class CalendarOnCall {
         `${yearSelected}-${monthSelected}-${lastDayOfSelectedMonth}`
       ).format('YYYY-MM-DD')
 
-      if (monthSelected === dateHandler.currentMonth) {
+      if (monthSelected === Date.currentMonth) {
         const firstDate = moment(
-          `${yearSelected}-${monthSelected}-${dateHandler.tomorrowDay.format(
+          `${yearSelected}-${monthSelected}-${Date.tomorrowDay.format(
             'DD'
           )}`
         ).format('YYYY-MM-DD')
@@ -131,7 +130,7 @@ export default class CalendarOnCall {
     secondDate: string
   ) {
     if (firstDate !== undefined && secondDate !== undefined) {
-      const Month = dateHandler.months[moment(firstDate).month()]
+      const Month = Date.months[moment(firstDate).month()]
       const localStorageResult = localStorage.getItem(Month) as any
       let resultLocal = JSON.parse(localStorageResult)
 
@@ -161,7 +160,7 @@ export default class CalendarOnCall {
     ) as HTMLElement
 
     calendarMonth.innerHTML =
-      dateHandler.months[moment(currentMonthSelected).month()]
+      Date.months[moment(currentMonthSelected).month()]
   }
 
   private static renderCalendar (animation: string) {
@@ -292,7 +291,7 @@ export default class CalendarOnCall {
     const nextMonth = moment(currentMonthSelected).add(1, 'M').month()
 
     prevBtn.addEventListener('click', async () => {
-      if (prevMonth !== dateHandler.currentMonthNumber - 1) {
+      if (prevMonth !== Date.currentMonthNumber - 1) {
         const { firstDate, secondDate } = this.getCurrentPeriod(
           prevMonthAndYear
         )
@@ -345,7 +344,7 @@ export default class CalendarOnCall {
     }))
     const firstDay = moment(daysInMonth[0]).day()
     const tableBody = document.getElementById('calendar-body')
-    const currentMonthString = dateHandler.months[moment(firstDate).month()]
+    const currentMonthString = Date.months[moment(firstDate).month()]
 
     // creating all cells
     let date = moment(daysInMonth[0]).date()
