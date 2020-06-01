@@ -127,7 +127,7 @@ export default class CalendarOnCall {
   }
 
   private static async getFutureOnCallDates (
-    firstDate: string, secondDate: string): Promise<OnCallGroup | Array<Calendar>>{
+    firstDate: string, secondDate: string): Promise<OnCallGroup | Calendar>{
     const Month = Date.months[moment(firstDate).month()]
     const localStorageResult: string | null = localStorage.getItem(Month)
     const resultLocal: OnCallGroup = localStorageResult ? JSON.parse(localStorageResult) : null
@@ -136,7 +136,10 @@ export default class CalendarOnCall {
       const apiResponse: Array<Calendar> = await Api.post('oncalls/future', 
         {firstDate, secondDate})
       console.log('getting data from Api 😆')
-      if (apiResponse) return apiResponse
+      if (apiResponse) {
+        const [group] = apiResponse.map((month) => Object.values(month))
+        return group[0] as any   
+      } 
     }
       
     return resultLocal

@@ -5,7 +5,7 @@ import Date from '../shared/date-handler'
 export default class Storage {
     private static tomorrowDate = Date.tomorrowDay.format('YYYY-MM-DD')
     private static twoMonthsForwardDate = Date.twoMonthsForward.format('YYYY-MM-DD')
-    private static localStorageContains = localStorage.length > 2 || localStorage.length < 2
+    private static localStorageContains = localStorage.length > 3 || localStorage.length < 2
 
     static findCurrentGroupInLocalStorage(): OnCallGroup | undefined {
       const localStorageMonth = localStorage.getItem(Date.currentMonthPTBR) as string
@@ -21,22 +21,26 @@ export default class Storage {
     }
 
     static async feedCalendarInLocalStorage(): Promise<void> {
-      if (!Storage.localStorageContains) localStorage.clear()
-      console.log('🤖 getting data from Api and feeding localStorage')
-      const apiResponse = await Api.post('oncalls/future', {
-        firstDate: Storage.tomorrowDate,
-        secondDate: Storage.twoMonthsForwardDate
-      })
       
-      const calendarGroups = apiResponse.map((month: Calendar) => Object.values(month))
+      if (Storage.localStorageContains) {
+        localStorage.clear()
+        console.log('🤖 getting data from Api and feeding localStorage')
+      
+        const apiResponse = await Api.post('oncalls/future', {
+          firstDate: Storage.tomorrowDate,
+          secondDate: Storage.twoMonthsForwardDate
+        })
+      
+        const calendarGroups = apiResponse.map((month: Calendar) => Object.values(month))
 
-      apiResponse.forEach((month, index) => {
-        if (month !== undefined) {
-          const [monthName] = Object.keys(month)
-          const [daysInMonth] = calendarGroups[index]
-          localStorage.setItem(monthName, JSON.stringify(daysInMonth))
-        }
-      })
+        apiResponse.forEach((month, index) => {
+          if (month !== undefined) {
+            const [monthName] = Object.keys(month)
+            const [daysInMonth] = calendarGroups[index]
+            localStorage.setItem(monthName, JSON.stringify(daysInMonth))
+          }
+        })
+      }
     }
 
     static async feedCurrentGroupInLocalStorage(): Promise<void>{
