@@ -336,12 +336,9 @@ export default class CalendarOnCall {
   }
 
   private static fetchTableOnCallPeriod (firstDate: string, result: any[]) {
-    const Month = Object.values(result) as any
-    const daysInMonth = Month.map((item: { day: any }) => item.day)
-    const onCallList = Month.map((onCall: any) => ({
-      group: onCall.group,
-      pharmacys: onCall.pharmacys
-    }))
+    
+    const daysInMonth = Array.from(result, item => (item.day))
+    const oncallList = Array.from(result, item => ({group: item.group, pharmacies: item.pharmacies}))
     const firstDay = moment(daysInMonth[0]).day()
     const tableBody = document.getElementById('calendar-body')
     const currentMonthString = Date.months[moment(firstDate).month()]
@@ -366,13 +363,13 @@ export default class CalendarOnCall {
           const cell = document.createElement('td')
           cell.setAttribute(
             'on-callPharmacy-one',
-            onCallList[dateCounter].pharmacys[0].name
+            oncallList[dateCounter].pharmacies[0].name
           )
           cell.setAttribute(
             'on-callPharmacy-two',
-            onCallList[dateCounter].pharmacys[1].name
+            oncallList[dateCounter].pharmacies[1].name
           )
-          cell.setAttribute('on-callPharmacy-scale', Month[dateCounter].group)
+          cell.setAttribute('on-callPharmacy-scale', oncallList[dateCounter].group)
           cell.addEventListener('click', this.handleDayClick)
           const cellText = document.createTextNode(
             moment(daysInMonth[dateCounter]).date().toString()
@@ -387,15 +384,13 @@ export default class CalendarOnCall {
     }
     this.renderCalendarMonth(firstDate)
     this.handlePrevAndNextButtons(firstDate)
-    this.handlePdfActionButton(daysInMonth, onCallList, currentMonthString)
+    this.handlePdfActionButton(daysInMonth, oncallList, currentMonthString)
   }
 
   public static async calendarOnCall () {
     const { btnSubmit, inputSelectedMonth } = this.getCalendarElements()
     
     this.setDefaultInputValue()
-
-    btnSubmit?.addEventListener('click', handleSubmitClick)
 
     async function handleSubmitClick (event: Event) {
       event.preventDefault()
@@ -414,5 +409,8 @@ export default class CalendarOnCall {
         }
       }
     }
+
+    btnSubmit?.addEventListener('click', handleSubmitClick)
+
   }
 }

@@ -6,16 +6,15 @@ export interface Location {
 export interface Pharmacy {
   _id?: string;
   name: string;
-  telefone: string;
-  endereco: string;
+  phone: string;
+  address: string;
   location?: Location;
 }
 
 export interface OnCallGroup {
   _id?: string;
   name?: string;
-  farmacias?: Pharmacy[];
   day: string;
-  pharmacys: Pharmacy[];
+  pharmacies: Pharmacy[];
   group: string;
 }

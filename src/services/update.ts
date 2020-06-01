@@ -24,9 +24,9 @@ export default class UpdateOnCall {
     if (localStorage.length < this.totalMonthsLocal) {
       localStorage.clear()
       console.log('🤖 getting data from Api and feeding localStorage')
-      const fullCalendarFromApi = await Api.post('plantoes/future', {
+      const fullCalendarFromApi = await Api.post('oncalls/future', {
         firstDate: this.tomorrowDate,
-        secondDate: '2020-12-31'
+        secondDate: '2020-12-30'
       })
       const fullCalendarMonths = fullCalendarFromApi
         .map((month: string ) => Object.values(month))
@@ -41,10 +41,10 @@ export default class UpdateOnCall {
     }
 
     if (!this.findCurrentGroupInLocalStorage()) {
-      const { farmacias, name } = await Api.get('plantoes/atual')
+      const { pharmacies, name } = await Api.get('oncalls/today')
       const todayObjToSave = {
         day: Date.todayDate.format('YYYY-MM-DD'),
-        pharmacys: farmacias,
+        pharmacies,
         group: name
       }
       const existing = localStorage.getItem(Date.currentMonthPTBR)
@@ -57,7 +57,7 @@ export default class UpdateOnCall {
     }
   }
 
-  private static renderCard = ({ name, telefone, endereco}: Pharmacy ): string => `
+  private static renderCard = ({ name, phone, address}: Pharmacy ): string => `
         <div class="container">
             <section class="card">
             <h1 class="card-title">${name}</h1>
@@ -66,14 +66,14 @@ export default class UpdateOnCall {
                         <i class='far fa-building'></i>&nbsp;&nbsp; 
                         <a 
                         id="textoEndPrincipal" 
-                        href="${Utils.makeUrl(name, endereco)}">
-                            ${endereco}
+                        href="${Utils.makeUrl(name, address)}">
+                            ${address}
                         </a>
                         <br>
                         <i id="fone" class='fas fa-phone'></i>&nbsp;&nbsp; 
                         <a class="phone-text" 
-                        href="tel:0${Utils.normalize(telefone)}">
-                            ${telefone}
+                        href="tel:0${Utils.normalize(phone)}">
+                            ${phone}
                         </a>
                         <br>
                     </p>
@@ -94,7 +94,7 @@ export default class UpdateOnCall {
 
   private static renderOnCallGroup = (OnCallToday: OnCallGroup | undefined): string | undefined => {
     if (OnCallToday !== undefined) {
-      const { day, group, pharmacys: [mainPharma, secPharma] } = OnCallToday
+      const { day, group, pharmacies: [mainPharma, secPharma] } = OnCallToday
           
       return  `
             <div class="animated fadeIn">

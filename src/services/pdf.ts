@@ -28,11 +28,11 @@ export default class PdfMaker {
       ]
       for (let i = 0; i < 6; i++) {
         // creates a table row
-        let row: any = []
+        const row: any = []
         //creating individual cells, filing them up with data.
         for (let j = 0; j < 7; j++) {
           if ((i === 0 && j < firstDay) || date > lastDay) {
-            let cell = {
+            const cell = {
               image: "logo",
               width: 70,
               opacity: 0.5,
@@ -42,7 +42,7 @@ export default class PdfMaker {
           } else if (date > lastDay) {
             break
           } else {
-            let cell = {
+            const cell = {
               text: [
                 {
                   text: `${moment(periodList[dateCounter]).date()}\n`,
@@ -50,7 +50,7 @@ export default class PdfMaker {
                   fontSize: 11,
                 },
                 {
-                  text: `${onCallList[dateCounter].pharmacys[0].name}\n`,
+                  text: `${onCallList[dateCounter].pharmacies[0].name}\n`,
                   alignment: "center",
                   bold: true,
                   italics: true,
@@ -63,7 +63,7 @@ export default class PdfMaker {
                   fontSize: 11,
                 },
                 {
-                  text: `${onCallList[dateCounter].pharmacys[1].name}`,
+                  text: `${onCallList[dateCounter].pharmacies[1].name}`,
                   alignment: "center",
                   bold: true,
                   italics: true,
