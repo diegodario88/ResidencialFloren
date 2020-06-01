@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { OnCallGroup } from '../entities/OnCallGroup'
+
 export default class Api {
   // production
   static baseUrl = 'https://floren-api.appspot.com/api/v2/';
@@ -13,10 +14,9 @@ export default class Api {
     return response.data
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public static async post (url: string, data: object): Promise<any> {
+  public static async post (url: string, date: object): Promise<[]> {
     const PathApi = `${this.baseUrl}${url}`
-    const response = await axios.post(PathApi, data)
+    const response = await axios.post(PathApi, date)
     return response.data
   }
 }

@@ -1,62 +1,10 @@
-import Api from './api'
+import Storage from './storage'
 import Date from '../shared/date-handler'
 import Utils from '../shared/string-utils'
 import { OnCallGroup, Pharmacy } from '../entities/OnCallGroup'
 
 export default class UpdateOnCall {
-  private static tomorrowDate = Date.tomorrowDay.format('YYYY-MM-DD')
-  private static totalMonthsLocal = (Date.months.length - Date.currentMonthNumber)
-
-  private static findCurrentGroupInLocalStorage(): OnCallGroup | undefined {
-    const localStorageMonth = localStorage.getItem(Date.currentMonthPTBR) as string
-    const result: OnCallGroup[] | null = localStorageMonth ? 
-      Object.values(JSON.parse(localStorageMonth)) : null
-    
-    if (result) {
-      const todayDateLocalStorage = result
-        .find(( { day }: OnCallGroup) => day === Date.todayDate.format('YYYY-MM-DD'))
-      const localStorageData: OnCallGroup | undefined = todayDateLocalStorage
-      return localStorageData
-    }
-  }
-
-  private static async feedCalendarInLocalStorage(): Promise<void>{
-    if (localStorage.length < this.totalMonthsLocal) {
-      localStorage.clear()
-      console.log('🤖 getting data from Api and feeding localStorage')
-      const fullCalendarFromApi = await Api.post('oncalls/future', {
-        firstDate: this.tomorrowDate,
-        secondDate: '2020-12-30'
-      })
-      const fullCalendarMonths = fullCalendarFromApi
-        .map((month: string ) => Object.values(month))
-
-      fullCalendarFromApi.forEach((item: string, index: string | number) => {
-        if (item !== undefined) {
-          const [monthName] = Object.keys(item)
-          const [daysInMonth] = fullCalendarMonths[index]
-          localStorage.setItem(monthName, JSON.stringify(daysInMonth))
-        }
-      })
-    }
-
-    if (!this.findCurrentGroupInLocalStorage()) {
-      const { pharmacies, name } = await Api.get('oncalls/today')
-      const todayObjToSave = {
-        day: Date.todayDate.format('YYYY-MM-DD'),
-        pharmacies,
-        group: name
-      }
-      const existing = localStorage.getItem(Date.currentMonthPTBR)
-      const existingParsed: object[] = existing !== null ? Object.values(JSON.parse(existing)) : []
-
-      existingParsed.unshift(todayObjToSave)
-      const data = existingParsed ? existingParsed : todayObjToSave
-      localStorage.setItem(`${Date.currentMonthPTBR}`, JSON.stringify(data))
-      console.log('🤖 feeding today date')
-    }
-  }
-
+ 
   private static renderCard = ({ name, phone, address}: Pharmacy ): string => `
         <div class="container">
             <section class="card">
@@ -121,12 +69,12 @@ export default class UpdateOnCall {
   static async updateOnCallPharmacy(): Promise<void> {
     const elementOnCall = document.getElementById('onCall')
     
-    await this.feedCalendarInLocalStorage()
+    await Storage.feedCalendarInLocalStorage()
     
-    const currentGroup: OnCallGroup | undefined = this.findCurrentGroupInLocalStorage()
+    const currentGroup: OnCallGroup | undefined = Storage.findCurrentGroupInLocalStorage()
 
     elementOnCall !== null ? 
-      elementOnCall.innerHTML = this.renderOnCallGroup(currentGroup) || '' : null
-
+      elementOnCall.innerHTML = this.renderOnCallGroup(currentGroup) || '' 
+      : null
   }
 }
