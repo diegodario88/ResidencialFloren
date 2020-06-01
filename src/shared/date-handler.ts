@@ -20,6 +20,7 @@ export default class DateHandler {
   ];
   public static todayDate = moment(new Date());
   public static tomorrowDay = moment(new Date()).add(1, "day");
+  public static twoMonthsForward = moment(new Date()).add(2, "months");
   public static currentYear = moment().format("YYYY");
   public static currentMonth = moment().format("MM");
   public static currentMonthNumber = moment().month();

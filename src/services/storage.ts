@@ -1,10 +1,11 @@
-import { OnCallGroup } from '../entities/OnCallGroup'
+import { OnCallGroup, Calendar} from '../entities/OnCallGroup'
 import Api from './api'
 import Date from '../shared/date-handler'
 
 export default class Storage {
     private static tomorrowDate = Date.tomorrowDay.format('YYYY-MM-DD')
-    private static totalMonthsLocal = (Date.months.length - Date.currentMonthNumber)
+    private static twoMonthsForwardDate = Date.twoMonthsForward.format('YYYY-MM-DD')
+    private static localStorageContains = localStorage.length > 2 || localStorage.length < 2
 
     static findCurrentGroupInLocalStorage(): OnCallGroup | undefined {
       const localStorageMonth = localStorage.getItem(Date.currentMonthPTBR) as string
@@ -14,31 +15,31 @@ export default class Storage {
       if (result) {
         const todayDateLocalStorage = result
           .find(({ day }: OnCallGroup) => day === Date.todayDate.format('YYYY-MM-DD'))
-        const localStorageData: OnCallGroup | undefined = todayDateLocalStorage
-        return localStorageData
+        const localStorageCurrentGroup: OnCallGroup | undefined = todayDateLocalStorage
+        return localStorageCurrentGroup
       }
     }
 
     static async feedCalendarInLocalStorage(): Promise<void> {
-      if (localStorage.length < this.totalMonthsLocal) {
-        localStorage.clear()
-        console.log('🤖 getting data from Api and feeding localStorage')
-        const fullCalendarFromApi = await Api.post('oncalls/future', {
-          firstDate: this.tomorrowDate,
-          secondDate: '2020-12-30'
-        })
-        const fullCalendarMonths = fullCalendarFromApi
-          .map((month: string) => Object.values(month))
+      if (!Storage.localStorageContains) localStorage.clear()
+      console.log('🤖 getting data from Api and feeding localStorage')
+      const apiResponse = await Api.post('oncalls/future', {
+        firstDate: Storage.tomorrowDate,
+        secondDate: Storage.twoMonthsForwardDate
+      })
+      
+      const calendarGroups = apiResponse.map((month: Calendar) => Object.values(month))
 
-        fullCalendarFromApi.forEach((item: string, index: number) => {
-          if (item !== undefined) {
-            const [monthName] = Object.keys(item)
-            const [daysInMonth] = fullCalendarMonths[index]
-            localStorage.setItem(monthName, JSON.stringify(daysInMonth))
-          }
-        })
-      }
+      apiResponse.forEach((month, index) => {
+        if (month !== undefined) {
+          const [monthName] = Object.keys(month)
+          const [daysInMonth] = calendarGroups[index]
+          localStorage.setItem(monthName, JSON.stringify(daysInMonth))
+        }
+      })
+    }
 
+    static async feedCurrentGroupInLocalStorage(): Promise<void>{
       if (!this.findCurrentGroupInLocalStorage()) {
         const { pharmacies, name } = await Api.get('oncalls/today')
         const todayObjToSave = {

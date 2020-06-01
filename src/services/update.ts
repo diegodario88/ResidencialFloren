@@ -70,11 +70,11 @@ export default class UpdateOnCall {
     const elementOnCall = document.getElementById('onCall')
     
     await Storage.feedCalendarInLocalStorage()
+    await Storage.feedCurrentGroupInLocalStorage()
     
     const currentGroup: OnCallGroup | undefined = Storage.findCurrentGroupInLocalStorage()
 
-    elementOnCall !== null ? 
-      elementOnCall.innerHTML = this.renderOnCallGroup(currentGroup) || '' 
+    elementOnCall ? elementOnCall.innerHTML = this.renderOnCallGroup(currentGroup) || '' 
       : null
   }
 }

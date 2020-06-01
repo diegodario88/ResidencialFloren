@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { OnCallGroup } from '../entities/OnCallGroup'
+import { OnCallGroup, Calendar } from '../entities/OnCallGroup'
 
 export default class Api {
   // production
@@ -14,7 +14,7 @@ export default class Api {
     return response.data
   }
 
-  public static async post (url: string, date: object): Promise<[]> {
+  public static async post (url: string, date: object): Promise<Array<Calendar>>{
     const PathApi = `${this.baseUrl}${url}`
     const response = await axios.post(PathApi, date)
     return response.data

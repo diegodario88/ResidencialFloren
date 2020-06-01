@@ -18,3 +18,7 @@ export interface OnCallGroup {
   pharmacies: Pharmacy[];
   group: string;
 }
+
+export interface Calendar{
+  month: Array<OnCallGroup>;
+}

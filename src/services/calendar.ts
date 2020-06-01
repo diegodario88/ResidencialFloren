@@ -1,8 +1,9 @@
-import apiService from './api'
+import Api from './api'
 import Date from '../shared/date-handler'
 import pdfService from './pdf'
 import moment from 'moment'
 import Swal from 'sweetalert2'
+import {OnCallGroup, Calendar} from '../entities/OnCallGroup'
 
 export default class CalendarOnCall {
   private static getCalendarElements () {
@@ -126,32 +127,20 @@ export default class CalendarOnCall {
   }
 
   private static async getFutureOnCallDates (
-    firstDate: string,
-    secondDate: string
-  ) {
-    if (firstDate !== undefined && secondDate !== undefined) {
-      const Month = Date.months[moment(firstDate).month()]
-      const localStorageResult = localStorage.getItem(Month) as any
-      let resultLocal = JSON.parse(localStorageResult)
+    firstDate: string, secondDate: string): Promise<OnCallGroup | Array<Calendar>>{
+    const Month = Date.months[moment(firstDate).month()]
+    const localStorageResult: string | null = localStorage.getItem(Month)
+    const resultLocal: OnCallGroup = localStorageResult ? JSON.parse(localStorageResult) : null
 
-      if (!resultLocal) {
-        resultLocal = await apiService.post('plantoes/future', {
-          firstDate,
-          secondDate
-        })
-        console.log('getting data from Api 😆')
-        resultLocal !== null
-          ? localStorage.setItem(
-            `${Object.keys(resultLocal[0])}`,
-            JSON.stringify(resultLocal[0])
-          )
-          : null
-        return resultLocal
-      }
-      
-      return resultLocal
+    if (!resultLocal) {
+      const apiResponse: Array<Calendar> = await Api.post('oncalls/future', 
+        {firstDate, secondDate})
+      console.log('getting data from Api 😆')
+      if (apiResponse) return apiResponse
     }
-    return {}
+      
+    return resultLocal
+    
   }
 
   private static renderCalendarMonth (currentMonthSelected: string) {
@@ -297,7 +286,7 @@ export default class CalendarOnCall {
         )
         if (firstDate !== undefined && secondDate !== undefined) {
           const result = await this.getFutureOnCallDates(firstDate, secondDate)
-          if (result !== undefined) {
+          if (result) {
             this.renderCalendar('slideLeftReturn')
             this.fetchTableOnCallPeriod(firstDate, result as any)
           }
